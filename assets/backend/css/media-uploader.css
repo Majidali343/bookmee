@@ -1,0 +1,329 @@
+/*
+    All media uploader css will be there
+    @since 2.2
+*/
+
+.all-uploaded-images .image-preloader-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#media_upload_modal .modal-dialog {
+    max-width: calc(100% - 40px);
+}
+
+#media_upload_modal .modal-body {
+    max-height: 600px;
+    overflow-y: scroll;
+    padding-bottom: 0;
+}
+
+#media_upload_modal .modal-header {
+    border: none;
+}
+
+.dropzone-form-wrapper form {
+    border: 2px dashed #ddd;
+    padding: 20px;
+    height: 488px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dropzone-form-wrapper {
+    padding: 20px;
+}
+
+.all-uploaded-images {
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.main-content-area-wrap {
+    position: relative;
+}
+
+
+.dropzone-form-wrapper form span.xg-accept-files {
+    display: block;
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.dropzone-form-wrapper form span {
+    display: block;
+    font-size: 25px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.media-uploader-image-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.media-uploader-image-list li {
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.media-uploader-image-list li.selected:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #007bff;
+    content: '';
+}
+
+.media-uploader-image-list li.selected:before {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    content: "\f00c";
+    color: #fff;
+    line-height: 30px;
+    background-color: #007bff;
+    text-align: center;
+    font-family: "Line Awesome Free";
+    font-weight: 900;
+    font-size: 16px;
+    z-index: 1;
+}
+
+.media-uploader-image-list li.selected {
+    position: relative;
+}
+
+.main-content-area-wrap {
+    display: flex;
+}
+
+.media-uploader-image-info {
+    padding: 20px;
+    display: inline-block;
+    width: 280px;
+}
+
+.media-uploader-image-info .img-wrapper {
+    margin-bottom: 30px;
+}
+
+.media-uploader-image-info .img-title {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 600;
+}
+
+.media-uploader-image-info .img-meta {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.media-uploader-image-info .img-meta li + li {
+    margin-top: 10px;
+}
+
+.media-uploader-image-info .img-meta li.imgsrc {
+    background-color: #e2e2e2;
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    margin-top: 15px;
+    word-break: break-all;
+    height: 30px;
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+.dropzone .dz-preview .dz-details .dz-filename > span, .dropzone .dz-preview .dz-details .dz-size > span {
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.dropzone .dz-preview .dz-details .dz-filename {
+    overflow: hidden;
+}
+
+.attachment-preview {
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, .1), inset 0 0 0 1px rgba(0, 0, 0, .05);
+    background: #eee;
+    cursor: pointer;
+    width: 130px;
+    height: 130px;
+}
+
+.attachment-preview .thumbnail {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity .1s;
+}
+
+.attachment-preview .thumbnail .centered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(50%, 50%);
+}
+
+.attachment-preview .thumbnail .centered img {
+    transform: translate(-50%, -50%);
+}
+
+.media-uploader-image-info .img-wrapper img {
+    max-height: 150px;
+}
+
+.dropzone .dz-preview.dz-error:hover .dz-error-message span {
+    font-size: 16px;
+    line-height: 26px;
+}
+.media-upload-btn-wrapper .img-wrap {
+    margin-bottom: 20px;
+}
+.dropzone .dz-preview .dz-progress .dz-upload {
+    background: #333 !important;
+    height: 20px;
+}
+.dropzone .dz-preview .dz-details .dz-size span,
+.dropzone .dz-preview .dz-details .dz-filename span{
+    background-color: #151517;
+    border-radius: 3px;
+}
+.dropzone .dz-preview.dz-success .dz-success-mark svg path {
+    fill: #34a734;
+}
+.dropzone .dz-preview.dz-success .dz-error-mark svg path {
+    fill: #ec5d6b;
+}
+
+.media-upload-btn-wrapper .attachment-preview + .attachment-preview {
+    margin-left: 20px;
+}
+.media-upload-btn-wrapper .attachment-preview{
+    display: inline-block;
+}
+.media-uploader-image-info .img-meta li.imgalt input {
+    border: 1px solid rgba(0,0,0,.8);
+    height: 40px;
+    padding: 0 15px;
+}
+
+.media-uploader-image-info .img-meta li.imgalt button {
+    height: 40px;
+    border: none;
+    margin-top: -5px;
+}
+
+.media-upload-btn-wrapper .img-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.media-upload-btn-wrapper{
+    display: block;
+}
+.media-upload-btn-wrapper .img-wrap .rmv-span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #b15b5b;
+    color: #fff;
+    cursor: pointer;
+}
+.media-upload-btn-wrapper button {
+    display: block;
+    width: auto;
+}
+.media-uploader-image-info .img-wrapper img {
+    max-height: 100px;
+}
+.main-content-area-wrap #loadmorewrap {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.main-content-area-wrap #loadmorewrap button {
+    border: none;
+    padding: 10px 20px;
+    background-color: #eeeeee;
+    color: #333;
+    font-weight: 700;
+    border-radius: 3px;
+}
+
+.image-list-wr5apper{
+    position: relative;
+    width: calc(100% - 300px);
+    max-height: 520px;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+    min-height: 520px;
+}
+
+.media-uploader-image-info .img-alt-wrap {
+    display: flex;
+}
+
+.media-uploader-image-info .img-alt-wrap button {
+    position: relative;
+    top: 5px;
+    border-radius: 0;
+}
+
+.media-uploader-image-info .img-meta li.imgalt input{
+    border: 1px solid #e2e2e2;
+}
+
+
+
+@media only screen and (max-width: 450px){
+    .image-list-wr5apper {width: 100%;}
+    
+    .media-uploader-image-info {width: 100%;background-color: #f3f3f3;}
+    
+    .main-content-area-wrap {display: block;}
+}
+
+
+.img-inner-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}

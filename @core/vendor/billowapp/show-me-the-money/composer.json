@@ -1,0 +1,21 @@
+{
+  "name": "billowapp/show-me-the-money",
+  "description": "Super simple money class for laravel and we mean simple.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Warren Hansen",
+      "email": "warren@billow.co.za"
+    }
+  ],
+  "require": {
+    "php": "^7.0|^8.0",
+    "illuminate/support": "^5.2|^6.0|^7.0|^8.0|^9.0",
+    "doctrine/inflector": "^1.1|^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Billow\\Utilities\\": "src/"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+/* Details Overview */
+
+.location-overview-area {}
+
+.overview-list-all {
+    .overview-list {
+        margin-bottom: 50px;
+    }
+    .overview-location {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 30px;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        @include responsive(allPhone) {
+            gap: 0px 10px;
+        }
+        .single-location {
+            background: $Zircon;
+            color: var(--heading-color);
+            width: calc(100% / 5 - 25px);
+            text-align: center;
+            padding: 40px 5px;
+            border-radius: 10px;
+            cursor: pointer;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            @include responsive(allPhone) {
+                width: auto;
+                padding: 30px 30px;
+            }
+            @include responsive(xs) {
+                padding: 20px 20px;
+            }
+            @include responsive(vxxs) {
+                padding: 15px 15px;
+            }
+            &.active {
+                background: var(--main-color-one);
+                .location {
+                    color: $white;
+                }
+            }
+            &:hover {
+                background: var(--main-color-one);
+                .location {
+                    color: $white;
+                }
+            }
+            .location {
+                display: block;
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 34px;
+                -webkit-transition: all .3s;
+                -o-transition: all .3s;
+                transition: all .3s;
+                @include responsive(lg) {
+                    font-size: 20px;
+                    line-height: 30px;
+                }
+                @include responsive(allPhone) {
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+                @include responsive(xxs) {
+                    font-size: 16px;
+                    line-height: 28px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}

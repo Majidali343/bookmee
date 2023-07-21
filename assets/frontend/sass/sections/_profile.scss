@@ -1,0 +1,161 @@
+/* Profile */
+
+.profile-author-contents {}
+
+.profile-flex-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 30px;
+    @include responsive(allPhone) {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        gap: 20px;
+    }
+    .thumb {
+        height: 120px;
+        min-width: 120px;
+        border-radius: 10px;
+        img {
+            border-radius: 10px;
+            height: 100%;
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+    }
+    .profile-contents {
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 36px;
+        }
+        .profiles-review {
+            font-size: 16px;
+            line-height: 28px;
+            .icon {
+                color: var(--main-color-three);
+            }
+            .reviews {
+                b {
+                    color: var(--light-color);
+                    padding: 0 3px;
+                }
+            }
+        }
+    }
+}
+
+.profile-about {
+    padding: 0;
+    text-align: center;
+    li {
+        font-size: 16px;
+        font-weight: 400;
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+        span {
+            font-weight: 500;
+            color: var(--heading-color);
+            display: inline-block;
+            padding-left: 10px;
+        }
+    }
+}
+
+.profile-single-achieve {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 30px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    &.style-02 {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        @include responsive(allPhone) {
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+    }
+    .single-achieve {
+        background: var(--main-color-one);
+        border-radius: 10px;
+        height: 180px;
+        min-width: 180px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        text-align: center;
+        color: $white;
+        &:nth-child(2n+2) {
+            background: var(--main-color-three);
+            .icon {
+                color: var(--main-color-three);
+            }
+        }
+        .icon {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background: $white;
+            color: var(--main-color-one);
+            font-size: 20px;
+            margin: 0 auto;
+        }
+        .contents {
+            .title {
+                font-size: 32px;
+                font-weight: 700;
+                line-height: 36px;
+                color: $white;
+            }
+            .ratings-span {
+                line-height: 20px;
+                font-size: 18px;
+                color: $white;
+                display: block;
+            }
+        }
+    }
+}
+.profile-sidebar{
+    .info-box{
+        background: #FAFAFA;
+        border-radius: 10px;
+        padding: 20px
+    }
+}

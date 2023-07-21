@@ -1,0 +1,54 @@
+/*----------------------------
+    Pagination
+----------------------------*/
+
+.pagination {
+    margin-top: 40px;
+    .pagination-list {
+        margin: 0 auto;
+
+        li {
+            display: inline-block;
+
+            .page-number {
+                color: var(--paragraph-color);
+                display: inline-block;
+                text-align: center;
+                width: 45px;
+                height: 45px;
+                line-height: 45px;
+                margin: 0 6px;
+                transition: all linear 0.3s;
+                border: 1px solid transparent;
+                font-weight: 400;
+
+                &.current {
+                    background-color: var(--main-color-one);
+                    color: $white;
+                    border-color: var(--main-color-one);
+                }
+
+                &:hover {
+                    background-color: var(--main-color-one);
+                    color: $white;
+                    border-color: var(--main-color-one);
+                }
+            }
+        }
+    }
+    &.index-05 {
+        .pagination-list {
+            .page-number {
+                color: #fff;
+                &:hover {
+                    background-color: var(--main-color-four);
+                    border-color: var(--main-color-four);
+                }
+                &.current {
+                    background-color: var(--main-color-four);
+                    border-color: var(--main-color-four);
+                }
+            }
+        }
+    }
+}

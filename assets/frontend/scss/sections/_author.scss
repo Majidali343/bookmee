@@ -1,0 +1,76 @@
+/*--------------------------------------------------------------
+# About Author
+--------------------------------------------------------------*/
+.about-author-area-wrapper {
+    margin-top: 100px;
+
+    .content-wrap {
+        position: relative;
+        height: 100%;
+
+        .content {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+
+            .title {
+                font-family: var(--extra-font-two);
+                font-size: 30px;
+                font-weight: 600;
+                color: var(--heading-color-three);
+                text-transform: capitalize;
+            }
+
+            .sub-title {
+                font-family: var(--extra-font);
+                font-size: 16px;
+                font-style: italic;
+                color: var(--heading-color-two);
+                display: inline-block;
+                margin: 11px 0 22px;
+            }
+
+            .info {
+                margin-bottom: 10px;
+            }
+
+            .socila-link-wrap {
+                border-top: 1px solid #ddd;
+                margin-top: 25px;
+                padding-top: 16px;
+
+                a {
+                    color: #707070;
+
+                    &:hover {
+                        color: var(--main-color-three);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.author-aritcle-area-wrapper {
+    margin-bottom: -30px;
+    margin-top: 100px;
+
+    .section-title {
+        font-family: var(--extra-font-two);
+        font-weight: 600;
+    }
+
+    .single-blog-list-nature {
+        margin-bottom: 30px !important;
+
+        .title {
+            font-size: 22px !important;
+            line-height: 32px !important;
+        }
+    }
+
+    .btn-wrapper {
+        text-align: center;
+        margin-top: 20px;
+    }
+}

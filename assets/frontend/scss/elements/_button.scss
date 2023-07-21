@@ -1,0 +1,67 @@
+/*---------------------------------------
+    ## Button
+---------------------------------------*/
+.btn-wrapper {
+    display: block;
+
+    .btn-default {
+        font-size: 16px;
+        display: inline-block;
+        text-align: center;
+        font-weight: 500;
+        cursor: pointer;
+        border: 2px solid var(--main-color-one);
+        background-color: var(--main-color-one);
+        color: #fff;
+        line-height: 50px;
+        text-transform: capitalize;
+        padding: 0 35px;
+        transition: all linear 0.2s;
+
+        &:hover {
+            background-color: transparent;
+            color: var(--main-color-one);
+        }
+        &.v-2 {
+            background-color: var(--main-color-two);
+            border-color: var(--main-color-two);
+            &:hover {
+                background-color: transparent;
+                color: var(--main-color-two);
+            }
+        }
+        &.v-3 {
+            background-color: #333333;
+            border-color: #333333;
+            color: #fff;
+            &:hover {
+                background-color: transparent;
+                color: #333333;
+            }
+        }
+        &.transparent {
+            background-color: transparent;
+            border-color: var(--paragraph-color);
+            color: var(--paragraph-color);
+            &:hover {
+                background-color: var(--main-color-two);
+                border-color: var(--main-color-two);
+                color: $white;
+            }
+            &.v-1-r {
+                &:hover {
+                    background-color: var(--main-color-one);
+                    color: #fff;
+                    border-color: var(--main-color-one);
+                }
+            }
+            &.v-3-r {
+                &:hover {
+                    background-color: var(--main-color-three);
+                    color: #fff;
+                    border-color: var(--main-color-three);
+                }
+            }
+        }
+    }
+}

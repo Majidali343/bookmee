@@ -1,0 +1,100 @@
+/* About area */
+
+.About-area {}
+
+.about-thumb-content {
+    position: relative;
+    z-index: 2;
+    padding-right: 50px;
+    @include responsive(allPhone) {
+        padding-right: 0;
+    }
+    .about-shape {
+        img {
+            position: absolute;
+            left: -80px;
+            top: -50px;
+            z-index: -1;
+        }
+    }
+    .about-thumb {
+        position: relative;
+        z-index: 2;
+        img {
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            height: 100%;
+        }
+        .about-experience {
+            background: var(--main-color-three);
+            border: 5px solid $white;
+            color: $white;
+            text-align: center;
+            display: inline-block;
+            padding: 25px 30px 35px;
+            border-radius: 10px;
+            position: absolute;
+            bottom: -40px;
+            right: 30px;
+            z-index: 9;
+            @include responsive(xs) {
+                bottom: -5px;
+            }
+            .years-tiitle {
+                font-size: 35px;
+                font-weight: 700;
+                color: $white;
+                line-height: 55px;
+                margin: 0;
+                @include responsive(xs) {
+                    font-size: 28px;
+                    line-height: 32px;
+                }
+                @include responsive(vxxs) {
+                    font-size: 24px;
+                }
+            }
+            .experience-tiitle {
+                color: $white;
+                font-size: 24px;
+                line-height: 36px;
+                margin: 0;
+                @include responsive(xs) {
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+                @include responsive(vxxs) {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+.single-about {
+    .about-title {
+        font-size: 45px;
+        font-weight: 700;
+        line-height: 55px;
+        @include responsive(allPhone) {
+            font-size: 36px;
+            line-height: 30px;
+        }
+        @include responsive(xs) {
+            font-size: 32px;
+        }
+        @include responsive(vxxs) {
+            font-size: 28px;
+        }
+    }
+    .about-contents {
+        padding-top: 5px;
+        .about-para {
+            margin-top: 25px;
+            font-size: 16px;
+            line-height: 28px;
+            color: var(--light-color);
+        }
+    }
+}

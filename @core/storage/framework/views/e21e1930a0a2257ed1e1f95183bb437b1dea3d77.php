@@ -1,0 +1,654 @@
+
+<?php $__env->startSection('site-title'); ?>
+    <?php echo e(__('Service Coupons')); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('style'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.frontend.seller-buyer-preloader','data' => []]); ?>
+<?php $component->withName('frontend.seller-buyer-preloader'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+
+    <!-- Dashboard area Starts -->
+
+    <style>
+        .check-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            min-height: 18px;
+            min-width: 18px;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #dddddd;
+            border-radius: 0px;
+            margin-top: 3px;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .check-input::after {
+            content: "";
+            font-family: "Line Awesome Free";
+            font-weight: 900;
+            font-size: 10px;
+            color: #fff;
+            visibility: hidden;
+            opacity: 0;
+            -webkit-transform: scale(1.6) rotate(90deg);
+            transform: scale(1.6) rotate(90deg);
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+
+        .check-input:checked {
+            background: var(--main-color-one);
+            border-color: var(--main-color-one);
+            background: var(--main-color-one);
+        }
+
+        .check-input:checked::after {
+            visibility: visible;
+            opacity: 1;
+            -webkit-transform: scale(1.2) rotate(0deg);
+            transform: scale(1.2) rotate(0deg);
+        }
+
+        .checkbox-label {
+            cursor: pointer;
+            text-align: left;
+            line-height: 26px;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--heading-color);
+        }
+
+        @media  only screen and (max-width: 575.98px) {
+            .checkbox-label {
+                font-size: 15px;
+            }
+        }
+    </style>
+
+    <div class="body-overlay"></div>
+    <div class="dashboard-area dashboard-padding">
+        <div class="container-fluid">
+            <div class="dashboard-contents-wrapper">
+                <div class="dashboard-icon">
+                    <div class="sidebar-icon">
+                        <i class="las la-bars"></i>
+                    </div>
+                </div>
+                <?php echo $__env->make('frontend.user.seller.partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <div class="dashboard-right">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="dashboard-settings margin-top-40">
+                                <h2 class="dashboards-title"> <?php echo e(__('All Coupons')); ?> </h2>
+                                <div class="notice-board">
+                                    <p class="text-danger">
+                                        <?php echo e(__('Coupon will applicable only for your services and coupon amount will be reduce from your earnings.')); ?>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-wrapper margin-top-50 text-right">
+                        <button class="cmn-btn btn-bg-1" data-toggle="modal"
+                            data-target="#addCouponModal"><?php echo e(__('Add Coupon')); ?></button>
+                    </div>
+
+                    <div class="mt-5">
+                        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.msg.error','data' => []]); ?>
+<?php $component->withName('msg.error'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+                    </div>
+                    <div class="dashboard-service-single-item border-1 margin-top-40">
+                        <div class="rows dash-single-inner">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo e(__('No')); ?></th>
+                                        <th><?php echo e(__('Code')); ?></th>
+                                        <th><?php echo e(__('Discount')); ?></th>
+                                        <th><?php echo e(__('Discount Type')); ?></th>
+                                        <th><?php echo e(__('Start Date')); ?></th>
+                                        <th><?php echo e(__('Expire Date')); ?></th>
+                                        <th><?php echo e(__('Status')); ?></th>
+                                        <th><?php echo e(__('Action')); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $__currentLoopData = $coupons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr>
+                                            <td><?php echo e($key + 1); ?></td>
+                                            <td><?php echo e($data->code); ?></td>
+                                            <td><?php echo e($data->discount); ?></td>
+
+                                            <td><?php echo e(__($data->discount_type_time)); ?></td>
+                                            <td><?php echo e(\Carbon\Carbon::parse($data->start_date)->format('d/m/Y')); ?></td>
+                                            <td><?php echo e(\Carbon\Carbon::parse($data->expire_date)->format('d/m/Y')); ?></td>
+                                            <td>
+                                                <?php if($data->status == 1): ?>
+                                                    <span class="text-success"><?php echo e(__('Active')); ?></span>
+                                                <?php else: ?>
+                                                    <span class="text-danger"><?php echo e(__('Inactive')); ?></span>
+                                                <?php endif; ?>
+                                                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.seller-coupon-status','data' => ['url' => route('seller.service.coupon.status', $data->id)]]); ?>
+<?php $component->withName('seller-coupon-status'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['url' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('seller.service.coupon.status', $data->id))]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <div class="dashboard-switch-single">
+                                                    <a href="#0" class="edit_coupon_modal" data-toggle="modal"
+                                                        data-target="#editCouponModal" data-id="<?php echo e($data->id); ?>"
+                                                        data-code="<?php echo e($data->code); ?>"
+                                                        data-discount="<?php echo e($data->discount); ?>"
+                                                        data-discount_type="<?php echo e(__($data->discount_type)); ?>"
+                                                        data-discount_type_time="<?php echo e(__($data->discount_type_time)); ?>"
+                                                        data-start_date="<?php echo e($data->start_date); ?>"
+                                                        data-expire_date="<?php echo e($data->expire_date); ?>">
+                                                        <span style="font-size:16px;" class="dash-icon color-1"> <i
+                                                                class="las la-edit"></i> </span>
+                                                    </a>
+                                                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.seller-delete-popup','data' => ['url' => route('seller.service.coupon.delete', $data->id)]]); ?>
+<?php $component->withName('seller-delete-popup'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['url' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('seller.service.coupon.delete', $data->id))]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+                                                    <button id="services_add_btn" data-id="<?php echo e($data->id); ?>"
+                                                        data-discount="<?php echo e($data->discount); ?>"
+                                                        data-discount_type="<?php echo e(__($data->discount_type)); ?>"
+                                                        data-services_selected="<?php echo e(__($data->services_ids)); ?>"
+                                                        class="cmn-btn" data-toggle="modal" data-target="#addServices"
+                                                        style="background-color: var(--main-color-two);color:white;padding: 10px;padding: 10px;"><?php echo e(__('Services')); ?></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addCouponModal" tabindex="-1" role="dialog" aria-labelledby="couponModal"
+        aria-hidden="true">
+        <form action="<?php echo e(route('seller.service.coupon.add')); ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header d-block ">
+                        <h5 class="modal-title" id="couponModal"><?php echo e(__('Add New Coupon')); ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group mt-3">
+                            <label for="code"><?php echo e(__('Coupon Code')); ?></label>
+                            <input type="text" name="code" id="code" class="form-control"
+                                placeholder="<?php echo e(__('Coupon Code')); ?>">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="discount"><?php echo e(__('Coupon Discount')); ?></label>
+                            <input type="number" name="discount" id="discount" class="form-control"
+                                placeholder="<?php echo e(__('Discount')); ?>">
+                        </div>
+                        <div class="form-group d-flex justify-content-between mt-3">
+                            <div class="element" style="width: 58%">
+                                <label for="discount_type"><?php echo e(__('Criteria')); ?></label>
+                                <select name="discount_type" id="discount_type" class="simple_select form-control mb-3">
+                                    <option value=""><?php echo e(__('Select Criteria E.g Percentage or Amount')); ?></option>
+                                    <option value="percentage"><?php echo e(__('Percentage')); ?></option>
+                                    <option value="amount"><?php echo e(__('Amount')); ?></option>
+                                </select>
+                            </div>
+                            <div class="element" style="width: 38%">
+                                <label for="discount_type_time"><?php echo e(__('Coupon Type')); ?></label>
+                                <select name="discount_type_time" id="discount_type_time"
+                                    class="simple_select form-control mb-3">
+                                    <option value=""><?php echo e(__('Select Type')); ?></option>
+                                    <option value="Happy Hour"><?php echo e(__('Happy Hour')); ?></option>
+                                    <option value="Last Minute"><?php echo e(__('Last Minute')); ?></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex justify-content-between mt-3">
+                            <div class="element" style="width: 48%">
+                                <div class="form-group mt-3">
+                                    <label for="start_date"><?php echo e(__('Start Date')); ?></label>
+                                    <input type="text" name="start_date" id="start_date" class="form-control"
+                                        placeholder="<?php echo e(__('Start Date')); ?>" style="display: none;">
+
+                                    <input type="datetime-local" id="start_date_picker"class="form-control">
+                                </div>
+                            </div>
+                            <div class="element" style="width: 48%">
+                                <div class="form-group mt-3">
+                                    <label for="expire_date"><?php echo e(__('Expire Date')); ?></label>
+                                    <input type="text" name="expire_date" id="expire_date" class="form-control"
+                                        placeholder="<?php echo e(__('Expire Date')); ?>" style="display: none">
+
+                                    <input type="datetime-local" id="expire_date_picker"class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal"><?php echo e(__('Close')); ?></button>
+                        <button type="submit" class="btn btn-primary"><?php echo e(__('Save changes')); ?></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editCouponModal" tabindex="-1" role="dialog" aria-labelledby="editCouponModal"
+        aria-hidden="true">
+        <form action="<?php echo e(route('seller.service.coupon.update')); ?>" method="post">
+            <input type="hidden" id="up_id" name="up_id">
+            <?php echo csrf_field(); ?>
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCouponModal"><?php echo e(__('Edit Coupon')); ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group mt-3">
+                            <label for="up_code"><?php echo e(__('Coupon Code')); ?></label>
+                            <input type="text" name="up_code" id="up_code" class="form-control"
+                                placeholder="<?php echo e(__('Coupon Code')); ?>">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="up_discount"><?php echo e(__('Coupon Discount')); ?></label>
+                            <input type="number" name="up_discount" id="up_discount" class="form-control"
+                                placeholder="<?php echo e(__('Discount')); ?>">
+                        </div>
+                        <div class="form-group d-flex justify-content-between mt-3">
+                            <div class="element" style="width: 58%">
+                                <label for="up_discount_type"><?php echo e(__('Criteria')); ?></label>
+                                <select name="up_discount_type" id="up_discount_type"
+                                    class="simple_select form-control mb-3">
+                                    <option value=""><?php echo e(__('Select Criteria E.g Percentage or Amount')); ?></option>
+                                    <option value="percentage"><?php echo e(__('Percentage')); ?></option>
+                                    <option value="amount"><?php echo e(__('Amount')); ?></option>
+                                </select>
+                            </div>
+                            <div class="element" style="width: 38%">
+                                <label for="up_discount_type_time"><?php echo e(__('Coupon Type')); ?></label>
+                                <select name="up_discount_type_time" id="up_discount_type_time"
+                                    class="simple_select form-control mb-3">
+                                    <option value=""><?php echo e(__('Select Type')); ?></option>
+                                    <option value="Happy Hour"><?php echo e(__('Happy Hour')); ?></option>
+                                    <option value="Last Minute"><?php echo e(__('Last Minute')); ?></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex justify-content-between mt-3">
+                            <div class="element" style="width: 48%">
+                                <div class="form-group mt-3">
+                                    <label for="up_start_date"><?php echo e(__('Start Date')); ?></label>
+                                    <input type="text" name="up_start_date" id="up_start_date" class="form-control"
+                                        placeholder="<?php echo e(__('Start Date')); ?>" style="display: none">
+
+                                    <input type="datetime-local" id="up_start_date_picker"class="form-control">
+                                </div>
+                            </div>
+                            <div class="element" style="width: 48%">
+                                <div class="form-group mt-3">
+                                    <label for="up_expire_date"><?php echo e(__('Expire Date')); ?></label>
+                                    <input type="text" name="up_expire_date" id="up_expire_date" class="form-control"
+                                        placeholder="<?php echo e(__('Expire Date')); ?>" style="display: none">
+
+                                    <input type="datetime-local" id="up_expire_date_picker"class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal"><?php echo e(__('Close')); ?></button>
+                        <button type="submit" class="btn btn-primary"><?php echo e(__('Save changes')); ?></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- Services -->
+    <div class="modal fade" id="addServices" tabindex="-1" role="dialog" aria-labelledby="addServices"
+        aria-hidden="true">
+        <form action="<?php echo e(route('coupon.add.services.add')); ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <input type="hidden" id="up_id_" name="up_id_">
+            <div class="modal-dialog  modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addServices"><?php echo e(__('Add Services To Discount')); ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="checkbox" name="services_all" class="services_all check-input">
+                        <div class="form-group mt-3">
+                            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <a class="search_servie_image_content text-left text-white">
+                                    <input type="checkbox"
+                                        name="select_services"class="select_services check-input"id="<?php echo e($service->id); ?>"value="<?php echo e($service->id); ?>">
+                                    <div class="search_thumb bg-image" <?php echo render_background_image_markup_by_attachment_id($service->image, '', 'thumb'); ?>></div>
+                                    <span class="search-text-item">
+                                        <?php echo e($service->title); ?>
+
+                                        <br>
+                                        <strong>Original Price : </strong><span
+                                            style="margin-right:30px;"><?php echo e($service->price); ?> INR</span>
+                                        <strong>Discounted Price : </strong><span
+                                            id="service_discount_<?php echo e($service->id); ?>"><?php echo e($service->price); ?> INR</span>
+                                    </span>
+                                </a>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
+                    </div>
+                    <input type="text" name="services_ids" id="services_ids" value="" style="display: none;">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal"><?php echo e(__('Close')); ?></button>
+                        <button type="submit" class="btn btn-primary"><?php echo e(__('Save changes')); ?></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <style>
+        .search_thumb {
+            border-radius: 10px;
+
+        }
+    </style>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('scripts'); ?>
+    <script src="<?php echo e(asset('assets/backend/js/sweetalert2.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/backend/js/dropzone.js')); ?>"></script>
+
+    <script>
+        (function($) {
+            "use strict";
+            $(document).ready(function() {
+                function datetimeLocal(datetime) {
+                    const dt = new Date(datetime);
+                    dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+                    return dt.toISOString().slice(0, 16);
+                }
+
+                function dateLocal(datetime) {
+                    const dt = new Date(datetime);
+                    return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${dt.getDate()}`;
+                }
+
+                function setServicesSelectedValues() {
+                    var inputs = document.querySelectorAll('.select_services');
+                    var selectedIds = [];
+                    var selectedIdsString = "";
+                    for (var i = 0; i < inputs.length; i++) {
+                        if (inputs[i].checked == true) {
+                            selectedIds.push(`${inputs[i].id}`);
+                        }
+                    }
+                    for (var i = 0; i < selectedIds.length; i++) {
+                        if (i == selectedIds.length - 1) {
+                            selectedIdsString += `${selectedIds[i]}`;
+                        } else {
+                            selectedIdsString += `${selectedIds[i]},`;
+                        }
+                    }
+                    document.getElementById(`services_ids`).value = selectedIdsString;
+                }
+
+                $('.services_all').change(
+                    function() {
+                        var inputs = document.querySelectorAll('.select_services');
+                        if ($(this).is(':checked')) {
+                            for (var i = 0; i < inputs.length; i++) {
+                                inputs[i].checked = true;
+                            }
+                        } else {
+                            for (var i = 0; i < inputs.length; i++) {
+                                inputs[i].checked = false;
+                            }
+                        }
+                        setServicesSelectedValues();
+                    }
+                );
+
+                $("#up_start_date_picker").change(function() {
+                    document.getElementById("up_start_date").value = new Date($("#up_start_date_picker")
+                        .val()).toUTCString()
+                    console.log(new Date($("#up_start_date_picker").val()).toUTCString());
+                });
+                $("#up_expire_date_picker").change(function() {
+                    document.getElementById("up_expire_date").value = new Date($(
+                        "#up_expire_date_picker").val()).toUTCString()
+                });
+
+                $("#start_date_picker").change(function() {
+                    document.getElementById("start_date").value = new Date($("#start_date_picker")
+                        .val()).toUTCString()
+                    console.log(new Date($("#start_date_picker").val()).toUTCString());
+                });
+
+                $("#expire_date_picker").change(function() {
+                    document.getElementById("expire_date").value = new Date($(
+                        "#expire_date_picker").val()).toUTCString()
+                });
+
+                $("#discount_type_time").change(function() {
+                    if (document.getElementById("discount_type_time").value == "Last Minute") {
+                        document.getElementById("start_date_picker").type = "date";
+                        document.getElementById("expire_date_picker").type = "date";
+
+                    } else {
+                        document.getElementById("start_date_picker").type = "datetime-local";
+                        document.getElementById("expire_date_picker").type = "datetime-local";
+                    }
+                });
+                $("#up_discount_type_time").change(function() {
+                    if (document.getElementById("up_discount_type_time").value == "Last Minute") {
+                        document.getElementById("up_start_date_picker").type = "date";
+                        document.getElementById("up_expire_date_picker").type = "date";
+
+                    } else {
+                        document.getElementById("up_start_date_picker").type = "datetime-local";
+                        document.getElementById("up_expire_date_picker").type = "datetime-local";
+                    }
+                });
+
+
+                $(document).on('click', '.select_services', setServicesSelectedValues);
+
+                $(document).on('click', '#services_add_btn', function(e) {
+                    e.preventDefault();
+
+                    let coupon_id = $(this).data('id');
+                    let discount = $(this).data('discount');
+                    let discount_type = $(this).data('discount_type');
+                    let services_selected = $(this).data('services_selected');
+                    let all_services = <?php echo json_encode($services, 15, 512) ?>;
+                    all_services.forEach(service => {
+                        let discount_price = get_discounted_price(discount_type, service.price,
+                            discount)
+                        document.getElementById(`service_discount_${service.id}`).innerText =
+                            `${discount_price}  INR`;
+                        document.getElementById(service.id).checked = false;
+                    });
+                    $('#up_id_').val(coupon_id);
+                    $('#services_ids').val(services_selected);
+                    if (services_selected != null && services_selected != "") {
+                        var services_ids = services_selected.toString().split(",")
+                        services_ids.forEach(id => {
+                            document.getElementById(id).checked = true;
+                        });
+                    }
+                });
+
+                $(document).on('click', '.edit_coupon_modal', function(e) {
+                    e.preventDefault();
+                    let coupon_id = $(this).data('id');
+                    let code = $(this).data('code');
+                    let discount = $(this).data('discount');
+                    let discount_type = $(this).data('discount_type');
+                    let discount_type_time = $(this).data('discount_type_time');
+                    let expire_date = $(this).data('expire_date');
+                    let start_date = $(this).data('start_date');
+                    if (discount_type_time == "Last Minute") {
+                        console.log(dateLocal(expire_date));
+                        document.getElementById("up_start_date_picker").type = "date";
+                        document.getElementById("up_expire_date_picker").type = "date";
+                        $('#up_expire_date_picker').val(dateLocal(expire_date));
+                        $('#up_start_date_picker').val(dateLocal(start_date));
+                        $('#up_expire_date').val(dateLocal(expire_date));
+                        $('#up_start_date').val(dateLocal(start_date));
+                        
+                    } else {
+                        document.getElementById("up_start_date_picker").type = "datetime-local";
+                        document.getElementById("up_expire_date_picker").type = "datetime-local";
+                        $('#up_expire_date_picker').val(datetimeLocal(expire_date));
+                        $('#up_start_date_picker').val(datetimeLocal(start_date));
+                        $('#up_expire_date').val(datetimeLocal(expire_date));
+                        $('#up_start_date').val(datetimeLocal(start_date));
+                    }
+
+                    $('#up_id').val(coupon_id);
+                    $('#up_code').val(code);
+                    $('#up_discount').val(discount);
+                    $('#up_discount_type').val(discount_type);
+                    $('#up_discount_type_time').val(discount_type_time);
+                });
+
+                $(document).on('click', '.swal_status_button', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: '<?php echo e(__('Are you sure to change status?')); ?>',
+                        text: '<?php echo e(__('You will change it anytime!')); ?>',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: "<?php echo e(__('Yes, delete it!')); ?>"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $(this).next().find('.swal_form_submit_btn').trigger('click');
+                        }
+                    });
+                });
+
+
+                $(document).on('click', '.swal_delete_button', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: '<?php echo e(__('Are you sure?')); ?>',
+                        text: '<?php echo e(__('You would not be able to revert this item!')); ?>',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: "<?php echo e(__('Yes, delete it!')); ?>"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $(this).next().find('.swal_form_submit_btn').trigger('click');
+                        }
+                    });
+                });
+
+
+
+            });
+
+            function get_discounted_price(type, total, discount) {
+                switch (type) {
+                    case "amount":
+                        return total - discount;
+                        break;
+                    case "percentage":
+                        var discount_calculated = discount * total / 100;
+                        return total - discount_calculated;
+                        break;
+                    default:
+                        return total
+                        break;
+                }
+            }
+        })(jQuery);
+    </script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.user.seller.seller-master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/vhosts/dazzling-edison.217-174-244-122.plesk.page/httpdocs/@core/resources/views/frontend/user/seller/coupons/coupons.blade.php ENDPATH**/ ?>

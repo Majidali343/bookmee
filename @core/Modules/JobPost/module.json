@@ -1,0 +1,25 @@
+{
+    "name": "JobPost",
+    "alias": "jobpost",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\JobPost\\Providers\\JobPostServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "BookmiMetadata" : {
+        "paymentGateway" : [
+            {
+                "name": "Azul",
+                "settingsBlade": "bladepath",
+                "settingsData": [
+                    ""
+                ],
+                "chargeCustomerMethod" : "sdfasdfsadfsdf"
+            }
+        ]
+    }
+}

@@ -1,0 +1,77 @@
+/*-------------------------
+    ## Preloader Css
+---------------------------*/
+
+.preloader-inner {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    background-color: $white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /*-------------------------
+    ## Preloader Css
+---------------------------*/
+    .preloader-main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 98;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            width: 4px;
+            height: 40px;
+            background-color: var(--main-color-one);
+            display: inline-block;
+            margin: 0 4px;
+            animation: preloader 1s infinite;
+        }
+    }
+
+    @keyframes preloader {
+        0% {
+            transform: scaleY(1);
+        }
+
+        25% {
+            transform: scaleY(1);
+        }
+
+        75% {
+            transform: scaleY(1);
+        }
+
+        100% {
+            transform: scaleY(2);
+        }
+    }
+
+    .preloader-main li:nth-child(1) {
+        animation-delay: .1s;
+    }
+
+    .preloader-main li:nth-child(2) {
+        animation-delay: .2s;
+    }
+
+    .preloader-main li:nth-child(3) {
+        animation-delay: .3s;
+    }
+
+    .preloader-main li:nth-child(4) {
+        animation-delay: .4s;
+    }
+
+    .preloader-main li:nth-child(5) {
+        animation-delay: .5s;
+    }
+}

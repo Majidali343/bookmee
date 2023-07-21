@@ -1,0 +1,45 @@
+{
+    "name": "square/square",
+    "description": "Use Square APIs to manage and run business including payment, customer, product, inventory, and employee management.",
+    "version": "18.0.0.20220420",
+    "type": "library",
+    "keywords": [
+        "Square",
+        "API",
+        "SDK"
+    ],
+    "homepage": "https://squareup.com/developers",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Square Developer Platform",
+            "email": "developers@squareup.com",
+            "homepage": "https://squareup.com/developers"
+        }
+    ],
+    "require": {
+        "php": ">=7.2 <8.2",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "apimatic/unirest-php": "^2.2.2",
+        "apimatic/jsonmapper": "^3.0.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "phan/phan": "5.3.1",
+        "phpunit/phpunit": "^7.5 || ^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Square\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html=coverage",
+        "lint": "phpcs --standard=phpcs-ruleset.xml src/",
+        "lint-fix": "phpcbf --standard=phpcs-ruleset.xml src/",
+        "analyze": "phan --allow-polyfill-parser"
+    }
+}

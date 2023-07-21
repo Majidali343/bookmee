@@ -1,0 +1,383 @@
+/*--------------------------------------------------------------
+	## Blog List
+--------------------------------------------------------------*/
+
+.blog-list-area-wrapper {
+    &.index-01 {
+        padding: 100px 0 0;
+
+        .single-blog-list-1-index-1 {
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .add-banner-x {
+            margin-top: 70px;
+        }
+
+        .video-with-image {
+            .img-box {
+                border-radius: 18px;
+
+                &::after {
+                    border-radius: 18px;
+                }
+            }
+
+            &.video-blog-1 {
+                margin: 70px 0 50px;
+            }
+        }
+
+        .pagination {
+            margin-top: 70px;
+
+            .page-number {
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+// Blog list for index-01
+
+.single-blog-list-1-index-1 {
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 40px;
+    margin-top: 65px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    .content-top {
+        .title {
+            font-family: var(--heading-font-one);
+            font-size: 35px;
+            font-weight: 400;
+            color: var(--heading-color-one);
+            margin: 6px 0 29px;
+            line-height: 50px;
+
+        }
+
+        .img-box {
+            border-radius: 18px;
+        }
+    }
+
+    .content-bottom {
+        .info {
+            margin-top: 24px;
+            margin-bottom: 24px;
+            line-height: 28px;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+
+            .left-content {
+                .btn-wrapper {
+                    .reading-btn {
+                        display: inline-block;
+                        text-transform: capitalize;
+                        font-family: var(--extra-font);
+                        color: var(--heading-color-one);
+                        padding-bottom: 10px;
+                        position: relative;
+                        transition: all linear 0.2s;
+
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            bottom: 0;
+                            left: 0;
+                            width: 52%;
+                            height: 1px;
+                            background-color: #707070;
+                            transition: all linear 0.2s;
+                        }
+
+                        &:hover {
+                            color: var(--main-color-one);
+
+                            &::after {
+                                background-color: var(--main-color-one);
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right-content {
+                display: flex;
+
+                .list {
+                    align-self: flex-end;
+                    height: 19px;
+                }
+            }
+        }
+    }
+
+    &.travel {
+        .title {
+            margin-bottom: 35px !important;
+        }
+    }
+}
+
+// Blog list for index-02
+
+.single-blog-list-wrapper-index-02 {
+    margin-top: 89px;
+    overflow: hidden;
+
+    .blog-list-slider-wrapper {
+        .single-slider-item {
+            border-bottom: 1px solid #DDDDDD;
+            margin-bottom: 40px;
+
+            .content {
+                .catagory {
+                    display: block;
+                    margin-top: 40px;
+
+                    a {
+                        display: inline-block;
+                        font-size: 14px;
+                        font-weight: 500;
+                        text-transform: capitalize;
+                        padding: 2px 18px;
+                        background-color: var(--main-color-two);
+                        color: var(--heading-color-one);
+                    }
+                }
+
+                .title {
+                    font-family: var(--heading-font-one);
+                    font-size: 35px;
+                    font-weight: 400;
+                    color: var(--heading-color-one);
+                    margin: 17px 0 22px;
+                    line-height: 60px;
+
+                    a {
+                        transition: all linear 0.2s;
+
+                        &:hover {
+                            color: var(--main-color-two);
+                        }
+                    }
+                }
+
+                .info {
+                    line-height: 28px;
+                }
+
+                .post-meta {
+                    display: flex;
+                    justify-content: space-between;
+                    padding-bottom: 35px;
+                    margin-top: 30px !important;
+
+                    .list-item {
+                        a {
+                            &:hover {
+                                color: var(--main-color-two);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @include sliderDots;
+    }
+}
+
+// Blog list for nature
+
+.blog-nature-wrapper {
+    padding-top: 100px;
+}
+
+.single-blog-list-nature {
+    margin-bottom: 60px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .content {
+        padding: 27px 30px 25px;
+        box-shadow: 0px 2px 6px 2px #0000000d;
+
+        .title {
+            font-family: var(--extra-font-two);
+            font-weight: 600;
+            font-size: 30px;
+            color: var(--heading-color-three);
+            margin-bottom: 10px;
+            line-height: 45px;
+
+            a {
+                &:hover {
+                    color: var(--main-color-three) !important;
+                }
+            }
+        }
+
+        .info {
+            line-height: 28px;
+        }
+
+        .post-meta {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+
+            .list {
+                display: flex;
+                justify-content: space-between;
+
+                a {
+                    .icon {
+                        color: var(--main-color-three) !important;
+                        font-size: 16px;
+                        vertical-align: 0px;
+                    }
+
+                    &:hover {
+                        color: var(--main-color-three) !important;
+                    }
+                }
+
+                ul {
+                    display: flex;
+
+                    li {
+                        display: inline-block;
+
+                        .sec {
+                            display: inline-block;
+                            text-transform: capitalize;
+                            font-size: 16px;
+                            color: var(--main-color-three);
+                        }
+
+                        a {
+                            display: inline-block;
+                            font-size: 16px;
+                            margin: 0 2px;
+
+                            .icon-s {
+                                color: var(--heading-color-two);
+                                transition: all linear 0.2s;
+
+                                &:hover {
+                                    color: var(--main-color-three);
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// blog list for index-04
+
+.blog-list-flower-area-wrapper-index-04 {
+    padding-top: 100px;
+
+    .single-blog-list-nature {
+
+        .content {
+            position: relative;
+            z-index: 5;
+            background-color: #fff;
+            width: 90%;
+            left: 5%;
+            top: -40px;
+        }
+    }
+
+    .grid {
+        .single-blog-list-nature {
+            .content {
+                .title {
+                    font-size: 22px;
+                    line-height: 32px;
+                }
+            }
+        }
+
+        &.last {
+            margin-bottom: -40px;
+        }
+    }
+}
+
+// blog list for index-05
+
+.derk-vertion {
+    .single-blog-list-wrapper-index-02 {
+        margin-top: 0 !important;
+
+        .blog-list-slider-wrapper {
+            .single-slider-item {
+                .content {
+                    .catagory {
+                        a {
+                            background-color: var(--main-color-four);
+                            color: #fff;
+                        }
+                    }
+
+                    .title {
+                        font-family: var(--extra-font-three);
+                        color: #fff;
+                        font-weight: 600;
+
+                        a {
+                            &:hover {
+                                color: var(--main-color-four);
+                            }
+                        }
+                        &.three {
+                            font-size: 45px;
+                            line-height: 65px;
+                          }
+                    }
+
+                    .info {
+                        color: #fff;
+                        opacity: 0.7;
+                    }
+
+                    .post-meta {
+                        a {
+                            color: #fff;
+
+                            &:hover {
+                                color: var(--main-color-four) !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .short {
+        .single-blog-list-wrapper-index-02 {
+            margin-bottom: 20px;
+        }
+    }
+}

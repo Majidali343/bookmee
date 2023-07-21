@@ -1,0 +1,127 @@
+/* Signup area */
+
+.signup-area {}
+
+.signup-wrapper {
+    padding: 80px 100px;
+    -webkit-box-shadow: 0 0 15px rgba($black, .1);
+    box-shadow: 0 0 15px rgba($black, .1);
+    max-width: 650px;
+    margin: 0 auto;
+    @include responsive(allPhone) {
+        padding: 70px 50px;
+    }
+    @include responsive(xs) {
+        padding: 30px 20px;
+    }
+    @include responsive(vxxs) {
+        padding: 30px 10px;
+    }
+}
+
+.signup-contents {
+    .signup-title {
+        font-size: 35px;
+        line-height: 55px;
+        font-weight: 700;
+        text-align: center;
+        @include responsive(allPhone) {
+            font-size: 28px;
+        }
+        @include responsive(vxxs) {
+            font-size: 25px;
+        }
+    }
+}
+
+.signup-forms {
+    .single-signup {
+        .signup-label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: var(--heading-font);
+            color: var(--heading-color);
+            line-height: 26px;
+            margin-bottom: 12px;
+        }
+        .form--control {
+            height: 60px;
+            line-height: 60px;
+            padding: 0 20px;
+            border: 1px solid $Gray;
+            width: 100%;
+            font-size: 14px;
+            line-height: 22px;
+            -webkit-box-shadow: 0 0 15px #fff;
+            box-shadow: 0 0 15px #fff;
+            border-radius: 5px;
+            -webkit-transition: all .2s;
+            -o-transition: all .2s;
+            transition: all .2s;
+            &:focus {
+                -webkit-box-shadow: 0 0 10px rgba($main-color-one, .2);
+                box-shadow: 0 0 10px rgba($main-color-one, .2);
+            }
+        }
+    }
+    button {
+        width: 100%;
+        border: 0;
+        outline: none;
+        background: var(--main-color-one);
+        color: $white;
+        height: 60px;
+        padding: 0 20px;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+    .bottom-register {
+        display: block;
+        font-size: 14px;
+        margin-top: 20px;
+        .resgister-link {
+            font-weight: 500;
+            color: var(--heading-color);
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            &:hover {
+                color: var(--main-color-one);
+            }
+        }
+    }
+}
+
+.signup-checkbox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 20px;
+    .checkbox-inlines {
+        .checkbox-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--extra-light-color);
+        }
+    }
+    .forgot-btn {
+        .forgot-pass {
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            &:hover {
+                color: var(--main-color-one);
+            }
+        }
+    }
+}

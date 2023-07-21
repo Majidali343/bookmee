@@ -1,0 +1,175 @@
+/* Blog Details */
+
+.blog-details-area {}
+
+.blog-details-wrapper {}
+
+.single-blog-details {
+    &:not(:first-child) {
+        margin-top: 35px;
+    }
+    .tags {
+        margin-top: 30px;
+    }
+    .thumb {
+        img {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+    }
+    .details-para {
+        font-size: 16px;
+        line-height: 28px;
+        font-weight: 400;
+        margin-top: 30px;
+        color: var(--light-color);
+        @include responsive(sm) {
+            font-size: 15px;
+        }
+        @include responsive(vxxs) {
+            font-size: 14px;
+        }
+    }
+    blockquote {
+        background: var(--main-color-one);
+        padding: 25px 80px;
+        margin-top: 35px;
+        @include responsive(allPhone) {
+            padding: 20px 20px 20px 40px;
+        }
+        .content {
+            .blackquote-title {
+                font-size: 32px;
+                font-weight: 600;
+                position: relative;
+                line-height: 50px;
+                color: $white;
+                @include responsive(allPhone) {
+                    font-size: 28px;
+                    line-height: 36px;
+                }
+                @include responsive(sm) {
+                    font-size: 26px;
+                }
+                @include responsive(xxs) {
+                    font-size: 25px;
+                }
+                @include responsive(vxxs) {
+                    font-size: 22px;
+                }
+                &::before {
+                    font-family: 'Line Awesome Free';
+                    font-weight: 900;
+                    content: "\f10d";
+                    margin-left: -30px;
+                }
+            }
+        }
+    }
+}
+
+.blog-details-thumb-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    gap: 30px;
+    @include responsive (allPhone) {
+        display: block;
+    }
+    .thumb {
+        min-width: 540px;
+        height: 340px;
+        @include responsive(allPhone) {
+            margin-bottom: 30px;
+            min-width: 100%;
+            height: auto;
+        }
+        @include responsive(xs) {
+            min-width: 100%;
+            height: auto;
+        }
+    }
+}
+
+
+/* Comment area */
+
+.comment-area {}
+
+.details-comment-content {
+    .single-commetns {
+        width: 100%;
+        margin-top: 30px;
+        .comment-label {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 26px;
+            color: var(--heading-color);
+            display: block;
+            margin-bottom: 15px;
+        }
+        .form--control {
+            height: 60px;
+            border: 1px solid rgba(#ddd, .5);
+            outline: none;
+            -webkit-box-shadow: 0 0 10px #fff;
+            box-shadow: 0 0 10px #fff;
+            font-size: 14px;
+            line-height: 22px;
+            color: var(--light-color);
+            padding: 0 20px;
+            width: 100%;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            &:focus {
+                -webkit-box-shadow: 0 0 18px rgba($main-color-one, .1);
+                box-shadow: 0 0 18px rgba($main-color-one, .1);
+                border-color: rgba($main-color-one, .3);
+            }
+        }
+        .form--message {
+            padding: 20px 20px;
+            height: 160px;
+        }
+    }
+    button {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 34px;
+        background: var(--main-color-one);
+        color: $white;
+        border: 0;
+        outline: none;
+        border-radius: 5px;
+        padding: 15px 35px;
+        cursor: pointer;
+        margin-top: 35px;
+        @include responsive(allPhone) {
+            font-size: 16px;
+            padding: 10px 30px;
+        }
+    }
+}
+
+.comments-flex-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 30px;
+    @include responsive(xs) {
+        display: block;
+    }
+}

@@ -1,0 +1,368 @@
+/* Register Step area */
+
+.registration-step-area {}
+
+.registration-seller-btn {
+    .registration-tabs {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 0;
+        @include responsive(xxs) {
+            gap: 20px;
+        }
+        li {
+            border: 1px solid var(--main-color-three);
+            padding: 7px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            background: $white;
+            position: relative;
+            z-index: 1;
+            margin: 10px 0;
+            @include responsive(xxs) {
+                padding: 7px 15px;
+            }
+            &.active {
+                background: var(--main-color-one);
+                border-color: var(--main-color-one);
+                &::after {
+                    font-family: 'Line Awesome Free';
+                    font-weight: 900;
+                    content: "\f00c";
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    height: 27px;
+                    width: 27px;
+                    border: 2px solid $white;
+                    background: var(--main-color-one);
+                    color: $white;
+                    font-size: 16px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: -14px;
+                    right: -13px;
+                }
+                .single-tabs-registration {
+                    .icon {
+                        background: $white;
+                        color: var(--main-color-one);
+                    }
+                    .contents {
+                        .title {
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.single-tabs-registration {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 20px;
+    @include responsive(xxs) {
+        gap: 10px;
+    }
+    .icon {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        height: 41px;
+        width: 41px;
+        border-radius: 50%;
+        background: var(--main-color-three);
+        color: $white;
+        font-size: 24px;
+    }
+    .contents {
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 36px;
+            margin: 0;
+            color: var(--main-color-three);
+            @include responsive(xxs) {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.registration-step-form {}
+
+.registration-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    &.step-list-two {
+        .list {
+            &.active {
+                .list-click {
+                    background: var(--main-color-one);
+                    color: $white;
+                    border-color: var(--main-color-one);
+                    &::after {
+                        background: var(--main-color-one);
+                    }
+                }
+            }
+        }
+    }
+    .list {
+        &:not(:last-child) {
+            padding-right: 70px;
+            .list-click {
+                &::after {
+                    position: absolute;
+                    content: "";
+                    top: 50%;
+                    -webkit-transform: translateY(-50%);
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    right: -55px;
+                    background: #ddd;
+                    height: 2px;
+                    width: 40px;
+                }
+            }
+        }
+        .list-click {
+            font-size: 24px;
+            font-weight: 600;
+            font-family: var(--heading-font);
+            color: var(--extra-light-color);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+    }
+}
+
+
+/* Information */
+
+.fieldset-info {
+    max-width: 730px;
+    margin: 0 auto;
+}
+
+.fieldset-service {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.fieldset-condition {
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.information-all {
+    .register-title {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 36px;
+        text-align: center;
+    }
+    .info-forms {
+        max-width: 730px;
+        margin: 0 auto;
+    }
+    .info-service {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    .condition-info {
+        max-width: 390px;
+        margin: 0 auto;
+    }
+    .info-success {
+        max-width: 360px;
+        margin: 0 auto;
+    }
+}
+
+.single-forms {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 20px;
+    @include responsive(xs) {
+        display: block;
+    }
+    .single-content {
+        width: 100%;
+    }
+    .forms-label {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: var(--heading-font);
+        color: var(--heading-color);
+        line-height: 26px;
+        margin-bottom: 12px;
+    }
+    .form--control {
+        height: 60px;
+        line-height: 60px;
+        padding: 0 20px;
+        border: 1px solid $Gray;
+        width: 100%;
+        font-size: 14px;
+        line-height: 22px;
+        -webkit-box-shadow: 0 0 15px #fff;
+        box-shadow: 0 0 15px #fff;
+        border-radius: 5px;
+        -webkit-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+        &:focus {
+            -webkit-box-shadow: 0 0 10px rgba($main-color-one, .2);
+            box-shadow: 0 0 10px rgba($main-color-one, .2);
+        }
+    }
+}
+
+
+/* Service */
+
+.info-service {
+    display: flow-root;
+    .single-info-service {
+        &:not(:last-child) {
+            .single-content {
+                .nice-select {
+                    margin-bottom: 30px;
+                }
+            }
+        }
+        .single-content {
+            .forms-label {
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--heading-color);
+                font-family: var(--heading-font);
+            }
+            .nice-select {}
+        }
+    }
+}
+
+
+/* Terms & Condition */
+
+.condition-info {
+    .single-condition {
+        .condition-content {
+            .checkbox-inlines {
+                gap: 20px;
+                .check-input {}
+                .checkbox-label {
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: var(--extra-light-color);
+                    line-height: 22px;
+                }
+            }
+        }
+    }
+}
+
+
+/* info Successful */
+
+.info-success {
+    .single-success {
+        .success-content {
+            text-align: center;
+            .icon {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                height: 120px;
+                width: 120px;
+                background: var(--main-color-one);
+                color: $white;
+                font-size: 70px;
+                border-radius: 50%;
+                margin: 0 auto;
+            }
+            .success-title {
+                font-size: 35px;
+                font-weight: 700;
+                line-height: 55px;
+                margin-top: 35px;
+            }
+        }
+    }
+}
+
+.registration-step-form.margin-top-55 {
+    @include responsive(allPhone) {
+        margin-top: 30px;
+    }
+}
+
+.information-all.margin-top-55 {
+    @include responsive(allPhone) {
+        margin-top: 30px;
+    }
+}

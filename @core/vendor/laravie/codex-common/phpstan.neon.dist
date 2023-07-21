@@ -1,0 +1,20 @@
+includes:
+  - ./phpstan-baseline.neon
+
+parameters:
+
+  paths:
+    - src
+
+  # The level 8 is the highest level
+  level: 9
+
+  excludePaths:
+    - ./src/Testing/*
+
+  ignoreErrors:
+    - '#Unsafe usage of new static#'
+    - '#Parameter \#2 \$[A-Za-z_]+ of function http_build_query expects string, (string\|)?null given#'
+
+  treatPhpDocTypesAsCertain: false
+  checkMissingIterableValueType: false

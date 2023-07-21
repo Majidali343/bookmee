@@ -1,0 +1,278 @@
+/*---------------------------------------
+    ## Button
+---------------------------------------*/
+
+.btn-wrapper {
+    display: block;
+    .cmn-btn {
+        color: var(--paragraph-color);
+        font-size: 16px;
+        font-weight: 500;
+        font-family: var(--body-font);
+        display: inline-block;
+        border-radius: 5px;
+        text-transform: capitalize;
+        text-align: center;
+        cursor: pointer;
+        line-height: 34px;
+        padding: 10px 35px;
+        @include transition($transition);
+        @include responsive(xs) {
+            padding: 10px 25px;
+            font-size: 15px;
+        }
+        @include responsive(vxxs) {
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+        &.btn-bg-1 {
+            background: var(--main-color-one);
+            color: $white;
+        }
+        &.btn-bg-2 {
+            background: var(--main-color-two);
+            color: $white;
+        }
+        &.btn-bg-3 {
+            background: var(--main-color-three);
+            color: $white;
+        }
+        &.btn-appoinment {
+            width: 100%;
+        }
+        &.btn-outline-1 {
+            border: 2px solid var(--main-color-one);
+            color: var(--main-color-one);
+            &:hover {
+                background: var(--main-color-one);
+                color: $white;
+            }
+        }
+        &.btn-outline-2 {
+            border: 2px solid var(--main-color-two);
+            color: var(--main-color-two);
+            &:hover {
+                background: var(--main-color-two);
+                color: $white;
+            }
+        }
+        &.btn-outline-3 {
+            border: 2px solid var(--main-color-three);
+            color: var(--main-color-three);
+            &:hover {
+                color: $white;
+                background: var(--main-color-three);
+            }
+        }
+        &.btn-small {
+            padding: 4px 12px;
+            font-size: 15px;
+        }
+        &.btn-medium {
+            padding: 8px 25px;
+            font-size: 15px;
+        }
+        &.btn-small-height {
+            padding: 3px 35px;
+        }
+        &.pending {
+            background: rgba(#FFB307, .1);
+            color: #FFB307;
+            text-align: center;
+            border-radius: 5px;
+            &:hover {
+                background: #FFB307;
+                color: $white;
+            }
+        }
+        &.completed {
+            background: rgba(#1DBF73, .1);
+            color: #1DBF73;
+            text-align: center;
+            border-radius: 5px;
+            &:hover {
+                background: #1DBF73;
+                color: $white;
+            }
+        }
+        &.canceled {
+            background: rgba(#FF1747, .1);
+            color: #FF1747;
+            text-align: center;
+            border-radius: 5px;
+            &:hover {
+                background: #FF1747;
+                color: $white;
+            }
+        }
+    }
+}
+
+.cmn-button {
+    border: 0;
+    outline: none;
+    color: var(--paragraph-color);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--body-font);
+    display: inline-block;
+    border-radius: 5px;
+    text-transform: capitalize;
+    text-align: center;
+    cursor: pointer;
+    line-height: 34px;
+    padding: 10px 35px;
+    &.btn-bg-1 {
+        background: var(--main-color-one);
+        color: $white;
+    }
+    &.btn-bg-2 {
+        background: var(--main-color-two);
+        color: $white;
+    }
+    &.btn-bg-3 {
+        background: var(--main-color-three);
+        color: $white;
+    }
+}
+
+.section-btn {
+    position: relative;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--heading-color);
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    &:hover {
+        color: var(--main-color-three);
+    }
+    &::after {
+        content: "\f30b";
+        font-family: 'Line Awesome Free';
+        font-weight: 900;
+    }
+    @include responsive(allPhone) {
+        font-size: 16px;
+    }
+    @include responsive(vxxs) {
+        font-size: 14px;
+    }
+}
+
+.explore-btn {
+    margin: 50px auto 0;
+}
+
+.btn-subscribe {
+    padding: 15px 40px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.submit-btn {
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background: var(--main-color-one);
+    color: $white;
+    padding: 10px 30px;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn-see-more {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--main-color-one);
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    &.style-02 {
+        font-size: 14px;
+        font-weight: 500;
+        &::before {
+            font-size: 12px;
+            border: 1px solid $main-color-three;
+            border-radius: 50%;
+            top: 0;
+        }
+    }
+    &.color-3 {
+        color: var(--main-color-three);
+        &::before {
+            color: var(--main-color-three);
+        }
+        &:hover {
+            color: var(--main-color-three);
+        }
+    }
+    &:hover {
+        color: var(--main-color-one);
+    }
+    &::before {
+        font-family: 'Line Awesome Free';
+        font-weight: 900;
+        content: "\f067";
+        color: var(--main-color-one);
+        -webkit-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+        font-size: 20px;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.btn-replay {
+    position: relative;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    &:hover {
+        color: var(--main-color-one);
+    }
+    &::before {
+        font-family: 'Line Awesome Free';
+        font-weight: 900;
+        content: "\f3e5";
+        color: var(--main-color-one);
+    }
+}
+
+.btn-error {}
+
+.color-one {
+    background: var(--main-color-one);
+    color: $white;
+}
+
+.btn-rounded {
+    border-radius: 30px;
+}
+
+.no-bg {
+    background: none !important;
+}
+
+.desktop-center {
+    text-align: center;
+}
+
+.desktop-left {
+    text-align: left;
+}
+
+.desktop-right {
+    text-align: right;
+}

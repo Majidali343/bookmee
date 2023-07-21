@@ -1,0 +1,155 @@
+/* Category area */
+
+.category-area {
+    overflow: hidden;
+}
+
+.category-slider {
+    .slick-list {
+        margin: -15px;
+    }
+    .slick-slide {
+        &:nth-child(5n+1) {}
+        &:nth-child(5n+2) {
+            .single-category {
+                background: #BE3EFF;
+            }
+        }
+        &:nth-child(5n+3) {
+            .single-category {
+                background: #F86048;
+            }
+        }
+        &:nth-child(5n+4) {
+            .single-category {
+                background: #C71F66;
+            }
+        }
+        &:nth-child(5n+5) {
+            .single-category {
+                background: #0FC393;
+            }
+        }
+    }
+}
+
+.category-child {
+    &:nth-child(6n+1) {
+        .single-category {
+            background: -o-linear-gradient(45deg, #fffefa 0%, #fff7e7 100%);
+            background: linear-gradient(45deg, #fffefa 0%, #fff7e7 100%);
+        }
+    }
+    &:nth-child(6n+2) {
+        .single-category {
+            background: -o-linear-gradient(45deg, #FAFEFD 0%, #E7F0ED 100%);
+            background: linear-gradient(45deg, #FAFEFD 0%, #E7F0ED 100%);
+        }
+    }
+    &:nth-child(6n+3) {
+        .single-category {
+            background: -o-linear-gradient(45deg, #FCFCFF 0%, #F0EFFF 100%);
+            background: linear-gradient(45deg, #FCFCFF 0%, #F0EFFF 100%);
+        }
+    }
+    &:nth-child(6n+4) {
+        .single-category {
+            background: -o-linear-gradient(45deg, #FFFAFB 0%, #FFE8EC 100%);
+            background: linear-gradient(45deg, #FFFAFB 0%, #FFE8EC 100%);
+        }
+    }
+    &:nth-child(6n+5) {
+        .single-category {
+            background: -o-linear-gradient(45deg, #FBFDFE 0%, #EAF5FC 100%);
+            background: linear-gradient(45deg, #FBFDFE 0%, #EAF5FC 100%);
+        }
+    }
+    &:nth-child(6n+6) {
+        .single-category {
+            background: -o-linear-gradient(45deg, #FFFCFB 0%, #FFF0EA 100%);
+            background: linear-gradient(45deg, #FFFCFB 0%, #FFF0EA 100%);
+        }
+    }
+}
+
+.single-category-item {}
+
+.single-category {
+    background: #378FFF;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 10px;
+    margin: 15px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    &:hover {
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    &.style-02 {
+        background: -o-linear-gradient(45deg, #fffefa 0%, #fff7e7 100%);
+        background: linear-gradient(45deg, #fffefa 0%, #fff7e7 100%);
+        margin: 0;
+        @include responsive(xl) {
+            padding: 20px 10px;
+        }
+        .icon {
+            color: var(--heading-color);
+            margin-bottom: 30px;
+            font-size: 60px;
+            @include responsive(xl) {
+                font-size: 50px;
+                margin: 0 auto 20px;
+            }
+            @include responsive(allPhone) {
+                margin: 0 auto 20px;
+            }
+            img {
+                height: 80px;
+                width: 80px;
+                -o-object-fit: cover;
+                object-fit: cover;
+                @include responsive(xl) {
+                    height: 60px;
+                    width: 60px;
+                }
+            }
+        }
+        .category-contents {
+            .category-title {
+                color: var(--heading-color);
+            }
+            .category-para {
+                color: var(--heading-color);
+            }
+        }
+    }
+    .icon {
+        font-size: 60px;
+        color: $white;
+    }
+    .category-contents {
+        .category-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: $white;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            @include responsive(xxs) {
+                font-size: 22px;
+            }
+        }
+        .category-para {
+            font-size: 16px;
+            line-height: 34px;
+            color: $white;
+            @include responsive(xxs) {
+                font-size: 14px;
+                line-height: 26px;
+            }
+        }
+    }
+}

@@ -1,0 +1,88 @@
+/*---------------------
+    ## Breadcumb 
+----------------------*/
+
+.breadcrumb-area {
+    position: relative;
+    z-index: 0;
+    background-size: cover;
+    background-position: left bottom;
+    z-index: 1;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #FEEBE4;
+        opacity: 0.6;
+        z-index: -1;
+    }
+
+
+    .breadcrumb-inner {
+        padding: 100px 0 105px 0;
+        text-align: center;
+    }
+
+    .page-title {
+        font-size: 55px;
+        line-height: 70px;
+        font-weight: 700;
+        text-transform: capitalize;
+        margin-bottom: 15px;
+        color: var(--heading-color-three);
+        font-family: var(--extra-font);
+    }
+
+
+    .page-list {
+        margin: 0;
+        padding: 0;
+
+        .list-item {
+            font-family: var(--extra-font);
+            color: var(--heading-color-two);
+            display: inline-block;
+            position: relative;
+            padding-left: 30px;
+            font-size: 18px;
+            font-weight: 400;
+            text-transform: capitalize;
+
+            &:first-child {
+                padding-left: 0;
+                margin-right: 8px;
+
+                &:after {
+                    display: none;
+                }
+            }
+
+            &:last-child {
+                color: var(--main-color-one);
+            }
+
+            &:after {
+                position: absolute;
+                left: 7px;
+                top: 0;
+                font-weight: 700;
+                content: "|";
+                font-family: "Font Awesome 5 Free";
+                color: var(--heading-color-two);
+                line-height: 20px;
+            }
+
+            a {
+                transition: all linear 0.2s;
+
+                &:hover {
+                    color: var(--main-color-one);
+                }
+            }
+        }
+    }
+}

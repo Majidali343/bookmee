@@ -1,0 +1,313 @@
+/* Seller Profile Details area */
+
+.seller-profile-details-area {}
+
+.seller-profile-dashboard {}
+
+.seller-dashboard-list {
+    padding: 0;
+    .list {
+        a {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 24px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            gap: 15px;
+            padding: 17px 25px;
+            cursor: pointer;
+            border-radius: 10px;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            @include responsive(allPhone) {
+                font-size: 15px;
+                gap: 10px;
+                padding: 15px 10px;
+                border-radius: 5px;
+            }
+        }
+        &:not(:last-child) {
+            a {
+                margin-bottom: 10px;
+            }
+        }
+        &.active {
+            a {
+                background: #2BD887;
+                font-weight: 500;
+                color: $white;
+            }
+        }
+        &:hover {
+            a {
+                background: #2BD887;
+                font-weight: 500;
+                color: $white;
+            }
+        }
+    }
+}
+
+.seller-profile-details-wrapper {
+    .seller-profile-edit-flex {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+}
+
+.seller-edits-profile {
+    font-size: 18px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    @include responsive(xxs) {
+        font-size: 16px;
+    }
+    &.color-1 {
+        color: var(--main-color-one);
+    }
+    &:hover {
+        letter-spacing: 1px;
+        i {
+            padding-right: 5px;
+        }
+    }
+    i {
+        padding-right: 10px;
+        -webkit-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+        @include responsive(xxs) {
+            padding-right: 0;
+        }
+    }
+}
+
+.title-seller {
+    font-size: 32px;
+    line-height: 36px;
+    font-weight: 700;
+    @include responsive(allPhone) {
+        font-size: 28px;
+    }
+    @include responsive(xxs) {
+        font-size: 24px;
+    }
+    @include responsive(vxxs) {
+        font-size: 22px;
+    }
+}
+
+
+/* Seller Order Status  */
+
+.seller-status-details {}
+
+.seller-order-status-wrapper {
+    .single-seller-status {
+        .title {
+            @include responsive(xs) {
+                text-align: center;
+            }
+        }
+    }
+}
+
+.single-seller-status {
+    padding: 30px;
+    border-radius: 10px;
+    @include responsive(allPhone) {
+        padding: 20px 20px;
+    }
+    @include responsive(sm) {
+        padding: 20px 10px;
+    }
+    .title {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 36px;
+    }
+}
+
+.seller-status-flex-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    @include responsive(xs) {
+        display: block;
+    }
+    .status-flex-single {
+        @include responsive(xs) {
+            text-align: center;
+        }
+        @include responsive(xs) {
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
+        }
+        .price-title {
+            font-size: 35px;
+            line-height: 55px;
+            font-weight: 700;
+            margin: 0;
+            &.color-3 {
+                color: var(--main-color-three);
+            }
+        }
+        .date-titles {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 28px;
+        }
+        .checkbox-inlines {
+            margin-top: 20px;
+            @include responsive(xs) {
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                margin-top: 5px;
+            }
+            .checkbox-label {
+                font-size: 16px;
+                line-height: 28px;
+                color: var(--light-color);
+                margin: 0;
+                font-weight: 400;
+            }
+        }
+        .order-titles {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 28px;
+        }
+        .reviews {
+            display: inline-block;
+            color: var(--main-color-three);
+            font-size: 20px;
+        }
+        .seller-status-icons {
+            text-align: center;
+            .icon {
+                text-align: center;
+                padding: 0 5px;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.icon {
+    &.color-1 {
+        color: var(--main-color-one);
+    }
+    &.color-2 {
+        color: var(--main-color-two);
+    }
+    &.color-3 {
+        color: var(--main-color-three);
+    }
+}
+
+
+/* Seller Dashboard Close */
+
+.dashboard-close {
+    @include responsive(allPhone) {
+        background: $white;
+        position: relative;
+        z-index: 1;
+        position: absolute;
+        left: -100%;
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: all .5s;
+        -o-transition: all .5s;
+        transition: all .5s;
+        z-index: 99;
+        width: 200px;
+        height: 100vh;
+        -webkit-box-shadow: 0 0 10px rgba($black, .1);
+        box-shadow: 0 0 10px rgba($black, .1);
+        border-radius: 5px;
+        &.active {
+            visibility: visible;
+            opacity: 1;
+            left: 0;
+        }
+    }
+    .close-bars {
+        position: absolute;
+        right: -50px;
+        top: 0;
+        font-size: 30px;
+        color: $white;
+        background: var(--main-color-one);
+        -webkit-box-shadow: 0 0 10px rgba(#ddd, .5);
+        box-shadow: 0 0 10px rgba(#ddd, .5);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        height: 50px;
+        width: 50px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 5px;
+        display: none;
+        @include responsive(allPhone) {
+            display: block;
+        }
+    }
+}
+
+.dashboard-icon {
+    display: none;
+    @include responsive(allPhone) {
+        display: block;
+    }
+    .sidebar-icon {
+        font-size: 30px;
+        cursor: pointer;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        height: 50px;
+        width: 50px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background: var(--main-color-one);
+        -webkit-box-shadow: 0 0 10px rgba(#ddd, .5);
+        box-shadow: 0 0 10px rgba(#ddd, .5);
+        z-index: 95;
+        border-radius: 5px;
+        color: $white;
+    }
+}

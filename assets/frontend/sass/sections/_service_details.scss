@@ -1,0 +1,326 @@
+/* Service Details area */
+
+.service-details-area {}
+
+.service-details-wrapper {}
+
+.service-details-inner {
+    .details-thumb {
+        img {
+            border-radius: 10px;
+            width: 100%;
+        }
+    }
+}
+
+.details-tabs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0;
+    border-bottom: 2px solid #ddd;
+    .list {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--extra-light-color);
+        padding-bottom: 20px;
+        margin-bottom: -2px;
+        cursor: pointer;
+        &:not(:last-child) {
+            margin-right: 50px;
+            @include responsive(xxs) {
+                margin-right: 30px;
+            }
+            @include responsive(vxxs) {
+                margin-right: 20px;
+            }
+        }
+        &.active {
+            border-bottom: 2px solid var(--main-color-one);
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+        @include responsive(xxs) {
+            font-size: 15px;
+        }
+    }
+}
+
+.details-content-tab {
+    .details-tap-para {
+        margin-top: 30px;
+        font-size: 16px;
+        line-height: 26px;
+        color: var(--light-color);
+    }
+}
+
+.service-details-package {
+    position: sticky;
+    top: 0;
+}
+
+.single-packages {
+    padding: 30px;
+    border: 1px solid rgba(#ddd, .5);
+    border-radius: 10px;
+    .package-price {
+        padding: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        li {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--heading-color);
+            font-family: var(--heading-font);
+            line-height: 34px;
+        }
+    }
+    .details-available-price {
+        .tilte-available {
+            font-weight: 600;
+            line-height: 26px;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+        .available-list {
+            padding: 0;
+            li {
+                position: relative;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                gap: 20px;
+                font-size: 16px;
+                color: var(--light-color);
+                margin-top: 12px;
+                &::before {
+                    content: "\f00c";
+                    font-family: 'Line Awesome Free';
+                    font-weight: 900;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    font-size: 14px;
+                    height: 18px;
+                    width: 18px;
+                    border: 1px solid var(--main-color-one);
+                    border-radius: 50%;
+                    color: var(--main-color-one);
+                }
+            }
+        }
+    }
+    button {
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        color: $white;
+        background-color: var(--main-color-one);
+        border-radius: 10px;
+        border: 0;
+        outline: none;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+}
+
+.order-pagkages {
+    .single-order {
+        display: block;
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--light-color);
+        background: rgba($main-color-one, .2);
+        margin-top: 20px;
+        height: 80px;
+        border-radius: 10px;
+        line-height: 20px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 20px;
+        padding: 10px 20px;
+        i {
+            background: var(--main-color-one);
+            color: $white;
+            height: 27px;
+            width: 27px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+        &:nth-child(2n+2) {
+            background: rgba($main-color-three, .2);
+            i {
+                background: var(--main-color-three);
+            }
+        }
+    }
+}
+
+
+/* About Seller tab */
+
+.about-seller-tab {}
+
+.about-seller-flex-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 30px;
+    @include responsive(xxs) {
+        display: block;
+    }
+    &.style-02 {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        padding: 40px 0;
+        @include responsive(xs) {
+            padding: 30px 0;
+        }
+        &:not(:first-child) {
+            border-top: 2px solid rgba(#ddd, .5);
+        }
+    }
+    &.style-03 {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        &:not(:first-child) {
+            padding-top: 40px;
+        }
+    }
+    .about-seller-thumb {
+        height: 80px;
+        min-width: 80px;
+        border-radius: 10px;
+        display: block;
+        @include responsive(xxs) {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+        img {
+            border-radius: 10px;
+            height: 100%;
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+    }
+    .about-seller-content {
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+        .about-seller-list {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-top: 10px;
+            .icon {
+                color: var(--main-color-three);
+                font-size: 12px;
+            }
+            .reviews {
+                margin-left: 10px;
+            }
+        }
+        .about-review-para {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--light-color);
+            margin-top: 20px;
+            line-height: 26px;
+        }
+        .review-date {
+            margin-top: 20px;
+            display: block;
+        }
+    }
+}
+
+.seller-details-box {
+    border: 1px solid rgba(#ddd, .5);
+    padding: 30px;
+    border-radius: 10px;
+    @include responsive(xxs) {
+        padding: 20px 10px;
+    }
+    .seller-box-list {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        @include responsive(xxs) {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+        .box-list {
+            font-size: 16px;
+            line-height: 26px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            strong {
+                display: block;
+                font-size: 20px;
+                font-weight: 700;
+                color: var(--heading-color);
+                font-family: var(--heading-font);
+                line-height: 28px;
+                margin-top: 10px;
+            }
+        }
+    }
+    .seller-details-para {
+        font-size: 16px;
+        line-height: 26px;
+        color: var(--light-color);
+        @include responsive(xxs) {
+            font-size: 14px;
+        }
+        @include responsive(vxxs) {
+            font-size: 14px;
+        }
+    }
+}

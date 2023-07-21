@@ -1,0 +1,23 @@
+/* Clientlogo area */
+
+.clientlogo-area {}
+
+.clientlogo-wrapper {}
+
+.clientlogo-slider {
+    .slick-list {
+        margin: -15px;
+    }
+}
+
+.clientlogo-item {}
+
+.single-clientlogo {
+    margin: 15px;
+    .thumb {
+        img {
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
+}

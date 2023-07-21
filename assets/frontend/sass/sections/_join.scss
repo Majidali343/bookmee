@@ -1,0 +1,188 @@
+/* Join area */
+
+.join-area {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.join-shapes {
+    @include responsive(xxs) {
+        display: none;
+    }
+    img {
+        position: absolute;
+        z-index: -1;
+        &:nth-child(1) {
+            top: 100px;
+            left: 180px;
+            -webkit-animation: scale-updown 4s linear infinite;
+            animation: scale-updown 4s linear infinite;
+        }
+        &:nth-child(2) {
+            bottom: 60px;
+            right: 180px;
+            -webkit-animation: scale-updown 5s linear infinite;
+            animation: scale-updown 5s linear infinite;
+        }
+        &:nth-child(3) {
+            bottom: 70px;
+            left: 110px;
+            -webkit-animation: floatings 4s linear infinite;
+            animation: floatings 4s linear infinite;
+        }
+        &:nth-child(4) {
+            top: 60px;
+            right: -70px;
+            -webkit-animation: floatings-leftright 4s linear infinite;
+            animation: floatings-leftright 4s linear infinite;
+        }
+    }
+}
+
+.join-content-wrapper {
+    max-width: 970px;
+    text-align: center;
+    margin: 0 auto;
+    @include responsive(xs) {
+        min-width: 100%;
+    }
+}
+
+.join-contents {
+    .title {
+        font-size: 65px;
+        font-weight: 700;
+        line-height: 85px;
+        @include responsive(xl) {
+            font-size: 55px;
+            line-height: 70px;
+        }
+        @include responsive(lg) {
+            font-size: 50px;
+            line-height: 65px;
+        }
+        @include responsive(allPhone) {
+            font-size: 40px;
+            line-height: 50px;
+        }
+        @include responsive(sm) {
+            font-size: 35px;
+        }
+        @include responsive(vxxs) {
+            font-size: 25px;
+            line-height: 35px;
+        }
+    }
+    .join-para {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 34px;
+        margin-top: 40px;
+        display: block;
+        color: var(--light-color);
+        @include responsive(sm) {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+        @include responsive(xxs) {
+            font-size: 18px;
+            margin-top: 20px;
+            line-height: 28px;
+        }
+        @include responsive(vxxs) {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+}
+
+@-webkit-keyframes floatings {
+    0% {
+        -webkit-transform: translateY(50px);
+        transform: translateY(50px);
+    }
+    50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    100% {
+        -webkit-transform: translateY(50px);
+        transform: translateY(50px);
+    }
+}
+
+@keyframes floatings {
+    0% {
+        -webkit-transform: translateY(50px);
+        transform: translateY(50px);
+    }
+    50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    100% {
+        -webkit-transform: translateY(50px);
+        transform: translateY(50px);
+    }
+}
+
+@-webkit-keyframes floatings-leftright {
+    0% {
+        -webkit-transform: translateX(50px);
+        transform: translateX(50px);
+    }
+    50% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+    100% {
+        -webkit-transform: translateX(50px);
+        transform: translateX(50px);
+    }
+}
+
+@keyframes floatings-leftright {
+    0% {
+        -webkit-transform: translateX(50px);
+        transform: translateX(50px);
+    }
+    50% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+    100% {
+        -webkit-transform: translateX(50px);
+        transform: translateX(50px);
+    }
+}
+
+@-webkit-keyframes scale-updown {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(.6);
+        transform: scale(.6);
+    }
+    100% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+}
+
+@keyframes scale-updown {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(.6);
+        transform: scale(.6);
+    }
+    100% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+}

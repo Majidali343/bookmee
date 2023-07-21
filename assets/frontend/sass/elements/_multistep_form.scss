@@ -1,0 +1,98 @@
+/* Multi Step Form */
+
+.msform {
+    position: relative;
+}
+
+.msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    position: relative
+}
+
+fieldset.padding-top-50 {
+    @include responsive(allPhone) {
+        padding-top: 20px;
+    }
+}
+
+.single-location.margin-top-30 {
+    @include responsive(allPhone) {
+        margin-top: 10px;
+    }
+}
+
+.form-card {
+    text-align: left
+}
+
+.msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+.msform .action-button {
+    background: var(--main-color-one);
+    font-weight: 500;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 25px;
+    margin: 40px 0px 5px 10px;
+    float: right;
+    border: 1px solid var(--main-color-one);
+}
+
+.msform .action-button:hover,
+.msform .action-button:focus {
+    background: var(--main-color-one);
+}
+
+.msform .action-button-previous {
+    background: 0;
+    font-weight: 500;
+    color: var(--heading-color);
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 25px;
+    margin: 40px 10px 5px 0px;
+    float: right;
+    border: 1px solid var(--main-color-one);
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.msform .action-button-previous:hover,
+.msform .action-button-previous:focus {
+    background-color: var(--main-color-one);
+    color: $white;
+}
+
+.successful-card {
+    .title-step {
+        font-size: 50px;
+        font-weight: 700;
+        text-align: center;
+        @include responsive(allPhone) {
+            font-size: 40px;
+        }
+    }
+    .succcess-icon {
+        font-size: 200px;
+        color: var(--main-color-one);
+        text-align: center;
+        line-height: 1.2;
+        display: block;
+        @include responsive(allPhone) {
+            line-height: 1;
+            font-size: 150px;
+        }
+    }
+}

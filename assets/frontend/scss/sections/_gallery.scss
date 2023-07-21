@@ -1,0 +1,104 @@
+/*--------------------------------------------------------------
+	## Gallery
+--------------------------------------------------------------*/
+
+// All Gallery
+
+.all-gallery-wrapper {
+    padding-top: 100px;
+    margin-bottom: -25px;
+}
+
+.single-gallery-item {
+    margin-bottom: 23px;
+
+    .img-box {
+        overflow: hidden;
+        border-radius: 5px;
+
+        img {
+            border-radius: 5px;
+            transition: all linear 0.2s;
+        }
+    }
+
+    .content {
+        text-align: center;
+
+        .catagory {
+            margin-top: 10px;
+            display: inline-block;
+            font-size: 25px;
+            font-weight: 500;
+            text-transform: capitalize;
+            color: var(--heading-color-three);
+            font-family: var(--heading-font-one);
+            transition: all linear 0.2s;
+
+            &:hover {
+                color: var(--main-color-one);
+            }
+        }
+    }
+
+    &:hover {
+        .img-box {
+            img {
+                transform: scale(1.02);
+            }
+        }
+    }
+}
+
+// Travel Gallery
+
+.travel-gallery-wrapper {
+    padding-top: 100px;
+    .btn-wrapper {
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+
+.single-gallery-item {
+    .img-box {
+        position: relative;
+        transition: all linear 0.2s;
+        .location {
+            position: absolute;
+            bottom: 15px;
+            left: 22px;
+            font-family: var(--heading-font-one);
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+            text-transform: capitalize;
+            z-index: 2;
+            opacity: 0;
+            transition: all linear 0.2s;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-image: linear-gradient(to bottom, #7db9e808 32%, #00000069 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: all linear 0.2s;
+        }
+    }
+
+    &:hover {
+        .img-box {
+            .location {
+                opacity: 1;
+            }
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+}

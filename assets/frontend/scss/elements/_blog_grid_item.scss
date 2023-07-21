@@ -1,0 +1,104 @@
+/*----------------------------
+    Blog Grid Item
+-----------------------------*/
+// Travel
+.traver-blog-grid-wrapper {
+  margin-bottom: -34px;
+  padding-top: 74px;
+
+  .single-grid {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 30px;
+
+    .catg {
+      display: block;
+      margin-bottom: 18px;
+
+      a {
+        font-size: 16px;
+        display: inline-block;
+        text-transform: capitalize;
+        transition: all linear 0.2s;
+
+        &:hover {
+          color: var(--main-color-one);
+        }
+
+        .icon {
+          color: var(--main-color-one);
+        }
+      }
+    }
+
+    .title {
+      font-weight: 700 !important;
+      margin-bottom: 15px !important;
+    }
+
+    .info {
+      margin-bottom: 15px !important;
+    }
+
+    .post-meta {
+      border-top: 1px solid #DDDDDD;
+      display: block !important;
+      padding-top: 20px;
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &.travel {
+      .title {
+        font-weight: 500 !important;
+      }
+    }
+  }
+  .pagination {
+    margin-bottom: 34px;
+  }
+}
+
+// Food
+.food-blog-grid {
+  padding: 100px 0 0;
+  margin-bottom: -60px;
+
+  .single-blog-list-wrapper-index-02 {
+    margin-top: 0 !important;
+  }
+
+  .single-slider-item {
+    margin-bottom: 60px !important;
+
+    .catagory {
+      margin-top: 25px !important;
+    }
+
+    .title {
+      margin-top: 17px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .post-meta {
+      margin-top: 14px !important;
+    }
+  }
+
+  .btn-wrapper {
+    margin-bottom: 60px;
+  }
+}
+
+// Nature
+
+.blog-grid-nature {
+  padding-top: 100px;
+
+  .blog-list-flower-area-wrapper-index-04 {
+    padding-top: 0;
+  }
+}

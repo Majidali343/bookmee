@@ -1,0 +1,23 @@
+/*-----------------------
+    Error 404 Page
+-----------------------*/
+.error-area-wrapper {
+    padding-top: 100px;
+
+    .img-box {
+        text-align: center;
+    }
+
+    .content {
+        margin-top: 92px;
+
+        .title {
+            font-family: var(--extra-font-two);
+            font-size: 45px;
+            font-weight: 600;
+            color: var(--heading-color-one);
+            text-transform: capitalize;
+            text-align: center;
+        }
+    }
+} 

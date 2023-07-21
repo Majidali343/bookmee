@@ -1,0 +1,92 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+
+# Typography
+# Normalize
+# Accessibility
+# Globals
+# Alignments
+# Clearings
+# Posts and pages
+# Captions
+# Galleries
+# Unit test
+# guterberg
+# Gutenberg	Default Style
+# Block Color Palette Colors
+# Sections
+    ## Breadcrumb
+    ## Comments
+    ## Widgets
+    ## Nav Bar
+    ## Info Bar
+    ## Header
+    ## Header Bottom Area
+    ## Footer Area
+    ## Error 404 Area
+    ## Why us Area
+    ## Highly Skilled Area
+    ## Call TO Action Area
+    ## Testimonial Area
+    ## Top Lawyer Style 02
+    ## Counterup Area
+    ## Case Category Area
+    ## Legal Support Area
+    ## Practice Details Area
+    ## Attorney Details Area
+
+# Elements
+    ## Back Top
+    ## Preloader
+    ## Video Popup
+    ## Button
+    ## Blog
+    ## Accordion
+    ## contact Info Item
+    ## Quote block with sign
+    ## Counterup Item
+    ## Video With Image
+    ## Video Play Button
+    ## Why Us Item
+    ## Section Title
+    ## What we cover item
+    ## Icon Box Item
+    ## Testimonial Item
+    ## Case Categories Item
+    ## Quote With Image
+    ## Price Plan Item
+
+--------------------------------------------------------------*/
+
+
+//== Global Design
+@import "global/_mixins";
+@import "global/_variables";
+@import "global/_global";
+@import "global/_gutenberg";
+//== Pages
+//== Sections
+@import "sections/_breadcrumb";
+// @import "sections/_comments";
+@import "sections/_widgets";
+@import "sections/_navbar";
+@import "sections/_header";
+@import "sections/_footer";
+@import "sections/_error_404";
+@import "sections/_highlight_area";
+@import "sections/_gallery";
+@import "sections/_contact_us";
+@import "sections/_search";
+@import "sections/_author";
+@import "sections/_blog_details";
+//== Elements
+@import "elements/_back_top";
+@import "elements/_preloader";
+@import "elements/_button";
+@import "elements/_video_with_image";
+@import "elements/_blog_grid_item";
+@import "elements/_blog_list";
+@import "elements/_pagination";
+@import "elements/_recent_post";
+@import "elements/_best_article";

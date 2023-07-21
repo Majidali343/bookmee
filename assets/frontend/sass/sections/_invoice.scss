@@ -1,0 +1,336 @@
+/* Invoice area */
+
+.invoice-area {}
+
+.invoice-wrapper {
+    padding: 100px;
+    -webkit-box-shadow: 0 0 15px rgba(#ddd, .5);
+    box-shadow: 0 0 15px rgba(#ddd, .5);
+    @include responsive(allPhone) {
+        padding: 50px 30px;
+    }
+    @include responsive(xs) {
+        padding: 40px 10px 50px;
+    }
+}
+
+.invoice-flex-contents {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.invoice-logo {
+    img {
+        max-width: 180px;
+        @include responsive(xxs) {
+            max-width: 150px;
+        }
+        @include responsive(vxxs) {
+            max-width: 130px;
+        }
+    }
+}
+
+.invoice-top {
+    text-align: right;
+    .invoice {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 50px;
+        @include responsive(allPhone) {
+            font-size: 32px;
+            line-height: 36px;
+        }
+        @include responsive(xxs) {
+            font-size: 28px;
+        }
+        @include responsive(vxxs) {
+            font-size: 24px;
+        }
+        &.color-1 {
+            color: var(--main-color-one);
+        }
+    }
+    .small-title {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 28px;
+        @include responsive(allPhone) {
+            font-size: 16px;
+            line-height: 24px;
+        }
+        @include responsive(xxs) {
+            font-size: 14px;
+            line-height: 20px;
+        }
+        @include responsive(vxxs) {
+            font-size: 13px;
+        }
+    }
+}
+
+.invoice-contents {
+    &.borders {
+        border-bottom: 1px solid rgba(#ddd, .5);
+        padding-bottom: 15px;
+    }
+    .invoice-title {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 50px;
+        max-width: 700px;
+        @include responsive(allPhone) {
+            font-size: 30px;
+            line-height: 36px;
+        }
+        @include responsive(xxs) {
+            font-size: 26px;
+        }
+        @include responsive(vxxs) {
+            font-size: 24px;
+        }
+    }
+}
+
+.invoice-single-contents {
+    .title {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26px;
+    }
+    .names {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--light-color);
+        line-height: 28px;
+        display: block;
+    }
+    .invoice-address-list {
+        padding: 0;
+        margin-top: 10px;
+        .list {
+            font-size: 14px;
+            line-height: 30px;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            &:hover {
+                color: var(--main-color-one);
+            }
+        }
+    }
+}
+
+.invoice-summery {
+    .invoice-contents-summery {
+        padding: 30px 30px 20px;
+        border-radius: 10px;
+        @include responsive(allPhone) {
+            padding: 20px 20px;
+            overflow-x: scroll;
+        }
+        @include responsive(xs) {
+            padding: 20px 10px;
+            overflow-x: scroll;
+        }
+    }
+}
+
+.total-count {
+    text-align: right;
+    .total-amount {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--light-color);
+        padding: 5px 0;
+        display: block;
+    }
+}
+
+.invoice-summery-list {
+    padding: 0;
+    &.borders-bottom {
+        border-bottom: 2px solid rgba(#ddd, .5);
+        padding-bottom: 20px;
+    }
+    .list {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        gap: 10px;
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        .list-single {
+            font-size: 16px;
+            line-height: 26px;
+            color: var(--light-color);
+            @include responsive(xs) {
+                font-size: 14px;
+            }
+            &.list-heading {
+                font-family: var(--heading-font);
+                font-weight: 600;
+                color: var(--light-color);
+                font-size: 18px;
+                line-height: 28px;
+                @include responsive(xs) {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+.total-count-list {
+    padding: 0;
+    .list {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        .total {
+            font-size: 16px;
+            line-height: 26px;
+            color: var(--heading-color);
+            font-weight: 500;
+            text-align: right;
+            display: block;
+            padding: 10px 0;
+            &:not(:last-child) {
+                padding-right: 100px;
+            }
+            &.color-1 {
+                color: var(--main-color-one);
+            }
+        }
+        &.borders-bottom {
+            border-bottom: 2px solid rgba(#ddd, .5);
+        }
+    }
+}
+
+.summery-heading {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    font-style: italic;
+}
+
+.invoice-bottom-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    @include responsive(sm) {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+    }
+    .invoice-patment-list {
+        .checkbox-inlines {
+            .checkbox-label {
+                font-size: 14px;
+                color: var(--light-color);
+            }
+        }
+    }
+}
+
+.invoice-download-contents {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 20px;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    @include responsive(allPhone) {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    @include responsive(xs) {
+        gap: 10px;
+    }
+    .invoice-icon {
+        padding: 18px;
+        font-size: 16px;
+        background: $Zircon;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 5px;
+        color: var(--main-color-three);
+        @include responsive(allPhone) {
+            font-size: 15px;
+            padding: 15px;
+        }
+        @include responsive(xs) {
+            font-size: 14px;
+            padding: 10px;
+        }
+        .icon {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        i {
+            font-size: 24px;
+            @include responsive(allPhone) {
+                font-size: 20px;
+            }
+            @include responsive(xs) {
+                font-size: 18px;
+            }
+        }
+        &.color-one {
+            background: var(--main-color-one);
+            color: $white;
+        }
+        &.color-three {
+            background: var(--main-color-three);
+            color: $white;
+        }
+    }
+}

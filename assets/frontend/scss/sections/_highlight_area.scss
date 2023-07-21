@@ -1,0 +1,88 @@
+
+.highlight-area-wrapper {
+    margin-top: -75px;
+    position: relative;
+    z-index: 3;
+    .highlight-area-inner {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        background-color: #fff;
+        padding: 35px 35px 0;
+        position: relative;
+        margin-left: 329px;
+        &::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 100%;
+            top: 0;
+            background-color: #fff;
+        }
+        .single-highlight-item {
+            display: flex;
+           padding-right: 90px;
+            .content {
+                align-self: center;
+                margin-left: 16px;
+                .title {
+                    font-family: var(--heading-font-one);
+                    font-weight: 700;
+                    color: var(--heading-color-one);
+                    font-size: 24px;
+                    text-transform: capitalize;
+                    margin-bottom: 14px;
+                    a {
+                        transition: all linear 0.2s;
+                        &:hover {
+                            color: var(--main-color-two);
+                        }
+                    }
+                }
+                .sub-title {
+                    font-size: 16px;
+                    color: #999999;
+                }
+            }
+        }
+    }
+}
+
+// highlight for index 04
+
+.highlight-index-04 {
+    margin-top: 100px;
+    .img-box-wrap {
+        display: flex;
+        position: relative;
+        .content {
+            padding: 25px 20px 32px;
+            position: absolute;
+            background-color: #fff;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            .icon {
+                font-size: 20px;
+                color: var(--main-color-three);
+            }
+            .title {
+                font-family: var(--heading-font-one);
+                font-size: 18px;
+
+            }
+        }
+        .img-box {
+            margin: 0 5px;
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+

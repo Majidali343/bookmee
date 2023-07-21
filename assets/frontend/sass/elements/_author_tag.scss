@@ -1,0 +1,76 @@
+/* Author tag */
+
+.author-tag {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 25px 0 20px;
+    padding-left: 0;
+    &.style-02 {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        .tag-list {
+            &:not(:last-child) {
+                margin-right: 80px;
+                @include responsive(xxs) {
+                    margin-right: 50px;
+                }
+            }
+        }
+    }
+    .tag-list {
+        .authors {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            gap: 15px;
+            .thumb {
+                position: relative;
+                z-index: 1;
+                display: inline-block;
+                height: 30px;
+                width: 30px;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+                .notification-dot {
+                    display: inline-block;
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 50px;
+                    background: var(--main-color-one);
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    border: 2px solid $white;
+                }
+            }
+            .author-title {
+                font-size: 14px;
+                color: var(--light-color);
+            }
+        }
+        .icon {
+            font-size: 14px;
+            color: var(--main-color-three);
+            margin-right: 7px;
+        }
+        .reviews {
+            font-size: 12px;
+        }
+    }
+}

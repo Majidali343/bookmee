@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/dropzone.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/media-uploader.css')); ?>"><?php /**PATH /var/www/vhosts/dazzling-edison.217-174-244-122.plesk.page/httpdocs/@core/resources/views/components/media/css.blade.php ENDPATH**/ ?>

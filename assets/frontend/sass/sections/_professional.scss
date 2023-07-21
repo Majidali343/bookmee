@@ -1,0 +1,78 @@
+/* Professional Services */
+
+.professional-area {
+    overflow: hidden;
+}
+
+.professional-slider {
+    .slick-list {
+        margin: -15px;
+    }
+}
+
+.single-professional {
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px;
+    position: relative;
+    z-index: 1;
+    &:hover {
+        .professional-thumb {
+            &::after {
+                top: 0;
+            }
+            img {
+                -webkit-transform: scale(1.2);
+                -ms-transform: scale(1.2);
+                transform: scale(1.2);
+            }
+        }
+    }
+    .professional-thumb {
+        display: block;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        img {
+            height: 100%;
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            -webkit-transition: all .4s;
+            -o-transition: all .4s;
+            transition: all .4s;
+        }
+        &::after {
+            position: absolute;
+            content: "";
+            background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.99)), to(rgba(255, 255, 255, 0)));
+            background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.99) 0%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.99) 0%, rgba(255, 255, 255, 0) 100%);
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 50px;
+            -webkit-transition: all .4s;
+            -o-transition: all .4s;
+            transition: all .4s;
+        }
+    }
+    .professional-contents {
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+        z-index: 9;
+        .professional-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: $white;
+            margin-bottom: 0;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+            &:hover {
+                color: var(--main-color-one);
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+/*=========================================================
+          [ Table ]
+=========================================================*/
+
+.custom--table {
+    width: 100%;
+    color: inherit;
+    vertical-align: middle;
+    font-weight: 400;
+    text-align: center;
+}
+
+.custom--table thead {
+    font-weight: 700;
+    font-size: 18px;
+    background: inherit;
+    color: inherit;
+}
+
+.custom--table tbody {
+    border-top: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.custom--table tbody tr:nth-child(odd) {
+    background-color: inherit;
+}
+
+.custom--table tbody tr:nth-child(even) {
+    background-color: inherit;
+}
+
+.custom--table tr {}
+
+.custom--table tr th {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--light-color);
+}
+
+.custom--table tr td {
+    font-size: 16px;
+    color: var(--heading-color);
+    padding: 10px 0;
+    line-height: 22px;
+}
+
+[data-label] {
+    position: relative;
+}
+
+[data-label]::before {
+    position: absolute;
+    content: attr(data-label);
+    font-weight: 700;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    padding: 8px 20px;
+    display: none;
+    font-size: 13px;
+}
+
+
+/* @media (max-width: 767.98px) {
+    .table-responsive.table-responsive-sm thead {
+        display: none;
+    }
+    .table-responsive.table-responsive-sm [data-label]::before {
+        display: block;
+    }
+    .table-responsive.table-responsive-sm tr td {
+        display: block;
+        text-align: right;
+        padding-right: 5px;
+    }
+    .table-responsive [data-label]::before {
+        padding: 8px 10px 8px 5px;
+    }
+} */
+
+@media (max-width: 991px) {
+    .table-responsive thead {
+        display: none;
+    }
+    .table-responsive [data-label]::before {
+        display: block;
+    }
+    .table-responsive tr td {
+        display: block;
+        text-align: right;
+        padding-right: 5px;
+    }
+    .table-responsive [data-label]::before {
+        padding: 8px 10px 8px 5px;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .table-responsive.table-responsive-lg thead {
+        display: none;
+    }
+    .table-responsive.table-responsive-lg [data-label]::before {
+        display: block;
+    }
+    .table-responsive.table-responsive-lg tr td {
+        display: block;
+        text-align: right;
+        padding-right: 5px;
+    }
+}
+
+@media (max-width: 1399.98px) {
+    .table-responsive.table-responsive-xl thead {
+        display: none;
+    }
+    .table-responsive.table-responsive-xl [data-label]::before {
+        display: block;
+    }
+    .table-responsive.table-responsive-xl tr td {
+        display: block;
+        text-align: right;
+        padding-right: 5px;
+    }
+}
