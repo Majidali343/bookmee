@@ -231,7 +231,7 @@
 
                                                         <div style="display: flex">
                                                             <input class="form--control" type="text"
-                                                                name="phone_number" value="+91" readonly
+                                                                name="phone_number" value="+44" readonly
                                                                 style="width: 43px; padding: 0px 0px 0px 6px; margin-right:8px;">
                                                             <input class="form--control" type="tel" name="phone"
                                                                 id="phone" value="{{ old('phone') }}"
@@ -457,7 +457,7 @@
 
                                                         <div style="display: flex">
                                                             <input class="form--control" type="text"
-                                                                name="phone_number" value="+91" readonly
+                                                                name="phone_number" value="+44" readonly
                                                                 style="width: 43px; padding: 0px 0px 0px 6px; margin-right:8px;">
                                                             <input class="form--control" type="tel" name="phone"
                                                                 id="cphone" value="{{ old('phone') }}"
@@ -684,7 +684,7 @@
                     }
 
 
-                    phone = '+91' + phone;
+                    phone = '+44' + phone;
 
                     $.ajax({
                         method: 'post',
@@ -778,7 +778,7 @@
                     }
 
 
-                    phone = '+91' + phone;
+                    phone = '+44' + phone;
 
                     $.ajax({
                         method: 'post',
@@ -873,7 +873,7 @@
                         return false;
                     }
 
-                    phone = '+91' + phone;
+                    phone = '+44' + phone;
                     $.ajax({
                         method: 'post',
                         url: "{{ route('user.otp.register.verify.code') }}",
@@ -966,7 +966,7 @@
                         return false;
                     }
 
-                    phone = '+91' + phone;
+                    phone = '+44' + phone;
                     $.ajax({
                         method: 'post',
                         url: "{{ route('user.otp.register.verify.code') }}",
@@ -1040,7 +1040,7 @@
                     var email = $('#email').val();
                     var phone = $('#phone').val();
 
-                    phone = '+91' + phone;
+                    phone = '+44' + phone;
                     // validate user information
                     if (name == '' || user_name == '' || email == '' || phone == '') {
                         //error msg 

@@ -227,7 +227,7 @@ class LoginController extends Controller
                 'phone' => 'required|max:191',
             ]);
 
-            $countryCode = '+91';
+            $countryCode = '+44';
         $phoneNumber = $request->phone;
        
 

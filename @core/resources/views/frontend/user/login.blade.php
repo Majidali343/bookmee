@@ -20,7 +20,7 @@
                     <div class="single-signup margin-top-30">
                         <label class="signup-label"> {{__('Phone Number')}} </label>
                         <div style="display: flex">
-                            <input class="form--control" type="text" name="phone_number" value="+91" readonly style="width: 43px; padding: 0px 0px 0px 6px; margin-right:8px;">
+                            <input class="form--control" type="text" name="phone_number" value="+44" readonly style="width: 43px; padding: 0px 0px 0px 6px; margin-right:8px;">
                             <input class="form--control" type="text" name="phone" id="phone" placeholder="{{__('Phone Number')}}"  >
                         </div>
                     </div>
