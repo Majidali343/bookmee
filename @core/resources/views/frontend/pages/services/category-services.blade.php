@@ -253,7 +253,7 @@ use App\Review;
                                         </div>
                                         <div class="btn-wrapper">
 
-                                            <a href="/{{$Vendors[$i]->username }}"
+                                            {{-- <a href="/{{$Vendors[$i]->username }}" --}}
 
                                             <a href="/{{ $Vendors[$i]->username }}"
 

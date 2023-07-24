@@ -126,7 +126,7 @@ class HeaderStyleOne extends \App\PageBuilder\PageBuilderBase
             <option value="{$country_id}">{$country_name}</option>
             COUNTRYMARKUP;
         }
-
+   
         foreach ($categories as $cat) {
             $category_name = $cat->name;
             $category_slug = $cat->slug;

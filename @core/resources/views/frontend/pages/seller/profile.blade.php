@@ -557,7 +557,7 @@
 
 @section('content')
 
-    <div class="content align-items-center">
+    <div class=" align-items-center">
 
 
         <div class="d-flex flex-wrap">

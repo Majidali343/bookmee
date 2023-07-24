@@ -143,7 +143,8 @@ BENIFITS;
    if (!empty($about_list_show_hide)){
        $about_list_markup .=<<<ABOUNTLIST
     <div class="overview-single style-03">
-        <ul class="overview-benefits margin-top-30">
+        <ul class="overview-benefits 
+        margin-top-30">
             {$benifits_markup}
         </ul>
     </div>

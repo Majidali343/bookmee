@@ -199,7 +199,7 @@ class FrontendController extends Controller
 
 
         $phoneNumber = $seller->phone;
-        $countryCode = '+91';
+        $countryCode = '+44';
         $areaCode = substr($phoneNumber, 3, 5);
         $mainNumber = substr($phoneNumber, 8);
         $formattedPhoneNumber = "($countryCode) $areaCode $mainNumber";
