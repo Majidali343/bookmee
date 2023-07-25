@@ -1,16 +1,28 @@
 @php
    use App\ServiceCity;
-    $all_cities = ServiceCity::where("status", 1)->get();
-    
-@endphp
 
+    
+
+    if(Session::get('cityid')){
+        $cityid=Session::get('cityid');
+
+        $all_cities =ServiceCity::whereNotIn('id', [$cityid])->
+        where("status", 1)->get();
+
+    }else{
+        $all_cities = ServiceCity::where("status", 1)->get();
+
+    }
+
+@endphp
 
 
 @if(Auth::guard('web')->check())
 <div class="selectingstyle">
     <select  name="overallcity" >
         <option  value="" >{{Session::get('cityname') ?: 'Select City'}}</option>
-     
+      
+
       @foreach ($all_cities as $cities) 
       <option value={{$cities->id}} > {{$cities->service_city}} </option>
       @endforeach
@@ -74,6 +86,8 @@
     </div>
 @endif
 
+
+
 <style>
 
 .selectingstyle{
@@ -114,8 +128,9 @@
     <script>
         (function($){
             "use strict";
+            
 
-         
+    
         
             $(document).ready(function() {
         $("select[name='overallcity']").change(function() {

@@ -6,6 +6,8 @@
     }
 @endphp
 
+
+<x-frontend.modal/>
 <nav class="navbar navbar-area navbar-two {{ $page_post->page_class ?? '' }} navbar-expand-lg" style="background:rgba(0, 0, 0, 0.7);">
     <div class="container container-two nav-container">
         <div class="responsive-mobile-menu">
@@ -66,8 +68,10 @@
                         @endif
                     @endif
                 </div>
+               
                 <x-frontend.user-menu/>
             </div>
         </div>
     </div>
 </nav>
+
