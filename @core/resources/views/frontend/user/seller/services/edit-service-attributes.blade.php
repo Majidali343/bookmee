@@ -5,6 +5,87 @@
 
 @section('style')
     <x-media.css/>
+    <style>
+         .serviceopt input {
+        width: 200;
+        height: 50px;
+        top: 30.5px;
+        padding: 0px 9.600006103515625px 0px 21.330078125px;
+        border-radius: 5px;
+        border: 1px solid #DDDDDD;
+
+    }
+    .serviceopt p ,label {
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 26px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+    .serviceopt h5 {
+        font-family: Poppins;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 26px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+    .serviceopt button {
+        width: 235.42px;
+        height: 54px;
+        color: white;
+        top: 79px;
+        left: 436px;
+        padding: 9.65999984741211px 35.41999816894531px 10.34000015258789px 34px;
+        border-radius: 5px;
+        background: #03989E;;
+
+    }
+          /* Customize the label (the container) */
+   .checkbox-list {
+      list-style-type: none;
+      padding: 0;
+      
+    }
+    
+    /* CSS for each checkbox item */
+    .checkbox-item {
+      margin-bottom: 10px;
+      display: flex;
+      padding-left: 20px;
+      flex-direction: row;
+      height: 100px;
+      align-items: center;
+      
+    }
+    .label{
+        font-family: "inter";
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0em;
+        padding-left: 10px;
+        text-align: left;
+        margin-bottom: 0px;
+    }
+    .modal-body {
+        padding: 0px;
+    }
+
+    /* CSS for the checkbox input */
+    .checkbox-item input[type="checkbox"] {
+      margin-right: 5px;
+    }
+   .modalimage{
+    height: 80px;
+    width: 80px;
+    margin: 0px 15px;
+    border-radius: 10px;
+   }
+    </style>
 @endsection
 
 @section('content')
@@ -61,7 +142,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-8 margin-top-50">
-                                @if($service->is_service_online == 1)
+                                {{-- @if($service->is_service_online == 1)
                                     <div class="dashboard-switch-single margin-bottom-30">
                                         <a href="{{ route('seller.edit.service.attribute.offline.to.online', $service->id) }}" title="Offline To Online Service">
                                             <input class="custom-switch is_service_online"
@@ -78,7 +159,7 @@
                                             <i class="las la-toggle-off" style="font-size:48px;"></i>
                                         </a>
                                     </div>
-                                @endif
+                                @endif --}}
                                 <div class="single-settings">
                                     <h4 class="input-title"> {{__('What is Included In This Package')}} </h4>
                                     <div class="append-additional-includes">
@@ -101,6 +182,33 @@
                                         @endforeach
                                     </div>
                                 </div>
+
+                                <div class="single-settings margin-top-40">
+
+
+                                    <div class="append-additional-services">
+                                        <div class="single-dashboard-input additional-services">
+                                            <div class="serviceopt margin-top-20">
+                                                <h5>Service Time</h5>
+                                                <p>How much time service will take</p>
+                                                <label>Time</label><br>
+                                                <input type="number" id="points" name="time" step="15" value={{$service_time}}  placeholder="Mins">
+                                            </div>
+                                            <div class="serviceopt margin-top-20">
+                                           <h5 style="font-size: 20px;">Select Staff who can provide this Service</h5>
+                                           <p>It can be all or any Specific</p><br>
+                                           <button type="button"  data-toggle="modal" data-target="#addstaff">
+                                            Select Staff Members
+                                          </button>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <input type="text" name="staffs" id="services_ids" value="" style="display: none;">
+
 
                                 @if($service->is_service_online==1)
                                     <div class="single-settings day_review_show_hide">
@@ -125,7 +233,7 @@
                                     </div>
                                 @endif
 
-                                @if($service_additionals->count() >= 1)
+                                {{-- @if($service_additionals->count() >= 1)
                                     <div class="single-settings margin-top-40">
                                         <h4 class="input-title"> {{__('Aditional Services')}} </h4>
                                         <div class="append-additional-services">
@@ -168,8 +276,8 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                @endif
-
+                                @endif --}}
+{{-- 
                                 @if($service_benifits->count() >= 1)
                                     <div class="single-settings margin-top-40">
                                         <h4 class="input-title"> {{__('Benefit Of This Package')}} </h4>
@@ -184,7 +292,7 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                @endif
+                                @endif --}}
 
                                 @if($online_service_faq->count() >= 1)
                                     <div class="single-settings margin-top-40">
@@ -213,9 +321,50 @@
         </div>
     </div>
 
+<!-- Modal -->
+<div class="modal fade" id="addstaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 style="font-size: 16px;" class="modal-title" id="exampleModalLabel">Staff Member’s who can provide This Service</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+
+            <ul class="checkbox-list">
+            <li class="checkbox-item">
+            <input type="checkbox" name="services_all" class="services_all check-input">
+            <label class="label" for="checkbox1">All Staff</label>
+            </li>
+
+            @foreach($staff as $data)
+            <li class="checkbox-item">
+             
+            <input type="checkbox" id="{{$data->id}}" class="select_services" name="select_services" value="{{$data->id}}">
+            <img  class="modalimage" src="{{get_attachment_image_by_id($data->profile_image_id)['img_url']}}" alt="">
+            <label class="label" for="checkbox1">{{$data->name}}</label>
+            </li>
+
+            @endforeach
+           
+        </ul>
+
+        </div>
+
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary">Save Staff</button>
+        </div>
+    </div>
+    </div>
+</div>
+
     <x-media.markup :type="'web'"/>
     <!-- Dashboard area end -->
 @endsection
+
 
 @section('scripts')
 
@@ -225,6 +374,47 @@
         (function ($) {
             'use strict'
             $(document).ready(function() {
+
+      //staff
+
+      function setServicesSelectedValues() {
+                    var inputs = document.querySelectorAll('.select_services');
+                    var selectedIds = [];
+                    var selectedIdsString = "";
+                    for (var i = 0; i < inputs.length; i++) {
+                        if (inputs[i].checked == true) {
+                            selectedIds.push(`${inputs[i].id}`);
+                        }
+                    }
+                    for (var i = 0; i < selectedIds.length; i++) {
+                        if (i == selectedIds.length - 1) {
+                            selectedIdsString += `${selectedIds[i]}`;
+                        } else {
+                            selectedIdsString += `${selectedIds[i]},`;
+                        }
+                    }
+                    console.log(selectedIdsString);
+                    document.getElementById(`services_ids`).value = selectedIdsString;
+                }
+
+                $('.services_all').change(
+                    function() {
+                        var inputs = document.querySelectorAll('.select_services');
+                        if ($(this).is(':checked')) {
+                            for (var i = 0; i < inputs.length; i++) {
+                                inputs[i].checked = true;
+                            }
+                        } else {
+                            for (var i = 0; i < inputs.length; i++) {
+                                inputs[i].checked = false;
+                            }
+                        }
+                        setServicesSelectedValues();
+                    }
+                );
+
+                $(document).on('click', '.select_services', setServicesSelectedValues);
+                
                 //total price
                 $(document).on("change", ".include-price", function() {
                     var sum = 0;

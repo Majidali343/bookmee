@@ -218,10 +218,10 @@
                                                     <span class="dash-icon color-1" data-toggle="tooltip"
                                                         data-placement="top" title="{{ __('Add Attributes') }}"> <i
                                                             class="las la-plus"></i> </span> </a> --}}
-                                                 {{--   <a href="{{ route('seller.edit.service.attribute', $data->id) }}"> <span
+                                                  <a href="{{ route('seller.edit.service.attribute', $data->id) }}"> <span
                                                         class="dash-icon color-1" data-toggle="tooltip"
                                                         data-placement="top" title="{{ __('Edit Attributes') }}"> <i
-                                                            class="las la-edit"></i> </span> </a> --}}
+                                                            class="las la-edit"></i> </span> </a> 
                                                 <a href="{{ route('seller.services.attributes.show.byid', $data->id) }}">
                                                     <span class="dash-icon color-1" data-toggle="tooltip"
                                                         data-placement="top" title="{{ __('Show Attributes') }}"> <i

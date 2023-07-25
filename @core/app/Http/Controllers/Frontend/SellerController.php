@@ -15,6 +15,7 @@ use App\Notifications\TicketNotification;
 use App\OnlineServiceFaq;
 use App\OrderCompleteDecline;
 use App\Report;
+use App\Staff;
 use App\ReportChatMessage;
 use App\Tax;
 use FontLib\Table\Type\post;
@@ -974,8 +975,14 @@ class SellerController extends Controller
     public function editServiceAttribute(Request $request, $id = null)
     {
         // update
+
+        
+
         if ($request->isMethod('post')) {
+
             $data = $request->all();
+
+
             if(isset($data['is_service_online_id'])){
 
                 if($data['is_service_online_id'] == 1){
@@ -1038,6 +1045,7 @@ class SellerController extends Controller
                         }
                     }
                 }
+                
             }else{
                 if (isset($data['include_service_title'])) {
                     foreach ($data['include_service_title'] as $key => $value) {
@@ -1048,7 +1056,15 @@ class SellerController extends Controller
                         ]);
                         $service_total_price += $data['include_service_price'][$key] * $data['include_service_quantity'][$key];
                     }
+                   
+                    //majid
                     Service::where('id', $id)->update(['price' => $service_total_price]);
+                    Serviceinclude::where('service_id', $id)-> update(['service_time' => $data['time']]);
+
+                    $ids =json_encode($data['staffs']) ;
+                    Serviceinclude::where('service_id', $id)->get()->first()->update(['staff_ids' => $ids ]);
+                   
+
                 }
             }
 
@@ -1087,19 +1103,62 @@ class SellerController extends Controller
             return redirect()->route('seller.services');
         }
 
+        $staffs =collect([]);
+
         $service = Service::find($id);
+        
+       
+
         if($service !=''){
             $service_includes = ServiceInclude::where('service_id', $id)->get();
             $service_additionals = ServiceAdditional::where('service_id', $id)->get();
             $service_benifits = ServiceBenifit::where('service_id', $id)->get();
             $online_service_faq = OnlineServiceFaq::where('service_id', $id)->get();
+
+            $service_time = ServiceInclude::where('service_id', $id)->get('service_time')->first();
+            $service_time = $service_time->service_time;
+           
+            // $userIdsString = $service_time_staff->staff_ids;
+
+            // // Split the string into an array of user IDs
+            // $userIdsArray = explode(", ", $userIdsString);
+
+            // // Check the count of elements in the array
+            // $userCount = count($userIdsArray);
+
+            // if ($userCount === 1) {
+            //     $dataArray = json_decode($userIdsArray[0], true);
+
+            //    $staff= Staff::where('id', $dataArray)->get()->first();
+            //    $staffs->push($staff);
+
+            // } elseif ($userCount > 1) {
+               
+            //     foreach ($userIdsArray as $userId) {
+
+            //         $dataArray = json_decode($userId, true);
+
+            //         $staff= Staff::where('id', $dataArray)->get()->first();
+                   
+            //         $staffs->push($staff);
+            //     }
+
+            // } 
+
+            $user = \Auth::user();
+            $staff  = $user->staff;
+         
+
             return view('frontend.user.seller.services.edit-service-attributes', compact(
                 'service',
                 'service_includes',
                 'service_additionals',
                 'service_benifits',
                 'online_service_faq',
+                'staff',
+                'service_time'
             ));
+
         }else{
             abort(404);
         }
