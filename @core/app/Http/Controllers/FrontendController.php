@@ -62,6 +62,23 @@ class FrontendController extends Controller
         return response()->json(['message' => Session::get('cityid')]);
     }
 
+    public function store1(Request $request)
+    {
+
+        $chosedcity = $request->input('data');
+        $chosedcityname = ServiceCity::where('id', $chosedcity)
+            ->get();
+
+        foreach ($chosedcityname as  $value) {
+            # code...
+        }
+
+        Session::put('cityid', $chosedcity);
+        Session::put('cityname', $value->service_city);
+        
+        return response()->json(['message' => Session::get('cityid')]);
+    }
+
     public function home_page_change($id)
     {
         if (!in_array($id, ['01', '02', '03', '04', '05'])) {

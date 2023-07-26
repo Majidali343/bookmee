@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['globalVariable', 'maintains_mode', 'setlang']], function () {
 
     Route::get('/', 'FrontendController@index')->name('homepage');
+    Route::post('/store-data1', 'FrontendController@store1')->name('storeData1');
     Route::post('/store-data', 'FrontendController@store')->name('storeData');
     Route::get('/home-search', 'FrontendController@home_search')->name('frontend.home.search');
     Route::get('/home-search-two', 'FrontendController@home_search_two')->name('frontend.home.search.two');

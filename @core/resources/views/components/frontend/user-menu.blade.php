@@ -138,7 +138,7 @@
             if (selectedValue) {
    
                 $.ajax({
-                url: "{{ route('storeData') }}",
+                url: "{{ route('storeData1') }}",
                 type: "POST",
                 data: {
                     '_token': '{{ csrf_token() }}',
