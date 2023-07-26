@@ -373,16 +373,17 @@
                 $(document).on('click','.get-schedule',function(){
                     available_schedule = $(this).text();
 					
-					   // Find the index of the first space
+					   
                 let firstSpaceIndex =  available_schedule.indexOf(' ');
-                // Find the index of the second space starting from the position after the first space
+               
                 let secondSpaceIndex =  available_schedule.indexOf(' ', firstSpaceIndex + 1);
-                // Use the slice method to extract the time value until the second space
+                
                 let startingTime =  available_schedule.slice(0, secondSpaceIndex);
 
 					
-                    //set value in confirmation fieldset
-                    $('.confirm-overview-left .available_schedule').text(startingTime);
+                
+                    $('.confirm-overview-left .toshow').text(startingTime);
+                    $('.confirm-overview-left .available_schedule').text(available_schedule);
                 })
 
                 //confirm-date-time

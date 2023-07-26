@@ -828,7 +828,9 @@
                                                             {{-- <img src="https://i.imgur.com/mxnAdsU.png" width="46px"
                                                                 height="46px"> --}}
                                                                 <span style="font-family: inter ; font-weight:bold ; font-size:19px ; color:black">Time :  </span>
-                                                           <span style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;" class=" available_schedule ">
+                                                           <span style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;" class="toshow">
+                                                            </span>
+                                                           <span style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;" class=" available_schedule " hidden>
                                                             </span>
                                                         </div>
                                                     </div>
