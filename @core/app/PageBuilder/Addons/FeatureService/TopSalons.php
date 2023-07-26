@@ -121,10 +121,15 @@ class TopSalons extends \App\PageBuilder\PageBuilderBase
                        
     
                         $price = Service::where('id', $multiid)->get('price')->first();
+                       
+                        if($price){
+                            $percentage = ($discount / $price->price) * 100;
+                            
+                            $discount = $percentage;
+
+                        }
                         
-                        $percentage = ($discount / $price->price) * 100;
-                        
-                        $discount = $percentage;
+
                     } else {
                         $discount =$discount;
 

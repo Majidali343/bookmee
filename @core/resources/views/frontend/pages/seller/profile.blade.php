@@ -242,8 +242,8 @@
 
         .discount {
             position: relative;
-            left: 32px;
-            top: 120px;
+            left: 21px;
+            top: 125px;
             z-index: 100;
             padding-left: 10px;
             padding-top: 7px;
@@ -256,8 +256,9 @@
             font-Weight: 600;
             Size: 14px;
             color: #03989E;
-
         }
+
+        
         .discountedprice {
                 position: relative;
                 left: -6px;
@@ -688,23 +689,26 @@
                                                                 @endif
 
                                                                @php
-                                                                
-                                                                
-                                                                 $Percentage = ($services[$i]->price * $discountsArray[$idx]) / 100;
-                                                                
-                                                                 $percentage_Amount = $services[$i]->price + $Percentage;
+                                                             
 
+                                                                $discount_percent = $services[$i]->price * $discountsArray[$idx];
+
+                                                                $Percentage_amt =  $discount_percent / 100;
+                                                                
+                                                                 $percentage_Amount = $services[$i]->price - $Percentage_amt ;
+
+     
                                                               @endphp
 
 
                                                                 <div class="service-price ">
                                                                     @if(!empty($discountsArray[$idx]))
-                                                                        <div class="discountedprice"> {{ amount_with_currency_symbol($percentage_Amount) }}</div>
+                                                                        <div class="discountedprice"> {{ amount_with_currency_symbol($services[$i]->price) }}</div>
                                                                         @endif
                                                                     <div class="price-container">
                                                                         
                                                                         <span
-                                                                            class="prices">{{ amount_with_currency_symbol($services[$i]->price) }}
+                                                                            class="prices">{{ amount_with_currency_symbol($percentage_Amount ) }}
                                                                         </span>
                                                                         
                                                                     </div>

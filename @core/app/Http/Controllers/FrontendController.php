@@ -173,32 +173,42 @@ class FrontendController extends Controller
         }
 
         foreach ($services as  $service) {
-
+    
+            $discount = 0;
             
-            foreach ($service['services'] as  $serviceid) {
+            foreach ($service['services'] as  $serviceid) {              
                
              $time =  Serviceinclude::where('service_id', $serviceid->id)->max('service_time');
 				
              $discounttype = ServiceCoupon::whereIn('services_ids', [$serviceid->id])->first('discount_type');
 
-             if($discounttype == 'percentage'){
+             $disctyp = $discounttype->discount_type ?? null;
+             
+             if(  $disctyp == 'percentage'){
+                
                 $discount = ServiceCoupon::whereIn('services_ids', [$serviceid->id])->max('discount');
-
+                
              }
              else{
+
+               
                 $discount = ServiceCoupon::whereIn('services_ids', [$serviceid->id])->max('discount');
 
                 $price = Service::where('id', $serviceid->id)->get('price')->first();
-                        
-                        $percentage = ($discount / $price->price) * 100;
+                
+                
+                     if($price->price){
+                        $percentage =(  $discount *100) /$price->price ;
+
                         
                         $discount = $percentage;
+                    }
              }
 
-             $discount = explode('.', $discount);
+             
 
-            $discounts->push($discount[0]);
-		 $Time->push($time);
+              $discounts->push($discount);
+		     $Time->push($time);
            
              
             }
@@ -210,9 +220,6 @@ class FrontendController extends Controller
         $service_rating = Review::where('seller_id', $user_details->id)->avg('rating');
         $service_reviews = Review::where('seller_id', $user_details->id)->paginate(5);
         $page_type = 'profile';
-
-
-
 
 
         $phoneNumber = $seller->phone;

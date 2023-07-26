@@ -362,9 +362,9 @@
                                         {{ $service->title }}
                                         <br>
                                         <strong>Original Price : </strong><span
-                                            style="margin-right:30px;">{{ $service->price }} INR</span>
+                                            style="margin-right:30px;">{{ $service->price }} £</span>
                                         <strong>Discounted Price : </strong><span
-                                            id="service_discount_{{ $service->id }}">{{ $service->price }} INR</span>
+                                            id="service_discount_{{ $service->id }}">{{ $service->price }} £</span>
                                     </span>
                                 </a>
                             @endforeach
@@ -500,7 +500,7 @@
                         let discount_price = get_discounted_price(discount_type, service.price,
                             discount)
                         document.getElementById(`service_discount_${service.id}`).innerText =
-                            `${discount_price}  INR`;
+                            `${discount_price}  £`;
                         document.getElementById(service.id).checked = false;
                     });
                     $('#up_id_').val(coupon_id);

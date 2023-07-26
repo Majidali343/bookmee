@@ -7,7 +7,7 @@
 @endphp
 
 
-<x-frontend.modal/>
+{{-- <x-frontend.modal-city/> --}}
 <nav class="navbar navbar-area navbar-two {{ $page_post->page_class ?? '' }} navbar-expand-lg" style="background:rgba(0, 0, 0, 0.7);">
     <div class="container container-two nav-container">
         <div class="responsive-mobile-menu">

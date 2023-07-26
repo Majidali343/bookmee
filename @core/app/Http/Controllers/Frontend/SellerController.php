@@ -920,7 +920,7 @@ class SellerController extends Controller
                 'image_gallery' => $request->image_gallery ?? $old_image->image_gallery,
                 'video' => $request->video,
                 'tax' => $country_tax->tax ?? 0,
-                'status' => 0,
+                'status' => 1,
                 'is_service_all_cities' => $request->is_service_all_cities,
             ]);
 
