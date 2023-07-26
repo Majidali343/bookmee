@@ -556,7 +556,7 @@
                                             {{-- <input type="button" name="next" class="next action-button form-control"
                                             value="Next" /> --}}
                                             <input type="hidden" name="get_user_type" id="get_user_type"
-                                                value="0">
+                                                value="1">
                                             <input style="border-radius: 5px;width: 100%;" type="submit" name="submit"
                                                 class="next action-button" value="{{ __('Submit') }}" />
                                         @endif

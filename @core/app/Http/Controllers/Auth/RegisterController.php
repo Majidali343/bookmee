@@ -202,7 +202,7 @@ class RegisterController extends Controller
             return redirect('/');
         }
 
-        $countryCode = '+92';
+        $countryCode = '+44';
         $phoneNumber = $request->phone;
        
 
