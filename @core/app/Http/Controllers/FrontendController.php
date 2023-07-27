@@ -13,6 +13,7 @@ use App\Page;
 use App\Review;
 use App\Service;
 use App\Serviceinclude;
+
 use App\BusinessDay;
 use App\ServiceCoupon;
 use App\ServiceArea;
@@ -208,7 +209,9 @@ class FrontendController extends Controller
                     }
              }
 
-             
+       
+           
+
 
               $discounts->push([
                     'discount' => $discount,
@@ -447,7 +450,7 @@ class FrontendController extends Controller
                 $q->whereHas('seller_subscription');
             });
 
-        if (!isset($request->country_id) || !isset($selectedValue)) {
+        if (!isset($selectedValue)) {
             $services->where('status', 1)->Where('title', 'LIKE', '%' . $request->search_text . '%');
         } else {
             $services->where('status', 1)->Where('title', 'LIKE', '%' . $request->search_text . '%')->orWhere('description', 'LIKE', '%' . $request->search_text . '%')

@@ -682,7 +682,7 @@
                                                             <div class="single-services-item ">
                                                                 @if (!empty($discountsArray[$di]['discount']))
                                                                     <div class="discount">Save upto
-                                                                        {{ $discountsArray[$di]['discount'] }} % </div>
+                                                                        {{\Illuminate\Support\Str::limit($discountsArray[$di]['discount'], 4, "") }} % </div>
                                                                 @endif
                                                                 <div style="margin:15px 0px" class="single-service">
                                                                     <div class="services-contents service-cotent-changes">
