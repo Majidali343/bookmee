@@ -241,7 +241,7 @@ class RegisterController extends Controller
                 'email_verified' => 1,
                 'password' => Hash::make($password),
                 'service_city' => $request->service_city,
-                'service_area' => $request->service_area,
+                // 'service_area' => $request->service_area,
                 'country_id' => $request->country,
                 'user_type' => $request->get_user_type,
                 'address'  => $request->location,

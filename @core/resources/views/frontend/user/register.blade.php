@@ -375,7 +375,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="single-info-service margin-top-30 service_area_wrapper">
+                                                {{-- <div class="single-info-service margin-top-30 service_area_wrapper">
                                                     <div class="single-content">
                                                         <label class="forms-label"> {{ __('Service Area*') }} </label>
                                                         <select name="service_area" id="service_area"
@@ -383,7 +383,7 @@
                                                             <option value="">{{ __('Select Area') }}</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
 
 
@@ -1102,9 +1102,9 @@
                                 $("#service_city").parent().find(".current").html(
                                     "{{ __('Select City') }}");
                                 $("#service_city").parent().find(".list").html(allList);
-                                $(".service_area_wrapper").find(".current").html(
-                                    "{{ __('Select Area') }}");
-                                $(".service_area_wrapper .list").html("");
+                                // $(".service_area_wrapper").find(".current").html(
+                                //     "{{ __('Select Area') }}");
+                                // $(".service_area_wrapper .list").html("");
                             }
                         }
                     })
@@ -1123,23 +1123,23 @@
                         },
                         success: function(res) {
                             if (res.status == 'success') {
-                                var alloptions =
-                                    "<option value=''>{{ __('Select Area') }}</option>";
-                                var allList =
-                                    "<li data-value='' class='option'>{{ __('Select Area') }}</li>";
-                                var allArea = res.areas;
-                                $.each(allArea, function(index, value) {
-                                    alloptions += "<option value='" + value.id +
-                                        "'>" + value.service_area + "</option>";
-                                    allList += "<li class='option' data-value='" +
-                                        value.id +
-                                        "'>" + value.service_area + "</li>";
-                                });
+                                // var alloptions =
+                                //     "<option value=''>{{ __('Select Area') }}</option>";
+                                // var allList =
+                                //     "<li data-value='' class='option'>{{ __('Select Area') }}</li>";
+                                // var allArea = res.areas;
+                                // $.each(allArea, function(index, value) {
+                                //     alloptions += "<option value='" + value.id +
+                                //         "'>" + value.service_area + "</option>";
+                                //     allList += "<li class='option' data-value='" +
+                                //         value.id +
+                                //         "'>" + value.service_area + "</li>";
+                                // });
 
-                                $("#service_area").html(alloptions);
-                                $(".service_area_wrapper ul.list").html(allList);
-                                $(".service_area_wrapper").find(".current").html(
-                                    "{{ __('Select Area') }}");
+                                // $("#service_area").html(alloptions);
+                                // $(".service_area_wrapper ul.list").html(allList);
+                                // $(".service_area_wrapper").find(".current").html(
+                                //     "{{ __('Select Area') }}");
                             }
                         }
                     })
@@ -1150,15 +1150,15 @@
                 //confirm service area
                 $('.service-area .next').on('click', function() {
                     var service_city = $('#service_city').val();
-                    var service_area = $('#service_area').val();
+                    // var service_area = $('#service_area').val();
                     var country = $('#country').val();
 
 
                     $('.get-all-iformation #get_service_city').text(service_city);
-                    $('.get-all-iformation #get_service_area').text(service_area);
+                    // $('.get-all-iformation #get_service_area').text(service_area);
                     $('.get-all-iformation #get_country').text(country);
 
-                    if (service_city == '' || service_area == '' || country == '') {
+                    if (service_city == '' || country == '') {
                         //error msg 
                         Command: toastr["warning"]("{{ __('Please fill all fields!') }}",
                             "{{ __('Warning') }}")
