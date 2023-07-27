@@ -223,14 +223,14 @@
                                                         data-placement="top" title="{{ __('Edit Attributes') }}"> <i
                                                             class="las la-edit"></i> </span> </a> 
                                                 <a href="{{ route('seller.services.attributes.show.byid', $data->id) }}">
-                                                    <span class="dash-icon color-1" data-toggle="tooltip"
+                                                    {{-- <span class="dash-icon color-1" data-toggle="tooltip"
                                                         data-placement="top" title="{{ __('Show Attributes') }}"> <i
-                                                            class="las la-eye"></i> </span> </a>
-                                                <a href="{{ route('service.list.details', $data->slug ?? 'x') }}"
+                                                            class="las la-eye"></i> </span> </a> --}}
+                                                {{-- <a href="{{ route('service.list.details', $data->slug ?? 'x') }}"
                                                     target="_blank"> <span class="dash-icon color-1"
                                                         data-toggle="tooltip" data-placement="top"
                                                         title="{{ __('Service in frontend') }}"> <i
-                                                            class="las la-external-link-square-alt"></i> </span> </a>
+                                                            class="las la-external-link-square-alt"></i> </span> </a> --}}
                                                 <x-seller-delete-popup :url="route('seller.services.delete', $data->id)" />
                                             </div>
                                         </div>

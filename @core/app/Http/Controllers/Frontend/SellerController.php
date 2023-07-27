@@ -474,7 +474,7 @@ class SellerController extends Controller
             $request->validate([
                 'category' => 'required',
                 'title' => 'required|max:191|unique:services',
-                'description' => 'required',
+                // 'description' => 'required',
                 'slug' => 'required',
             ]);
 
@@ -487,7 +487,7 @@ class SellerController extends Controller
             $service->child_category_id = $request->child_category;
             $service->title = $request->title;
             $service->slug = $request->slug;
-            $service->description = $request->description;
+            $service->description = "";
             $service->image = $request->image;
             $service->image_gallery = $request->image_gallery;
             $service->video = $request->video;
