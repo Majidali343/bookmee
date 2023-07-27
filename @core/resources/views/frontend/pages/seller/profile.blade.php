@@ -107,7 +107,7 @@
             align-items: center;
             font-size: 13px;
         }
-       
+
 
         .bold-text {
             font-family: 'inter', sans-serif;
@@ -210,7 +210,7 @@
         }
 
         .review-star {
-            color:#FFB700;
+            color: #FFB700;
             border-radius: 1px;
             font-size: 32px;
         }
@@ -247,7 +247,7 @@
             z-index: 100;
             padding-left: 10px;
             padding-top: 7px;
-            Width: 119px;
+            Width: 133px;
             Height: 36px;
             border-Radius: 60px;
             Gap: 10px;
@@ -258,27 +258,28 @@
             color: #03989E;
         }
 
-        
+
         .discountedprice {
-                position: relative;
-                left: -6px;
-                top: -1px;
-                z-index: 100;
-                color: #C3D0CF;
-                Font-family: "Inter";
-                font-Weight: 600;
-                font-size: 14px;
-                
-            }
+            position: relative;
+            left: -6px;
+            top: -1px;
+            z-index: 100;
+            color: #C3D0CF;
+            Font-family: "Inter";
+            font-Weight: 600;
+            font-size: 14px;
+
+        }
+
         .time {
-                position: relative;
-                left: 447px;
-                top: 84px;
-                z-index: 100;
-                Font-family: "Inter";
-                font-Weight: 500;
-                font-size: 14px;
-            }
+            position: relative;
+            left: 447px;
+            top: 84px;
+            z-index: 100;
+            Font-family: "Inter";
+            font-Weight: 500;
+            font-size: 14px;
+        }
 
 
         @media only screen and (max-width: 1000px) {
@@ -391,21 +392,21 @@
                 left: 94px;
                 top: -29px;
                 z-index: 100;
-             
+
                 Width: 84px;
 
                 Font-family: "Inter";
                 font-Weight: 600;
                 font-size: 14px;
-             
+
             }
-            
-                .time {
-                    left: 176px;
-               top: 85px;
+
+            .time {
+                left: 176px;
+                top: 85px;
                 width: 75px;
             }
-            
+
 
         }
 
@@ -419,22 +420,23 @@
                 width: 70%;
             }
 
-            
+
         }
+
         @media (min-width: 481px) and (max-width: 1024px) {
             .time {
                 left: 308px;
                 top: 86px;
             }
-    }
-
-    @media only screen and (min-width: 1400px) {
-
-        .time{
-            left: 485px;
-                top: 86px;
         }
-    }
+
+        @media only screen and (min-width: 1400px) {
+
+            .time {
+                left: 485px;
+                top: 86px;
+            }
+        }
 
         @media only screen and (min-width: 1200px) {
             .center-mobile {
@@ -458,7 +460,7 @@
                 margin-right: 50px;
                 text-align: justify;
             }
-           
+
 
 
         }
@@ -645,12 +647,15 @@
 
                                     @php
                                         $discountsArray = $discounts->toArray();
-                                        $Timearray=$Time->toArray();
+                                        $Timearray = $Time->toArray();
+                                        $counter = 0;
                                     @endphp
-                                 
+            
                                     <div class="">
+
                                         @foreach ($services as $idx => $group)
                                             <div class="groupName  d-flex align-items-center">
+
                                                 <div class="name">
                                                     @if (!$group['group'] == null)
                                                         {{ $group['group'] }}
@@ -666,66 +671,80 @@
                                                     $services = $group['services'];
                                                     $group = count($services);
                                                 @endphp
-
-                                             
-                                                @for ($i = 0; $i < $group ; $i++)
-                                                    <div class="single-services-item ">
-                                                        @if(!empty($discountsArray[$idx]))
-                                                        <div class="discount">Save upto {{ $discountsArray[$idx] }} % </div>
-                                                        @endif
-                                                        <div style="margin:15px 0px" class="single-service">
-                                                            <div class="services-contents service-cotent-changes">
-                                                                <h5 class="common-title">
-                                                                    <a class="service-title"
-
-                                                                        style="color: black;font-weight:700;line-height:113px;"
-                                                                        href="{{ route('service.list.details', $services[$i]->slug) }}">{{ $services[$i]->title }}
-
-                                                                    </a>
-
-                                                                </h5>
-                                                                @if(!empty($Timearray[$idx]))
-                                                                <div class="time"> {{ $Timearray[$idx] }} mins</div>
+                          
+                                                @for ($i = 0; $i < $group; $i++)
+                                                    @for ($di = 0; $di < $discountcount; $di++)
+                                                   
+                                                    
+                                                        @if($discountsArray[$di]['discountid'] == $services[$i]->id)
+                                                        
+                                                            
+                                                            <div class="single-services-item ">
+                                                                @if (!empty($discountsArray[$di]['discount']))
+                                                                    <div class="discount">Save upto
+                                                                        {{ $discountsArray[$di]['discount'] }} % </div>
                                                                 @endif
+                                                                <div style="margin:15px 0px" class="single-service">
+                                                                    <div class="services-contents service-cotent-changes">
+                                                                        <h5 class="common-title">
+                                                                           
+                                                                            <a class="service-title"
+                                                                                style="color: black;font-weight:700;line-height:113px;"
+                                                                                href="{{ route('service.list.details', $services[$i]->slug) }}">{{ $services[$i]->title }}
 
-                                                               @php
-                                                             
+                                                                            </a>
 
-                                                                $discount_percent = $services[$i]->price * $discountsArray[$idx];
-
-                                                                $Percentage_amt =  $discount_percent / 100;
-                                                                
-                                                                 $percentage_Amount = $services[$i]->price - $Percentage_amt ;
-
-     
-                                                              @endphp
-
-
-                                                                <div class="service-price ">
-                                                                    @if(!empty($discountsArray[$idx]))
-                                                                        <div class="discountedprice"> {{ amount_with_currency_symbol($services[$i]->price) }}</div>
+                                                                        </h5>
+                                                                                    
+                                                                        @if (!empty($Timearray[$di]))
+                                                                            <div class="time"> {{ $Timearray[$di] }} mins
+                                                                            </div>
                                                                         @endif
-                                                                    <div class="price-container">
-                                                                        
-                                                                        <span
-                                                                            class="prices">{{ amount_with_currency_symbol($percentage_Amount ) }}
-                                                                        </span>
-                                                                        
-                                                                    </div>
 
-                                                                    <div class="btn-wrapper single-prices">
-                                                                        <a href="{{ route('service.list.book', $services[$i]->slug) }}"
-                                                                            class=" ">{{ __('Book') }}
-                                                                        </a>
+                                                                        @php
+                                                                            
+                                                                            $discount_percent = $services[$i]->price * $discountsArray[$di]['discount'];
+                                                                            
+                                                                            $Percentage_amt = $discount_percent / 100;
+                                                                            
+                                                                            $percentage_Amount = $services[$i]->price - $Percentage_amt;
+                                                                            
+                                                                        @endphp
+
+
+                                                                        <div class="service-price ">
+                                                                            @if (!empty($discountsArray[$di]['discount']))
+                                                                                <div class="discountedprice">
+                                                                                    {{ amount_with_currency_symbol($services[$i]->price) }}
+                                                                                </div>
+                                                                            @endif
+                                                                            <div class="price-container">
+
+                                                                                <span
+                                                                                    class="prices">{{ amount_with_currency_symbol($percentage_Amount) }}
+                                                                                </span>
+
+                                                                            </div>
+                                                                           
+                                                                            <div class="btn-wrapper single-prices">
+                                                                                <a href="{{ route('service.list.book', $services[$i]->slug) }}"
+                                                                                    class=" ">{{ __('Book') }}
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        
+
                                                                     </div>
-                                                                   
                                                                 </div>
-
-
-
                                                             </div>
-                                                        </div>
-                                                    </div>
+
+                                                        @endif
+
+                                                        
+                                                    @endfor
+
                                                 @endfor
                                             </div>
                                         @endforeach
@@ -933,7 +952,8 @@
                         <div class="card-info row margin"style="background: var(--main-color-one);">
                             <div style="font-size:32px" class="icon col-4 center">
                                 <i style="color:#FFB700;width:40px;height:37px;background:white;padding-left: 4px;
-                                border-radius: 19px;" class="las la-star" ></i>
+                                border-radius: 19px;"
+                                    class="las la-star"></i>
                                 {{-- <img src="https://i.imgur.com/5jiKo9A.png" width="40px" height="40px"alt=""> --}}
                             </div>
                             <div class="d-flex flex-column" style="align-items: flex-start;justify-content: center;">

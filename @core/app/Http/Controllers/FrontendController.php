@@ -172,6 +172,7 @@ class FrontendController extends Controller
             ]);
         }
 
+       
         foreach ($services as  $service) {
     
             $discount = 0;
@@ -180,19 +181,21 @@ class FrontendController extends Controller
                
              $time =  Serviceinclude::where('service_id', $serviceid->id)->max('service_time');
 				
-             $discounttype = ServiceCoupon::whereIn('services_ids', [$serviceid->id])->first('discount_type');
+             $discountType = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->first('discount_type');
 
-             $disctyp = $discounttype->discount_type ?? null;
+             $disctyp = $discountType->discount_type ?? null;
+
              
+
              if(  $disctyp == 'percentage'){
                 
-                $discount = ServiceCoupon::whereIn('services_ids', [$serviceid->id])->max('discount');
-                
+                $discount = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->max('discount');
+               
              }
              else{
 
                
-                $discount = ServiceCoupon::whereIn('services_ids', [$serviceid->id])->max('discount');
+                $discount = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->max('discount');
 
                 $price = Service::where('id', $serviceid->id)->get('price')->first();
                 
@@ -207,7 +210,11 @@ class FrontendController extends Controller
 
              
 
-              $discounts->push($discount);
+              $discounts->push([
+                    'discount' => $discount,
+                    'discountid' => $serviceid->id
+              ]);
+
 		     $Time->push($time);
            
              
@@ -221,6 +228,9 @@ class FrontendController extends Controller
         $service_reviews = Review::where('seller_id', $user_details->id)->paginate(5);
         $page_type = 'profile';
 
+        $discountcount= count($discounts);
+        
+        
 
         $phoneNumber = $seller->phone;
         $countryCode = '+44';
@@ -235,12 +245,13 @@ class FrontendController extends Controller
             'seller_rating_percentage_value',
             'services',
             'discounts',
-			'Time',
             'service_rating',
             'service_reviews',
             'page_type',
             'businesstimings',
             'formattedPhoneNumber',
+			'Time',
+            'discountcount'
             
         ));
     }
