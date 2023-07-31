@@ -596,10 +596,12 @@ class FrontendController extends Controller
 
 
                         $price = Service::where('id', $multiid)->get('price')->first();
+                       if($price){
 
-                        $percentage = ($discount / $price->price) * 100;
+                           $percentage = ($discount / $price->price) * 100;
+                           $discount = $percentage;
+                       }
 
-                        $discount = $percentage;
                     } else {
                         $discount = $discount;
 

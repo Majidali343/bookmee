@@ -114,9 +114,9 @@ class SellerController extends Controller
         $arr = $month_list;
         $lastvalue = end($arr);
         $lastkey = key($arr);
-        $arr1 = array($lastkey=>$lastvalue);
+        $arr1 = array($lastkey => $lastvalue);
         array_pop($arr);
-        $month_list = array_merge($arr1,$arr);
+        $month_list = array_merge($arr1, $arr);
 
 
 
@@ -124,9 +124,9 @@ class SellerController extends Controller
         $arr = $monthly_order_list;
         $lastvalue = end($arr);
         $lastkey = key($arr);
-        $arr1 = array($lastkey=>$lastvalue);
+        $arr1 = array($lastkey => $lastvalue);
         array_pop($arr);
-        $monthly_order_list = array_merge($arr1,$arr);
+        $monthly_order_list = array_merge($arr1, $arr);
 
 
         //get last 7 days order
@@ -153,8 +153,17 @@ class SellerController extends Controller
         }
 
         return view('frontend.user.seller.dashboard.dashboard', compact(
-            'pending_order', 'complete_order', 'remaning_balance', 'total_earnings', 'last_five_order',
-            'this_month_order_count', 'this_month_balance_without_tax_and_admin_commission', 'this_month_earnings', 'buyer_count', 'to_do_list', 'to_do_list_all',
+            'pending_order',
+            'complete_order',
+            'remaning_balance',
+            'total_earnings',
+            'last_five_order',
+            'this_month_order_count',
+            'this_month_balance_without_tax_and_admin_commission',
+            'this_month_earnings',
+            'buyer_count',
+            'to_do_list',
+            'to_do_list_all',
             'month_list',
             'monthly_order_list',
             'days_list',
@@ -224,7 +233,7 @@ class SellerController extends Controller
     }
 
     public function sellerAccountSetting(Request $request)
-    { 
+    {
         if ($request->isMethod('post')) {
             $request->validate([
                 'current_password' => 'required|min:6',
@@ -325,7 +334,7 @@ class SellerController extends Controller
     {
         Auth::logout();
         $request->session()->invalidate();
- 
+
         $request->session()->regenerateToken();
         return redirect('/');
     }
@@ -335,7 +344,7 @@ class SellerController extends Controller
     {
         $coupons = ServiceCoupon::where('seller_id', Auth::guard('web')->user()->id)->get();
         $services = Service::where('seller_id', Auth::guard('web')->user()->id)->get();
-        return view('frontend.user.seller.coupons.coupons', compact('coupons','services'));
+        return view('frontend.user.seller.coupons.coupons', compact('coupons', 'services'));
     }
 
     public function addServiceCoupon(Request $request)
@@ -425,9 +434,9 @@ class SellerController extends Controller
         if ($request->isMethod('post')) {
 
             //seller Verify check
-            $seller = SellerVerify::select('seller_id','status')->where('seller_id',Auth::guard('web')->user()->id)->first();
-             $seller_verified_status = $seller->status;
-            if($seller_verified_status != 1 ){
+            $seller = SellerVerify::select('seller_id', 'status')->where('seller_id', Auth::guard('web')->user()->id)->first();
+            $seller_verified_status = $seller->status;
+            if ($seller_verified_status != 1) {
                 toastr_error(__('You are not verified.'));
                 return redirect()->back();
             }
@@ -437,33 +446,33 @@ class SellerController extends Controller
 
             //commission type check
             $commission = AdminCommission::first();
-                if($commission->system_type == 'subscription'){
-                if(subscriptionModuleExistsAndEnable('Subscription')){
+            if ($commission->system_type == 'subscription') {
+                if (subscriptionModuleExistsAndEnable('Subscription')) {
                     $seller_subscription = \Modules\Subscription\Entities\SellerSubscription::where('id', Auth::guard('web')->user()->id)->first();
-                        // Seller Service count
-                       $seller_service_count = Service::where('seller_id', Auth::guard('web')->user()->id)->count();
+                    // Seller Service count
+                    $seller_service_count = Service::where('seller_id', Auth::guard('web')->user()->id)->count();
 
-                    if ($seller_subscription->type === 'monthly'){
+                    if ($seller_subscription->type === 'monthly') {
                         // check seller connect,service,expire date
-                        if ($seller_subscription->connect == 0){
+                        if ($seller_subscription->connect == 0) {
                             toastr_error(__('Your Subscription is expired'));
                             return redirect()->back();
-                        }elseif ($seller_subscription->initial_service <= $seller_service_count){
+                        } elseif ($seller_subscription->initial_service <= $seller_service_count) {
                             toastr_error(__('Your Subscription is expired'));
                             return redirect()->back();
-                        }elseif ($seller_subscription->expire_date > Carbon::now()){
+                        } elseif ($seller_subscription->expire_date > Carbon::now()) {
                             toastr_error(__('Your Subscription is expired'));
                             return redirect()->back();
                         }
-                    }elseif ($seller_subscription->type === 'yearly'){
+                    } elseif ($seller_subscription->type === 'yearly') {
                         // check seller connect,service,expire date
-                        if ($seller_subscription->connect == 0){
+                        if ($seller_subscription->connect == 0) {
                             toastr_error(__('Your Subscription is expired'));
                             return redirect()->back();
-                        }elseif ($seller_subscription->initial_service <= $seller_service_count){
+                        } elseif ($seller_subscription->initial_service <= $seller_service_count) {
                             toastr_error(__('Your Subscription is expired'));
                             return redirect()->back();
-                        }elseif ($seller_subscription->expire_date > Carbon::now()){
+                        } elseif ($seller_subscription->expire_date > Carbon::now()) {
                             toastr_error(__('Your Subscription is expired'));
                             return redirect()->back();
                         }
@@ -527,7 +536,6 @@ class SellerController extends Controller
 
             toastr_success(__('Service Added Success---'));
             return redirect('/seller/service-attributes');
-
         }
 
         $categories = Category::where('status', 1)->get();
@@ -559,14 +567,14 @@ class SellerController extends Controller
     {
         $user = \Auth::user();
         $staff  = $user->staff;
-        
+
         $latest_service = Service::where('seller_id', Auth::guard('web')->id())->latest()->first();
-        return view('frontend.user.seller.services.service-attributes', compact('latest_service','staff'));
+        return view('frontend.user.seller.services.service-attributes', compact('latest_service', 'staff'));
     }
 
-    public function addServiceAttributes(Request $request) 
+    public function addServiceAttributes(Request $request)
     {
-//  dd($request->all());
+        //  dd($request->all());
         $data = $request->all();
         if (isset($data['is_service_online_id'])) {
             if ($data['is_service_online_id'] == 1) {
@@ -575,7 +583,7 @@ class SellerController extends Controller
                         'include_service_title.*' => 'required|max:191',
                         'online_service_price' => 'required|integer',
                         'delivery_days' => 'required|integer',
-                        
+
                         'revision' => 'required|integer',
                         'benifits.*' => 'max:191',
                         'faqs_title.*' => 'max:191',
@@ -623,9 +631,9 @@ class SellerController extends Controller
                 'delivery_days' => $data['delivery_days'],
                 'revision' => $data['revision'],
                 'is_service_online' => 1,
-                
+
             ]);
-       
+
             if ($data['is_service_online_id'] == 1) {
                 dd('here');
                 if (isset($data['include_service_title'])) {
@@ -636,7 +644,7 @@ class SellerController extends Controller
                             'include_service_title' => $data['include_service_title'][$key],
                             'include_service_price' => 0,
                             'include_service_quantity' => 0,
-                            
+
                         ];
                     }
                 }
@@ -644,7 +652,7 @@ class SellerController extends Controller
                 Serviceinclude::insert($all_include_service);
             }
         } else {
-           
+
             if (isset($data['include_service_title'])) {
                 foreach ($data['include_service_title'] as $key => $value) {
                     $all_include_service[] = [
@@ -654,15 +662,15 @@ class SellerController extends Controller
                         'include_service_price' => $data['include_service_price'][$key],
                         'include_service_quantity' => $data['include_service_quantity'][$key],
                         // 'staff_ids' => $request->services_ids,
-                         'service_time' => $request->time,
+                        'service_time' => $request->time,
                     ];
                     $service_total_price += $data['include_service_price'][$key] * $data['include_service_quantity'][$key];
                 }
             }
 
             Serviceinclude::insert($all_include_service);
-            $ids =json_encode($request->staffs) ;
-            Serviceinclude::where('service_id', $request->service_id)->get()->first()->update(['staff_ids' => $ids ]);
+            $ids = json_encode($request->staffs);
+            Serviceinclude::where('service_id', $request->service_id)->get()->first()->update(['staff_ids' => $ids]);
 
             Service::where('id', $request->service_id)->update(['price' => $service_total_price]);
         }
@@ -730,7 +738,7 @@ class SellerController extends Controller
                     'include_service_title.*.required' => __('Title is required'),
                 ]
             );
-        }else{
+        } else {
             $request->validate(
                 [
                     'include_service_title.*' => 'required|max:191',
@@ -751,8 +759,8 @@ class SellerController extends Controller
         }
 
 
-        $get_service = Service::where('id',$id)->where('seller_id',Auth::guard('web')->user()->id)->first();
-        if($request->isMethod('post')) {
+        $get_service = Service::where('id', $id)->where('seller_id', Auth::guard('web')->user()->id)->first();
+        if ($request->isMethod('post')) {
             $data = $request->all();
 
             $all_include_service = [];
@@ -763,9 +771,9 @@ class SellerController extends Controller
             $service_total_price_with_new_added_attribute = 0;
             $service_count = 0;
 
-            if(isset($data['is_service_online_id'])){
-                if($data['is_service_online_id'] == 1){
-                    if(isset($data['include_service_title'])){
+            if (isset($data['is_service_online_id'])) {
+                if ($data['is_service_online_id'] == 1) {
+                    if (isset($data['include_service_title'])) {
                         foreach ($data['include_service_title'] as $key => $value) {
                             if (!empty($data['include_service_title'][$key])) {
                                 $all_include_service[] = [
@@ -780,8 +788,8 @@ class SellerController extends Controller
                         }
                     }
                 }
-            }else{
-                if(isset($data['include_service_title'])){
+            } else {
+                if (isset($data['include_service_title'])) {
                     foreach ($data['include_service_title'] as $key => $value) {
                         if (!empty($data['include_service_title'][$key])) {
                             $all_include_service[] = [
@@ -798,14 +806,14 @@ class SellerController extends Controller
                 }
             }
 
-            if($service_count>=1){
+            if ($service_count >= 1) {
                 Serviceinclude::insert($all_include_service);
-                $service_old_price = Service::where('id',$id)->select('price')->first();
-                $service_total_price_with_new_added_attribute =($service_old_price->price + $service_total_price);
+                $service_old_price = Service::where('id', $id)->select('price')->first();
+                $service_total_price_with_new_added_attribute = ($service_old_price->price + $service_total_price);
                 Service::where('id', $request->service_id)->update(['price' => $service_total_price_with_new_added_attribute]);
             }
 
-            if(isset($data['additional_service_title'])) {
+            if (isset($data['additional_service_title'])) {
                 foreach ($data['additional_service_title'] as $key => $value) {
                     if (!empty($data['additional_service_title'][$key])) {
                         $all_additional_service[] = [
@@ -821,11 +829,11 @@ class SellerController extends Controller
                 }
             }
 
-            if($service_count>=1){
+            if ($service_count >= 1) {
                 Serviceadditional::insert($all_additional_service);
             }
 
-            if(isset($data['benifits'])) {
+            if (isset($data['benifits'])) {
                 foreach ($data['benifits'] as $key => $value) {
                     if (!empty($data['benifits'][$key])) {
                         $all_benifits_service[] = [
@@ -838,11 +846,11 @@ class SellerController extends Controller
                 }
             }
 
-            if($service_count>=1){
+            if ($service_count >= 1) {
                 Servicebenifit::insert($all_benifits_service);
             }
 
-            if(isset($data['faqs_title'])){
+            if (isset($data['faqs_title'])) {
                 foreach ($data['faqs_title'] as $key => $value) {
                     if (!empty($data['faqs_title'][$key])) {
                         $online_service_faqs[] = [
@@ -854,15 +862,14 @@ class SellerController extends Controller
                         $service_count++;
                     }
                 }
-            }else{
-
+            } else {
             }
 
-            if($service_count>=1){
+            if ($service_count >= 1) {
                 OnlineServiceFaq::insert($online_service_faqs);
             }
 
-            if($service_count <= 0){
+            if ($service_count <= 0) {
                 toastr_error(__('Please input service attributes---'));
                 return redirect()->back();
             }
@@ -870,12 +877,11 @@ class SellerController extends Controller
             toastr_success(__('Service attributes added success---'));
             return redirect()->route('seller.services');
         }
-        if($get_service !=''){
+        if ($get_service != '') {
             return view('frontend.user.seller.services.add-service-attributes-by-id', compact('get_service'));
-        }else{
+        } else {
             abort(404);
         }
-
     }
 
     public function ServiceOnOf(Request $request)
@@ -899,15 +905,15 @@ class SellerController extends Controller
         if ($request->isMethod('post')) {
             $request->validate([
                 'category' => 'required',
-                'title' => 'required|max:191|unique:services,id,'.$id,
-                'description' => 'required',
+                'title' => 'required|max:191|unique:services,id,' . $id,
+                // 'description' => 'required',
             ]);
 
-            $seller_country = User::select('id','country_id')->where('country_id',Auth::guard('web')->user()->country_id)->first();
-            $country_tax = Tax::select('tax')->where('country_id',$seller_country->country_id)->first();
+            $seller_country = User::select('id', 'country_id')->where('country_id', Auth::guard('web')->user()->country_id)->first();
+            $country_tax = Tax::select('tax')->where('country_id', $seller_country->country_id)->first();
 
-            $old_image = Service::select('image','image_gallery')->where('id',$id)->first();
-            $old_slug = Service::select('slug')->where('id',$id)->first();
+            $old_image = Service::select('image', 'image_gallery')->where('id', $id)->first();
+            $old_slug = Service::select('slug')->where('id', $id)->first();
 
             Service::where('id', $id)->update([
                 'category_id' => $request->category,
@@ -915,7 +921,7 @@ class SellerController extends Controller
                 'child_category_id' => $request->child_category,
                 'title' => $request->title,
                 'slug' => $request->slug ?? $old_slug->slug,
-                'description' => $request->description,
+                'description' => 'no discription',
                 'image' => $request->image ?? $old_image->image,
                 'image_gallery' => $request->image_gallery ?? $old_image->image_gallery,
                 'video' => $request->video,
@@ -926,17 +932,17 @@ class SellerController extends Controller
 
             $service_meta_update =  Service::findOrFail($id);
             $Metas = [
-                'meta_title'=> purify_html($request->meta_title),
-                'meta_tags'=> $request->meta_tags,
-                'meta_description'=> purify_html($request->meta_description),
+                'meta_title' => purify_html($request->meta_title),
+                'meta_tags' => $request->meta_tags,
+                'meta_description' => purify_html($request->meta_description),
 
-                'facebook_meta_tags'=> purify_html($request->facebook_meta_tags),
-                'facebook_meta_description'=> purify_html($request->facebook_meta_description),
-                'facebook_meta_image'=> $request->facebook_meta_image,
+                'facebook_meta_tags' => purify_html($request->facebook_meta_tags),
+                'facebook_meta_description' => purify_html($request->facebook_meta_description),
+                'facebook_meta_image' => $request->facebook_meta_image,
 
-                'twitter_meta_tags'=> purify_html($request->twitter_meta_tags),
-                'twitter_meta_description'=> purify_html($request->twitter_meta_description),
-                'twitter_meta_image'=> $request->twitter_meta_image,
+                'twitter_meta_tags' => purify_html($request->twitter_meta_tags),
+                'twitter_meta_description' => purify_html($request->twitter_meta_description),
+                'twitter_meta_image' => $request->twitter_meta_image,
             ];
 
             DB::beginTransaction();
@@ -944,7 +950,7 @@ class SellerController extends Controller
             try {
                 $service_meta_update->metaData()->update($Metas);
                 DB::commit();
-            }catch (\Throwable $th){
+            } catch (\Throwable $th) {
                 DB::rollBack();
             }
 
@@ -952,7 +958,7 @@ class SellerController extends Controller
                 'service_id' => $id,
                 'seller_id' => Auth::guard('web')->user()->id,
                 'service_title' => $request->title,
-                'service_description' => $request->description,
+                'service_description' => 'no service discription'
             ]);
 
             toastr_success(__('Service updated success---'));
@@ -963,213 +969,230 @@ class SellerController extends Controller
         $sub_categories = Subcategory::all();
         $child_categories = ChildCategory::all();
         $service = Service::with('subcategory', 'childcategory')->find($id);
-        if($service != ''){
+        if ($service != '') {
             return view('frontend.user.seller.services.edit-service', compact('categories', 'sub_categories', 'service', 'child_categories'));
-        }else{
+        } else {
             abort(404);
         }
-
     }
 
 
     public function editServiceAttribute(Request $request, $id = null)
     {
         // update
-
         
+        $servicedata = Serviceinclude::where('service_id', $id)->get()->first();
+       
+        if (is_null($servicedata) ){
+            // dd('if');
+            $includin_data = Serviceinclude::create([
+                'service_id' => $id,
+                'seller_id' => Auth::guard('web')->user()->id,
+                'include_service_title' => 'Enter Title',
+                'include_service_price' => '0',
+                'include_service_quantity' => '1',
+                // 'service_time' => '0 Mins',
 
-        if ($request->isMethod('post')) {
 
-            $data = $request->all();
+            ]);
+        } else {
+
+        }
+            // dd('else');
+            if ($request->isMethod('post')) {
+
+                $data = $request->all();
 
 
-            if(isset($data['is_service_online_id'])){
+                if (isset($data['is_service_online_id'])) {
 
-                if($data['is_service_online_id'] == 1){
-                    $request->validate([
-                        'include_service_title.*' => 'required|max:191',
-                        'online_service_price' => 'required|integer',
-                        'delivery_days' => 'required|integer',
-                        'revision' => 'required|integer',
-                        'benifits.*' => 'max:191',
-                        'faqs_title.*' => 'max:191',
-                        'additional_service_title.*' => 'max:191',
-                    ],
+                    if ($data['is_service_online_id'] == 1) {
+                        $request->validate(
+                            [
+                                'include_service_title.*' => 'required|max:191',
+                                'online_service_price' => 'required|integer',
+                                'delivery_days' => 'required|integer',
+                                'revision' => 'required|integer',
+                                'benifits.*' => 'max:191',
+                                'faqs_title.*' => 'max:191',
+                                'additional_service_title.*' => 'max:191',
+                            ],
+                            [
+                                'include_service_title.*.required' => __('Title is required'),
+                            ]
+                        );
+                    }
+                } else {
+                    $request->validate(
+                        [
+                            'include_service_title.*' => 'required|max:191',
+                            'include_service_price.*' => 'required|numeric',
+                            'include_service_quantity.*' => 'required|numeric',
+                            'benifits.*' => 'max:191',
+                            'faqs_title.*' => 'max:191',
+                            'additional_service_title.*' => 'max:191',
+                        ],
                         [
                             'include_service_title.*.required' => __('Title is required'),
-                        ]);
+                            'include_service_price.*.required' => __('Price is required'),
+                            'include_service_price.*.numeric' => __('Price must be a number'),
+                            'include_service_quantity.*.required' => __('Quantity is required'),
+                            'include_service_quantity.*.numeric' => __('Quantity must be a number'),
+                        ]
+                    );
                 }
-            }else{
-                $request->validate(
-                    [
-                        'include_service_title.*' => 'required|max:191',
-                        'include_service_price.*' => 'required|numeric',
-                        'include_service_quantity.*' => 'required|numeric',
-                        'benifits.*' => 'max:191',
-                        'faqs_title.*' => 'max:191',
-                        'additional_service_title.*' => 'max:191',
-                    ],
-                    [
-                        'include_service_title.*.required' => __('Title is required'),
-                        'include_service_price.*.required' => __('Price is required'),
-                        'include_service_price.*.numeric' => __('Price must be a number'),
-                        'include_service_quantity.*.required' => __('Quantity is required'),
-                        'include_service_quantity.*.numeric' => __('Quantity must be a number'),
-                    ]
-                );
-            }
 
-            $all_include_service = [];
-            $all_additional_service = [];
-            $all_benifits_service = [];
-            $service_total_price = 0;
+                $all_include_service = [];
+                $all_additional_service = [];
+                $all_benifits_service = [];
+                $service_total_price = 0;
 
-            $x = [
-                'include' => [],
-            ];
+                $x = [
+                    'include' => [],
+                ];
 
-            if(isset($data['is_service_online_id'])){
-                if($data['is_service_online_id'] == 1){
-                    Service::where('id', $id)->update([
-                        'price' => $data['online_service_price'],
-                        'delivery_days' => $data['delivery_days'],
-                        'revision' => $data['revision'],
-                    ]);
-                    if(isset($data['include_service_title'])) {
+                if (isset($data['is_service_online_id'])) {
+                    if ($data['is_service_online_id'] == 1) {
+                        Service::where('id', $id)->update([
+                            'price' => $data['online_service_price'],
+                            'delivery_days' => $data['delivery_days'],
+                            'revision' => $data['revision'],
+                        ]);
+                        if (isset($data['include_service_title'])) {
+                            foreach ($data['include_service_title'] as $key => $value) {
+                                Serviceinclude::where('id', $data['service_include_id'][$key])->update([
+                                    'include_service_title' => $data['include_service_title'][$key],
+                                    'include_service_price' => 0,
+                                    'include_service_quantity' => 0,
+                                ]);
+                            }
+                        }
+                    }
+                } else {
+                    if (isset($data['include_service_title'])) {
                         foreach ($data['include_service_title'] as $key => $value) {
                             Serviceinclude::where('id', $data['service_include_id'][$key])->update([
                                 'include_service_title' => $data['include_service_title'][$key],
-                                'include_service_price' => 0,
-                                'include_service_quantity' => 0,
+                                'include_service_price' => $data['include_service_price'][$key],
+                                'include_service_quantity' => $data['include_service_quantity'][$key],
                             ]);
+                            $service_total_price += $data['include_service_price'][$key] * $data['include_service_quantity'][$key];
                         }
+
+                        //majid
+                        Service::where('id', $id)->update(['price' => $service_total_price]);
+                        Serviceinclude::where('service_id', $id)->update(['service_time' => $data['time']]);
+
+                        $ids = json_encode($data['staffs']);
+                        Serviceinclude::where('service_id', $id)->get()->first()->update(['staff_ids' => $ids]);
                     }
                 }
-                
-            }else{
-                if (isset($data['include_service_title'])) {
-                    foreach ($data['include_service_title'] as $key => $value) {
-                        Serviceinclude::where('id', $data['service_include_id'][$key])->update([
-                            'include_service_title' => $data['include_service_title'][$key],
-                            'include_service_price' => $data['include_service_price'][$key],
-                            'include_service_quantity' => $data['include_service_quantity'][$key],
+
+                if (isset($data['additional_service_title'])) {
+                    foreach ($data['additional_service_title'] as $key => $value) {
+                        $old_image = Serviceadditional::select('additional_service_image')->where('id', $data['service_additional_id'][$key])->first();
+
+                        Serviceadditional::where('id', $data['service_additional_id'][$key])->update([
+                            'additional_service_title' => $data['additional_service_title'][$key],
+                            'additional_service_price' => $data['additional_service_price'][$key],
+                            'additional_service_quantity' => $data['additional_service_quantity'][$key],
+                            'additional_service_image' => $data['image'][$key],
+                            'additional_service_image' => $data['image'][$key] ?? $old_image->additional_service_image,
                         ]);
-                        $service_total_price += $data['include_service_price'][$key] * $data['include_service_quantity'][$key];
                     }
-                   
-                    //majid
-                    Service::where('id', $id)->update(['price' => $service_total_price]);
-                    Serviceinclude::where('service_id', $id)-> update(['service_time' => $data['time']]);
-
-                    $ids =json_encode($data['staffs']) ;
-                    Serviceinclude::where('service_id', $id)->get()->first()->update(['staff_ids' => $ids ]);
-                   
-
                 }
+
+                if (isset($data['benifits'])) {
+                    foreach ($data['benifits'] as $key => $value) {
+                        Servicebenifit::where('id', $data['service_benifit_id'][$key])->update([
+                            'benifits' => $data['benifits'][$key],
+                        ]);
+                    }
+                }
+
+                if (isset($data['faqs_title'])) {
+                    foreach ($data['faqs_title'] as $key => $value) {
+                        OnlineServiceFaq::where('id', $data['online_service_faq_id'][$key])->update([
+                            'title' => $data['faqs_title'][$key],
+                            'description' => $data['faqs_description'][$key],
+                        ]);
+                    }
+                }
+
+                toastr_success(__('Service Attributes Updated Success---'));
+                return redirect()->route('seller.services');
             }
 
-            if (isset($data['additional_service_title'])) {
-                foreach ($data['additional_service_title'] as $key => $value) {
-                    $old_image = Serviceadditional::select('additional_service_image')->where('id', $data['service_additional_id'][$key])->first();
+            $staffs = collect([]);
 
-                    Serviceadditional::where('id', $data['service_additional_id'][$key])->update([
-                        'additional_service_title' => $data['additional_service_title'][$key],
-                        'additional_service_price' => $data['additional_service_price'][$key],
-                        'additional_service_quantity' => $data['additional_service_quantity'][$key],
-                        'additional_service_image' => $data['image'][$key],
-                        'additional_service_image' => $data['image'][$key] ?? $old_image->additional_service_image,
-                    ]);
-                }
+            $service = Service::find($id);
+
+
+
+            if ($service != '') {
+                $service_includes = ServiceInclude::where('service_id', $id)->get();
+                $service_additionals = ServiceAdditional::where('service_id', $id)->get();
+                $service_benifits = ServiceBenifit::where('service_id', $id)->get();
+                $online_service_faq = OnlineServiceFaq::where('service_id', $id)->get();
+
+                $service_time = ServiceInclude::where('service_id', $id)->get('service_time')->first();
+                $data = ServiceInclude::where('service_id', $id)->get('staff_ids')->first();
+
+                $service_time = $service_time->service_time;
+
+                // $userIdsString = $service_time_staff->staff_ids;
+
+                // // Split the string into an array of user IDs
+                // $userIdsArray = explode(", ", $userIdsString);
+
+                // // Check the count of elements in the array
+                // $userCount = count($userIdsArray);
+
+                // if ($userCount === 1) {
+                //     $dataArray = json_decode($userIdsArray[0], true);
+
+                //    $staff= Staff::where('id', $dataArray)->get()->first();
+                //    $staffs->push($staff);
+
+                // } elseif ($userCount > 1) {
+
+                //     foreach ($userIdsArray as $userId) {
+
+                //         $dataArray = json_decode($userId, true);
+
+                //         $staff= Staff::where('id', $dataArray)->get()->first();
+
+                //         $staffs->push($staff);
+                //     }
+
+                // } 
+
+                $user = \Auth::user();
+                $staff  = $user->staff;
+                 $data =  json_decode($data->staff_ids);
+
+                 
+                return view('frontend.user.seller.services.edit-service-attributes', compact(
+                    'service',
+                    'service_includes',
+                    'service_additionals',
+                    'service_benifits',
+                    'online_service_faq',
+                    'staff',
+                    'service_time',
+                    'data'
+                ));
+            } else {
+                abort(404);
             }
-
-            if (isset($data['benifits'])) {
-                foreach ($data['benifits'] as $key => $value) {
-                    Servicebenifit::where('id', $data['service_benifit_id'][$key])->update([
-                        'benifits' => $data['benifits'][$key],
-                    ]);
-                }
-            }
-
-            if (isset($data['faqs_title'])) {
-                foreach ($data['faqs_title'] as $key => $value) {
-                    OnlineServiceFaq::where('id', $data['online_service_faq_id'][$key])->update([
-                        'title' => $data['faqs_title'][$key],
-                        'description' => $data['faqs_description'][$key],
-                    ]);
-                }
-            }
-
-            toastr_success(__('Service Attributes Updated Success---'));
-            return redirect()->route('seller.services');
-        }
-
-        $staffs =collect([]);
-
-        $service = Service::find($id);
         
-       
-
-        if($service !=''){
-            $service_includes = ServiceInclude::where('service_id', $id)->get();
-            $service_additionals = ServiceAdditional::where('service_id', $id)->get();
-            $service_benifits = ServiceBenifit::where('service_id', $id)->get();
-            $online_service_faq = OnlineServiceFaq::where('service_id', $id)->get();
-
-            $service_time = ServiceInclude::where('service_id', $id)->get('service_time')->first();
-            $service_time = $service_time->service_time;
-           
-            // $userIdsString = $service_time_staff->staff_ids;
-
-            // // Split the string into an array of user IDs
-            // $userIdsArray = explode(", ", $userIdsString);
-
-            // // Check the count of elements in the array
-            // $userCount = count($userIdsArray);
-
-            // if ($userCount === 1) {
-            //     $dataArray = json_decode($userIdsArray[0], true);
-
-            //    $staff= Staff::where('id', $dataArray)->get()->first();
-            //    $staffs->push($staff);
-
-            // } elseif ($userCount > 1) {
-               
-            //     foreach ($userIdsArray as $userId) {
-
-            //         $dataArray = json_decode($userId, true);
-
-            //         $staff= Staff::where('id', $dataArray)->get()->first();
-                   
-            //         $staffs->push($staff);
-            //     }
-
-            // } 
-
-            $user = \Auth::user();
-            $staff  = $user->staff;
-         
-
-            return view('frontend.user.seller.services.edit-service-attributes', compact(
-                'service',
-                'service_includes',
-                'service_additionals',
-                'service_benifits',
-                'online_service_faq',
-                'staff',
-                'service_time'
-            ));
-
-        }else{
-            abort(404);
-        }
-
     }
 
     // service online to offline and offline to online
-    public function editServiceAttributeOfflineToOnline(Request $request,$id=null)
+    public function editServiceAttributeOfflineToOnline(Request $request, $id = null)
     {
-        $get_service = Service::where('id',$id)->where('seller_id',Auth::guard('web')->user()->id)->first();
-        if($request->isMethod('post')) {
+        $get_service = Service::where('id', $id)->where('seller_id', Auth::guard('web')->user()->id)->first();
+        if ($request->isMethod('post')) {
             $data = $request->all();
 
             $all_include_service = [];
@@ -1180,9 +1203,9 @@ class SellerController extends Controller
             $service_total_price_with_new_added_attribute = 0;
             $service_count = 0;
 
-            if(isset($data['is_service_online_id'])){
-                if($data['is_service_online_id'] == 1){
-                    $this->validate($request,[
+            if (isset($data['is_service_online_id'])) {
+                if ($data['is_service_online_id'] == 1) {
+                    $this->validate($request, [
                         'online_service_price' => 'required',
                         'delivery_days' => 'required',
                         'benifits.*' => 'max:191',
@@ -1191,9 +1214,9 @@ class SellerController extends Controller
                         'include_service_title.*' => 'max:191',
                     ]);
 
-                    Serviceinclude::where('service_id',$id)->delete();
-                    Serviceadditional::where('service_id',$id)->delete();
-                    Servicebenifit::where('service_id',$id)->delete();
+                    Serviceinclude::where('service_id', $id)->delete();
+                    Serviceadditional::where('service_id', $id)->delete();
+                    Servicebenifit::where('service_id', $id)->delete();
 
                     Service::where('id', $id)->update([
                         'price' => $data['online_service_price'],
@@ -1201,7 +1224,7 @@ class SellerController extends Controller
                         'revision' => $data['revision'],
                     ]);
 
-                    if(isset($data['include_service_title'])){
+                    if (isset($data['include_service_title'])) {
                         foreach ($data['include_service_title'] as $key => $value) {
                             if (!empty($data['include_service_title'][$key])) {
                                 $all_include_service[] = [
@@ -1218,11 +1241,11 @@ class SellerController extends Controller
                 }
             }
 
-            if($data['is_service_online_id'] == 0){
+            if ($data['is_service_online_id'] == 0) {
 
-                Serviceinclude::where('service_id',$id)->delete();
-                Serviceadditional::where('service_id',$id)->delete();
-                Servicebenifit::where('service_id',$id)->delete();
+                Serviceinclude::where('service_id', $id)->delete();
+                Serviceadditional::where('service_id', $id)->delete();
+                Servicebenifit::where('service_id', $id)->delete();
 
                 foreach ($data['include_service_title'] as $key => $value) {
                     if (!empty($data['include_service_title'][$key])) {
@@ -1239,14 +1262,14 @@ class SellerController extends Controller
                 }
             }
 
-            if($data['is_service_online_id'] == 0) {
+            if ($data['is_service_online_id'] == 0) {
                 Serviceinclude::insert($all_include_service);
-                $service_old_price = Service::where('id',$id)->select('price')->first();
+                $service_old_price = Service::where('id', $id)->select('price')->first();
                 $service_total_price_with_new_added_attribute = $service_total_price;
                 Service::where('id', $request->service_id)->update(['price' => $service_total_price_with_new_added_attribute]);
             }
 
-            if(isset($data['additional_service_title'])) {
+            if (isset($data['additional_service_title'])) {
                 foreach ($data['additional_service_title'] as $key => $value) {
                     if (!empty($data['additional_service_title'][$key])) {
                         $all_additional_service[] = [
@@ -1262,11 +1285,11 @@ class SellerController extends Controller
                 }
             }
 
-            if($service_count>=1){
+            if ($service_count >= 1) {
                 Serviceadditional::insert($all_additional_service);
             }
 
-            if(isset($data['benifits'])) {
+            if (isset($data['benifits'])) {
                 foreach ($data['benifits'] as $key => $value) {
                     if (!empty($data['benifits'][$key])) {
                         $all_benifits_service[] = [
@@ -1279,11 +1302,11 @@ class SellerController extends Controller
                 }
             }
 
-            if($service_count>=1){
+            if ($service_count >= 1) {
                 Servicebenifit::insert($all_benifits_service);
             }
 
-            if(isset($data['faqs_title'])){
+            if (isset($data['faqs_title'])) {
                 foreach ($data['faqs_title'] as $key => $value) {
                     if (!empty($data['faqs_title'][$key])) {
                         $online_service_faqs[] = [
@@ -1296,19 +1319,19 @@ class SellerController extends Controller
                     }
                 }
             }
-            if($service_count>=1){
+            if ($service_count >= 1) {
                 OnlineServiceFaq::insert($online_service_faqs);
             }
 
             // update offline to online service is_service_online value 0 to change 1 6060
-            if($data['is_service_online_id'] == 1) {
+            if ($data['is_service_online_id'] == 1) {
                 Service::where('id', $id)->update([
                     'is_service_online' => 1,
                 ]);
             }
 
             //update online to offline service is_service_online value 1 to change 0
-            if($data['is_service_online_id'] == 0) {
+            if ($data['is_service_online_id'] == 0) {
                 OnlineServiceFaq::where('service_id', $id)->delete();
                 Service::where('id', $id)->update([
                     'is_service_online' => 0,
@@ -1318,7 +1341,7 @@ class SellerController extends Controller
                 ]);
             }
 
-            if($service_count <= 0){
+            if ($service_count <= 0) {
                 toastr_error(__('Please input service attributes---'));
                 return redirect()->back();
             }
@@ -1327,39 +1350,38 @@ class SellerController extends Controller
 
             return redirect()->route('seller.edit.service.attribute', $id);
         }
-        if($get_service !=''){
+        if ($get_service != '') {
             return view('frontend.user.seller.services.add-service-attributes-offline-to-online-by-id', compact('get_service'));
-        }else{
+        } else {
             abort(404);
         }
-
     }
 
     public function ServiceDelete($id = null)
     {
-        Serviceinclude::where('service_id',$id)->delete();
-        Serviceadditional::where('service_id',$id)->delete();
-        Servicebenifit::where('service_id',$id)->delete();
-        OnlineServiceFaq::where('service_id',$id)->delete();
+        Serviceinclude::where('service_id', $id)->delete();
+        Serviceadditional::where('service_id', $id)->delete();
+        Servicebenifit::where('service_id', $id)->delete();
+        OnlineServiceFaq::where('service_id', $id)->delete();
         Service::find($id)->delete();
         toastr_error(__('Service Delete Success---'));
         return redirect()->back();
     }
 
-    public function showServiceAttributesById($id=null)
+    public function showServiceAttributesById($id = null)
     {
         $seller_id = Auth::guard('web')->user()->id;
-        $service = Service::select('id','title','image')
-            ->where('id',$id)
-            ->where('seller_id',$seller_id)
+        $service = Service::select('id', 'title', 'image')
+            ->where('id', $id)
+            ->where('seller_id', $seller_id)
             ->first();
 
-        if(!empty($service)){
-            $include_service = Serviceinclude::where('service_id',$id)->get();
-            $additional_service = Serviceadditional::where('service_id',$id)->get();
-            $service_benifit = Servicebenifit::where('service_id',$id)->get();
-            $service_faqs = OnlineServiceFaq::where('service_id',$id)->get();
-            return view('frontend.user.seller.services.show-service-attributes-by-id', compact('service','include_service','additional_service','service_benifit', 'service_faqs'));
+        if (!empty($service)) {
+            $include_service = Serviceinclude::where('service_id', $id)->get();
+            $additional_service = Serviceadditional::where('service_id', $id)->get();
+            $service_benifit = Servicebenifit::where('service_id', $id)->get();
+            $service_faqs = OnlineServiceFaq::where('service_id', $id)->get();
+            return view('frontend.user.seller.services.show-service-attributes-by-id', compact('service', 'include_service', 'additional_service', 'service_benifit', 'service_faqs'));
         }
         abort(404);
     }
@@ -1369,7 +1391,7 @@ class SellerController extends Controller
         $include_details = Serviceinclude::find($id);
 
         //todo udpate service price
-        $service_details = Service::where('id',$include_details->service_id)->first();
+        $service_details = Service::where('id', $include_details->service_id)->first();
         $service_details->price -= $include_details->include_service_price * $include_details->include_service_quantity;
         $service_details->save();
 
@@ -1404,9 +1426,9 @@ class SellerController extends Controller
     //dates 
     public function days()
     {
-        $days = Day::with('schedules')->where('seller_id',Auth::guard('web')->user()->id)->get();
-        $total_day = Day::select('total_day')->where('seller_id',Auth::guard('web')->user()->id)->first();
-        return view('frontend.user.seller.day-and-schedule.days',compact('days','total_day'));
+        $days = Day::with('schedules')->where('seller_id', Auth::guard('web')->user()->id)->get();
+        $total_day = Day::select('total_day')->where('seller_id', Auth::guard('web')->user()->id)->first();
+        return view('frontend.user.seller.day-and-schedule.days', compact('days', 'total_day'));
     }
 
     public function addDay(Request $request)
@@ -1415,11 +1437,11 @@ class SellerController extends Controller
             'day' => 'required',
         ]);
 
-        $day = Day::select('day','seller_id')
-            ->where('seller_id',Auth::guard('web')->user()->id)
-            ->where('day',$request->day)
+        $day = Day::select('day', 'seller_id')
+            ->where('seller_id', Auth::guard('web')->user()->id)
+            ->where('day', $request->day)
             ->first();
-        if(!empty($day)){
+        if (!empty($day)) {
             toastr_error(__('Day Already Exists---'));
             return redirect()->back();
         }
@@ -1437,15 +1459,16 @@ class SellerController extends Controller
 
     public function dayDelete($id = null)
     {
-        Schedule::where('day_id',$id)->delete();
+        Schedule::where('day_id', $id)->delete();
         Day::find($id)->delete();
         toastr_error(__('Day Delete Success---'));
         return redirect()->back();
     }
 
-    public function updateTotalDay(Request $request){
-        Day::where('seller_id',Auth::guard('web')->user()->id)
-            ->update(['total_day'=>$request->total_day]);
+    public function updateTotalDay(Request $request)
+    {
+        Day::where('seller_id', Auth::guard('web')->user()->id)
+            ->update(['total_day' => $request->total_day]);
         toastr_success(__('Service Day Update Success---'));
         return redirect()->back();
     }
@@ -1453,14 +1476,14 @@ class SellerController extends Controller
     //schedules
     public function schedules()
     {
-        $schedules = Schedule::with('days')->where('seller_id',Auth::guard('web')->user()->id)->paginate(10);
-        $days = Day::where('seller_id',Auth::guard('web')->user()->id)->get();
+        $schedules = Schedule::with('days')->where('seller_id', Auth::guard('web')->user()->id)->paginate(10);
+        $days = Day::where('seller_id', Auth::guard('web')->user()->id)->get();
         //todo: insert days programmatically if no days available
         $days_lists = $days->pluck('day')->toArray();
-        $days_need_to_add = ['Sat','Sun','Mon','Tue','Wed','Thu','Fri'];
-        if(!empty($days_lists)){
-            foreach($days_need_to_add as $dlit){
-                if (!in_array($dlit,$days_lists)){
+        $days_need_to_add = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+        if (!empty($days_lists)) {
+            foreach ($days_need_to_add as $dlit) {
+                if (!in_array($dlit, $days_lists)) {
                     Day::create([
                         'day' => $dlit,
                         'status' => 0,
@@ -1471,19 +1494,19 @@ class SellerController extends Controller
             }
         }
 
-        return view('frontend.user.seller.day-and-schedule.schedules',compact('schedules','days'));
+        return view('frontend.user.seller.day-and-schedule.schedules', compact('schedules', 'days'));
     }
 
     public function addSchedule(Request $request)
     {
         $rule = $request->has('schedule_for_all_days') ? 'nullable' : 'required';
         $request->validate([
-            'day_id' => $rule.'|integer',
+            'day_id' => $rule . '|integer',
             'schedule' => 'required',
         ]);
-        if($request->has('schedule_for_all_days')){
-            $days = Day::where('seller_id',Auth::guard('web')->user()->id)->get();
-            foreach($days as $day){
+        if ($request->has('schedule_for_all_days')) {
+            $days = Day::where('seller_id', Auth::guard('web')->user()->id)->get();
+            foreach ($days as $day) {
                 Schedule::create([
                     'day_id' => $day->id,
                     'seller_id' => Auth::guard('web')->user()->id,
@@ -1514,7 +1537,7 @@ class SellerController extends Controller
             'up_schedule' => 'required',
         ]);
 
-        Schedule::where('id',$request->up_id)->update([
+        Schedule::where('id', $request->up_id)->update([
             'day_id' => $request->up_day_id,
             'seller_id' => Auth::guard('web')->user()->id,
             'schedule' => $request->up_schedule,
@@ -1533,8 +1556,8 @@ class SellerController extends Controller
 
     public function allow(Request $request)
     {
-        Schedule::where('seller_id',Auth::guard('web')->user()->id)->update([
-            'allow_multiple_schedule'=>$request->allow_multiple_schedule,
+        Schedule::where('seller_id', Auth::guard('web')->user()->id)->update([
+            'allow_multiple_schedule' => $request->allow_multiple_schedule,
         ]);
         toastr_success(__('Update Success---'));
         return back();
@@ -1545,18 +1568,18 @@ class SellerController extends Controller
     {
         $pending_orders = Order::with('service')
             ->where('seller_id', Auth::guard('web')->user()->id)
-            ->where('status',0)
+            ->where('status', 0)
             ->paginate(10);
         return view('frontend.user.seller.order.pending-orders', compact('pending_orders'));
     }
 
-    public function orderDelete($id=null)
+    public function orderDelete($id = null)
     {
         $order = Order::find($id);
-        if($order->payment_status == 'pending' || $order->payment_status == ''){
+        if ($order->payment_status == 'pending' || $order->payment_status == '') {
             Order::find($id)->delete();
             toastr_error(__('Order Delete Success---'));
-        }else{
+        } else {
             toastr_error(__('Order Can Not be Deleted Due to Payment Status Complete---'));
         }
         return redirect()->back();
@@ -1566,158 +1589,157 @@ class SellerController extends Controller
     {
         $all_orders = Order::with('online_order_ticket')->where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->latest()->paginate(10);
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->get();
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',1);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',2);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',3);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',4);
-        return view('frontend.user.seller.order.orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders', 'all_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 1);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 2);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 3);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 4);
+        return view('frontend.user.seller.order.orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders', 'all_orders'));
     }
 
     public function sellerJobOrders()
     {
         $all_orders = Order::with('online_order_ticket')->where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->latest()->paginate(10);
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->get();
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',1);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',2);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',3);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',4);
-        return view('frontend.user.seller.order.orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders', 'all_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 1);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 2);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 3);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 4);
+        return view('frontend.user.seller.order.orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders', 'all_orders'));
     }
 
     public function activeOrders()
     {
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL);
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',1)->paginate(10);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',2);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',3);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',4);
-        return view('frontend.user.seller.order.active-orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 1)->paginate(10);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 2);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 3);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 4);
+        return view('frontend.user.seller.order.active-orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders'));
     }
 
     public function activeJobOrders()
     {
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL);
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',1)->paginate(10);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',2);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',3);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',4);
-        return view('frontend.user.seller.order.active-orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 1)->paginate(10);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 2);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 3);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 4);
+        return view('frontend.user.seller.order.active-orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders'));
     }
 
     public function completeOrders()
     {
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL);
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',1);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',2)->paginate(10);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',3);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',4);
-        return view('frontend.user.seller.order.complete-orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 1);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 2)->paginate(10);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 3);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 4);
+        return view('frontend.user.seller.order.complete-orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders'));
     }
 
     public function completeJobOrders()
     {
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL);
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',1);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',2)->paginate(10);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',3);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',4);
-        return view('frontend.user.seller.order.complete-orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 1);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 2)->paginate(10);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 3);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 4);
+        return view('frontend.user.seller.order.complete-orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders'));
     }
 
     public function deliverOrders()
     {
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL);
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',1);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',2);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',3)->paginate(10);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',4);
-        return view('frontend.user.seller.order.deliver-orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 1);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 2);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 3)->paginate(10);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 4);
+        return view('frontend.user.seller.order.deliver-orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders'));
     }
 
     public function deliverJobOrders()
     {
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL);
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',1);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',2);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',3)->paginate(10);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',4);
-        return view('frontend.user.seller.order.deliver-orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 1);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 2);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 3)->paginate(10);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 4);
+        return view('frontend.user.seller.order.deliver-orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders'));
     }
 
     public function cancelOrders()
     {
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL);
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',1);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',2);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',3);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status',4)->paginate(10);
-        return view('frontend.user.seller.order.cancel-orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 1);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 2);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 3);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', NULL)->where('status', 4)->paginate(10);
+        return view('frontend.user.seller.order.cancel-orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders'));
     }
 
     public function cancelJobOrders()
     {
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL);
-        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',1);
-        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',2);
-        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',3);
-        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status',4)->paginate(10);
-        return view('frontend.user.seller.order.cancel-orders', compact('orders','active_orders','complete_orders','deliver_orders','cancel_orders'));
+        $active_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 1);
+        $complete_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 2);
+        $deliver_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 3);
+        $cancel_orders = Order::where('seller_id', Auth::guard('web')->user()->id)->where('job_post_id', '!=', NULL)->where('status', 4)->paginate(10);
+        return view('frontend.user.seller.order.cancel-orders', compact('orders', 'active_orders', 'complete_orders', 'deliver_orders', 'cancel_orders'));
     }
 
-    public function orderDetails($id=null)
+    public function orderDetails($id = null)
     {
-        $order_details = Order::where('id',$id)->where('seller_id',Auth::guard('web')->user()->id)->first();
-        $order_declines_history = OrderCompleteDecline::where('order_id',$id)->latest()->get();
-        if(!empty($order_details)){
-            $order_includes = OrderInclude::where('order_id',$id)->get();
-            $order_additionals = OrderAdditional::where('order_id',$id)->get();
-            foreach(Auth::guard('web')->user()->unreadNotifications()->where('data->order_message' , 'You have a new order')->get() as $notification){
-                if($order_details->id == $notification->data['order_id']){
+        $order_details = Order::where('id', $id)->where('seller_id', Auth::guard('web')->user()->id)->first();
+        $order_declines_history = OrderCompleteDecline::where('order_id', $id)->latest()->get();
+        if (!empty($order_details)) {
+            $order_includes = OrderInclude::where('order_id', $id)->get();
+            $order_additionals = OrderAdditional::where('order_id', $id)->get();
+            foreach (Auth::guard('web')->user()->unreadNotifications()->where('data->order_message', 'You have a new order')->get() as $notification) {
+                if ($order_details->id == $notification->data['order_id']) {
                     $Notification = Auth::guard('web')->user()->Notifications->find($notification->id);
-                    if($Notification){
+                    if ($Notification) {
                         $Notification->markAsRead();
                     }
-                    return view('frontend.user.seller.order.order-details', compact('order_details','order_includes','order_additionals','order_declines_history'));
+                    return view('frontend.user.seller.order.order-details', compact('order_details', 'order_includes', 'order_additionals', 'order_declines_history'));
                 }
             }
-            return view('frontend.user.seller.order.order-details', compact('order_details','order_includes','order_additionals','order_declines_history'));
-        }else{
+            return view('frontend.user.seller.order.order-details', compact('order_details', 'order_includes', 'order_additionals', 'order_declines_history'));
+        } else {
             abort(404);
         }
-
     }
 
-    public function orderStatus(Request $request,$id=null)
+    public function orderStatus(Request $request, $id = null)
     {
-        if($request->status == ''){
+        if ($request->status == '') {
             toastr_error(__('Please select status first.'));
             return redirect()->back();
         }
-        $payment_status = Order::select('id','payment_status','status','email','name')->where('id',$request->order_id)->first();
-        $cancel_order_money_return = Order::select('id','cancel_order_money_return')->where('id',$request->order_id)->first();
-        if($cancel_order_money_return->cancel_order_money_return === 1){
+        $payment_status = Order::select('id', 'payment_status', 'status', 'email', 'name')->where('id', $request->order_id)->first();
+        $cancel_order_money_return = Order::select('id', 'cancel_order_money_return')->where('id', $request->order_id)->first();
+        if ($cancel_order_money_return->cancel_order_money_return === 1) {
             toastr_error(__('You can not change status because earlier you canceled the order'));
             return redirect()->back();
         }
-        if($payment_status->status !=2){
-            if($payment_status->payment_status =='complete'){
-                $order_details = Order::select(['id','seller_id','buyer_id','service_id'])->where('id',$request->order_id)->first();
-                if($request->status==2){
-                    Order::where('id',$request->order_id)->update(['order_complete_request'=>1]);
+        if ($payment_status->status != 2) {
+            if ($payment_status->payment_status == 'complete') {
+                $order_details = Order::select(['id', 'seller_id', 'buyer_id', 'service_id'])->where('id', $request->order_id)->first();
+                if ($request->status == 2) {
+                    Order::where('id', $request->order_id)->update(['order_complete_request' => 1]);
                     toastr_success(__('Your request submitted. Buyer will complete your request after review'));
                     OrderCompleteDecline::create([
-                        'order_id'=>$order_details->id,
-                        'buyer_id'=>$order_details->buyer_id,
-                        'seller_id'=>$order_details->seller_id,
-                        'service_id'=>$order_details->service_id,
-                        'decline_reason'=>'Not decline yet',
+                        'order_id' => $order_details->id,
+                        'buyer_id' => $order_details->buyer_id,
+                        'seller_id' => $order_details->seller_id,
+                        'service_id' => $order_details->service_id,
+                        'decline_reason' => 'Not decline yet',
                         'image' => $request->image,
                     ]);
 
                     //Send email after change status
                     try {
-                        $message_body_buyer =__('Hello, ').$payment_status->name. __(' A new request is created for complete an order.').'</br>' . ' <span class="verify-code">'.__('Order ID is: ') . $payment_status->id. '</span>';
-                        $message_body_admin =__('Hello Admin A new request is created for complete an order.').'</br>' . ' <span class="verify-code">'.__('Order ID is: ') . $payment_status->id. '</span>';
+                        $message_body_buyer = __('Hello, ') . $payment_status->name . __(' A new request is created for complete an order.') . '</br>' . ' <span class="verify-code">' . __('Order ID is: ') . $payment_status->id . '</span>';
+                        $message_body_admin = __('Hello Admin A new request is created for complete an order.') . '</br>' . ' <span class="verify-code">' . __('Order ID is: ') . $payment_status->id . '</span>';
                         Mail::to($payment_status->email)->send(new BasicMail([
                             'subject' => __('New Request For Complete an Order'),
                             'message' => $message_body_buyer
@@ -1732,38 +1754,37 @@ class SellerController extends Controller
                     return redirect()->back();
                 }
 
-                Order::where('id',$request->order_id)->update(['status'=>$request->status]);
-            }else{
+                Order::where('id', $request->order_id)->update(['status' => $request->status]);
+            } else {
                 toastr_error(__('You can not change order status due to payment status pending'));
                 return redirect()->back();
             }
-        }else{
+        } else {
             toastr_error(__('You can not change order status because this order already completed.'));
             return redirect()->back();
         }
-
     }
 
-    public function orderCancel($id=null)
+    public function orderCancel($id = null)
     {
-        Order::where('id',$id)->update(['payment_status'=>'','status'=>4]);
+        Order::where('id', $id)->update(['payment_status' => '', 'status' => 4]);
         toastr_success(__('Order successfully cancelled.'));
         return redirect()->back();
     }
 
-    public function orderPaymentStatus(Request $request,$id=null)
+    public function orderPaymentStatus(Request $request, $id = null)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'order_id' => 'required',
             'status' => 'required|string'
         ]);
-        $payment_status = Order::select('payment_status','status')->where(['id' => $request->order_id,'seller_id' => Auth::guard('web')->id()])->first();
-        if (!is_null($payment_status)){
-            Order::where(['id' => $request->order_id,'seller_id' => Auth::guard('web')->id()])->update([
+        $payment_status = Order::select('payment_status', 'status')->where(['id' => $request->order_id, 'seller_id' => Auth::guard('web')->id()])->first();
+        if (!is_null($payment_status)) {
+            Order::where(['id' => $request->order_id, 'seller_id' => Auth::guard('web')->id()])->update([
                 'payment_status' =>  $request->status
             ]);
         }
-        toastr_success(sprintf(__('Payment Status Has been changed to %s'),$request->status));
+        toastr_success(sprintf(__('Payment Status Has been changed to %s'), $request->status));
         return redirect()->back();
     }
 
@@ -1775,9 +1796,9 @@ class SellerController extends Controller
         ]);
 
         $seller_id = Auth::guard()->check() ? Auth::guard('web')->user()->id : NULL;
-        $is_report_exist = Report::where(['order_id'=>$request->order_id , 'report_from'=>'seller'])->first();
+        $is_report_exist = Report::where(['order_id' => $request->order_id, 'report_from' => 'seller'])->first();
 
-        if($is_report_exist){
+        if ($is_report_exist) {
             toastr_error(__('Report Already Created For This Order'));
             return redirect()->back();
         }
@@ -1794,12 +1815,12 @@ class SellerController extends Controller
         $last_report_id = $report->id;
         try {
             $message = get_static_option('seller_report_message');
-            $message = str_replace(["@report_id"],[$last_report_id],$message);
+            $message = str_replace(["@report_id"], [$last_report_id], $message);
             Mail::to(get_static_option('site_global_email'))->send(new BasicMail([
                 'subject' => get_static_option('seller_report_subject') ?? __('Seller New Report'),
                 'message' => $message
             ]));
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             return redirect()->back()->with(FlashMsg::item_new($e->getMessage()));
         }
         toastr_success(__('Report Send Success'));
@@ -1808,15 +1829,15 @@ class SellerController extends Controller
 
     public function reportList()
     {
-        $reports = Report::where('seller_id',Auth::guard('web')->user()->id)->paginate(10);
-        return view('frontend.user.seller.report.report-list',compact('reports'));
+        $reports = Report::where('seller_id', Auth::guard('web')->user()->id)->paginate(10);
+        return view('frontend.user.seller.report.report-list', compact('reports'));
     }
 
     public function chat_to_admin(Request $request, $report_id)
     {
         $seller_id = Auth::guard('web')->user()->id;
-        if($request->isMethod('post')){
-            $this->validate($request,[
+        if ($request->isMethod('post')) {
+            $this->validate($request, [
                 'message' => 'required',
                 'notify' => 'nullable|string',
                 'attachment' => 'nullable|mimes:zip',
@@ -1826,60 +1847,63 @@ class SellerController extends Controller
                 'report_id' => $report_id,
                 'seller_id' => $seller_id,
                 'message' => $request->message,
-                'type' =>'seller',
+                'type' => 'seller',
                 'notify' => $request->send_notify_mail ? 'on' : 'off',
             ]);
 
-            if ($request->hasFile('attachment')){
+            if ($request->hasFile('attachment')) {
                 $uploaded_file = $request->attachment;
                 $file_extension = $uploaded_file->extension();
-                $file_name =  pathinfo($uploaded_file->getClientOriginalName(),PATHINFO_FILENAME).time().'.'.$file_extension;
-                $uploaded_file->move('assets/uploads/ticket',$file_name);
+                $file_name =  pathinfo($uploaded_file->getClientOriginalName(), PATHINFO_FILENAME) . time() . '.' . $file_extension;
+                $uploaded_file->move('assets/uploads/ticket', $file_name);
                 $ticket_info->attachment = $file_name;
                 $ticket_info->save();
             }
 
             //send mail to user
-//            event(new SupportMessage($ticket_info));
+            //            event(new SupportMessage($ticket_info));
             return redirect()->back()->with(FlashMsg::item_new(__('Message Send')));
         }
-        $report_details = Report::where('id',$report_id)->where('seller_id',$seller_id)->first();
-        $all_messages = ReportChatMessage::where('report_id',$report_id)
-            ->where('seller_id',$seller_id)
+        $report_details = Report::where('id', $report_id)->where('seller_id', $seller_id)->first();
+        $all_messages = ReportChatMessage::where('report_id', $report_id)
+            ->where('seller_id', $seller_id)
             ->get();
         $q = $request->q ?? '';
-        return view('frontend.user.seller.report.report-chat',compact('report_details','all_messages','q'));
-
+        return view('frontend.user.seller.report.report-chat', compact('report_details', 'all_messages', 'q'));
     }
 
     //payout request 
-    public function payoutRequest(Request $request,$id=null)
+    public function payoutRequest(Request $request, $id = null)
     {
         $total_earnings = 0;
         $seller_id = Auth::guard('web')->user()->id;
-        $all_payout_request = PayoutRequest::where('seller_id',$seller_id)->paginate(10);
+        $all_payout_request = PayoutRequest::where('seller_id', $seller_id)->paginate(10);
 
-        $pending_order = Order::where(['status'=>0,'seller_id'=>$seller_id])->count();
-        $complete_order = Order::where(['status'=>2,'seller_id'=>$seller_id])->count();
-        $complete_order_balance_with_tax = Order::where(['status'=>2,'seller_id'=>$seller_id])->sum('total');
-        $complete_order_tax = Order::where(['status'=>2,'seller_id'=>$seller_id])->sum('tax');
+        $pending_order = Order::where(['status' => 0, 'seller_id' => $seller_id])->count();
+        $complete_order = Order::where(['status' => 2, 'seller_id' => $seller_id])->count();
+        $complete_order_balance_with_tax = Order::where(['status' => 2, 'seller_id' => $seller_id])->sum('total');
+        $complete_order_tax = Order::where(['status' => 2, 'seller_id' => $seller_id])->sum('tax');
         $complete_order_balance_without_tax = $complete_order_balance_with_tax - $complete_order_tax;
-        $admin_commission_amount = Order::where(['status'=>2,'seller_id'=>$seller_id])->sum('commission_amount');
-        $remaning_balance = $complete_order_balance_without_tax-$admin_commission_amount;
-        $total_earnings = PayoutRequest::where('seller_id',$seller_id)->sum('amount');
+        $admin_commission_amount = Order::where(['status' => 2, 'seller_id' => $seller_id])->sum('commission_amount');
+        $remaning_balance = $complete_order_balance_without_tax - $admin_commission_amount;
+        $total_earnings = PayoutRequest::where('seller_id', $seller_id)->sum('amount');
 
-        return view('frontend.user.seller.payout.payout-request',compact(
-            'pending_order','complete_order','remaning_balance','all_payout_request','total_earnings'
+        return view('frontend.user.seller.payout.payout-request', compact(
+            'pending_order',
+            'complete_order',
+            'remaning_balance',
+            'all_payout_request',
+            'total_earnings'
         ));
     }
 
     public function createPayoutRequest(Request $request)
     {
-        if($request->isMethod('post')){
-            $this->validate($request,[
+        if ($request->isMethod('post')) {
+            $this->validate($request, [
                 'amount' => 'required|numeric',
                 'payment_gateway' => 'required|string|max:191',
-            ],[
+            ], [
                 'amount.required' => __('Amount required'),
                 'amount.numeric' => __('Amount must be numeric'),
                 'payment_gateway.required' =>  __('Payment Gateway required'),
@@ -1887,28 +1911,28 @@ class SellerController extends Controller
 
             $seller_id = Auth::guard('web')->user()->id;
 
-            $complete_order_balance_with_tax = Order::where(['status'=>2,'seller_id'=>$seller_id])->sum('total');
-            $complete_order_tax = Order::where(['status'=>2,'seller_id'=>$seller_id])->sum('tax');
+            $complete_order_balance_with_tax = Order::where(['status' => 2, 'seller_id' => $seller_id])->sum('total');
+            $complete_order_tax = Order::where(['status' => 2, 'seller_id' => $seller_id])->sum('tax');
             $complete_order_balance_without_tax = $complete_order_balance_with_tax - $complete_order_tax;
-            $admin_commission_amount = Order::where(['status'=>2,'seller_id'=>$seller_id])->sum('commission_amount');
-            $remaning_balance = $complete_order_balance_without_tax-$admin_commission_amount;
-            $total_earnings = PayoutRequest::where('seller_id',$seller_id)->sum('amount');
+            $admin_commission_amount = Order::where(['status' => 2, 'seller_id' => $seller_id])->sum('commission_amount');
+            $remaning_balance = $complete_order_balance_without_tax - $admin_commission_amount;
+            $total_earnings = PayoutRequest::where('seller_id', $seller_id)->sum('amount');
 
             $available_balance = $remaning_balance - $total_earnings;
-            if($request->amount<=0 || $request->amount >$available_balance){
+            if ($request->amount <= 0 || $request->amount > $available_balance) {
                 toastr_error(__('Enter a valid amount'));
                 return redirect()->back();
             }
 
             $min_amount = AmountSettings::select('min_amount')->first();
             $max_amount = AmountSettings::select('max_amount')->first();
-            if($request->amount < $min_amount->min_amount){
-                $msg = sprintf(__('Withdraw amount not less than %s'),float_amount_with_currency_symbol($min_amount->min_amount));
+            if ($request->amount < $min_amount->min_amount) {
+                $msg = sprintf(__('Withdraw amount not less than %s'), float_amount_with_currency_symbol($min_amount->min_amount));
                 toastr_error($msg);
                 return redirect()->back();
             }
-            if($request->amount > $max_amount->max_amount){
-                $msg = sprintf(__('Withdraw amount must less or equal to %s'),float_amount_with_currency_symbol($max_amount->max_amount));
+            if ($request->amount > $max_amount->max_amount) {
+                $msg = sprintf(__('Withdraw amount must less or equal to %s'), float_amount_with_currency_symbol($max_amount->max_amount));
                 toastr_error($msg);
                 return redirect()->back();
             }
@@ -1924,7 +1948,7 @@ class SellerController extends Controller
             $last_payout_request_id = DB::getPdo()->lastInsertId();
             try {
                 $message = get_static_option('seller_payout_message');
-                $message = str_replace(["@payout_request_id"],[$last_payout_request_id],$message);
+                $message = str_replace(["@payout_request_id"], [$last_payout_request_id], $message);
                 Mail::to(get_static_option('site_global_email'))->send(new BasicMail([
                     'subject' => get_static_option('seller_payout_subject') ?? __('New Payout Request'),
                     'message' => $message
@@ -1935,19 +1959,18 @@ class SellerController extends Controller
 
             toastr_success(__('Payment request create success'));
             return redirect()->back();
-
         }
     }
 
-    public function PayoutRequestDetails($id=null)
+    public function PayoutRequestDetails($id = null)
     {
-        $request_details = PayoutRequest::where('id',$id)
-            ->where('seller_id',Auth::guard('web')
+        $request_details = PayoutRequest::where('id', $id)
+            ->where('seller_id', Auth::guard('web')
                 ->user()->id)
             ->first();
-        if($request_details != ''){
-            return view('frontend.user.seller.payout.payout-request-details',compact('request_details'));
-        }else{
+        if ($request_details != '') {
+            return view('frontend.user.seller.payout.payout-request-details', compact('request_details'));
+        } else {
             abort(404);
         }
     }
@@ -1959,21 +1982,20 @@ class SellerController extends Controller
         return view('frontend.user.seller.services.service-reviews', compact('services'));
     }
 
-    public function serviceReviewAll($id=null)
+    public function serviceReviewAll($id = null)
     {
-        $service_reviews = Review::where('service_id',$id)
-            ->where('seller_id',Auth::guard('web')->user()->id)
+        $service_reviews = Review::where('service_id', $id)
+            ->where('seller_id', Auth::guard('web')->user()->id)
             ->paginate(10);
 
-        if($service_reviews->count() >=1){
+        if ($service_reviews->count() >= 1) {
             return view('frontend.user.seller.services.service-all-reviews', compact('service_reviews'));
-        }else{
+        } else {
             abort(404);
         }
-
     }
 
-    public function reviewDelete($id=null)
+    public function reviewDelete($id = null)
     {
         Review::find($id)->delete();
         toastr_error(__('Review Delete Success---'));
@@ -1982,33 +2004,33 @@ class SellerController extends Controller
 
     public function allTickets()
     {
-        $tickets = SupportTicket::where('seller_id',Auth::guard('web')
+        $tickets = SupportTicket::where('seller_id', Auth::guard('web')
             ->user()->id)
-            ->orderBy('id','Desc')
+            ->orderBy('id', 'Desc')
             ->paginate(10);
 
         $orders = Order::where('seller_id', Auth::guard('web')->user()->id)
-            ->where('payment_status', '!=','')
+            ->where('payment_status', '!=', '')
             ->whereNotNull('buyer_id',)
             ->latest()->get();
-        return view('frontend.user.seller.support-ticket.all-tickets', compact('tickets','orders'));
+        return view('frontend.user.seller.support-ticket.all-tickets', compact('tickets', 'orders'));
     }
 
-    public function addNewTicket(Request $request,$id=null)
+    public function addNewTicket(Request $request, $id = null)
     {
-        if($request->isMethod('post')){
+        if ($request->isMethod('post')) {
             $seller_id = Auth::guard('web')->user()->id;
-            if($request->order_id){
-                $buyer_id = Order::select('buyer_id')->where('id',$request->order_id)->first();
+            if ($request->order_id) {
+                $buyer_id = Order::select('buyer_id')->where('id', $request->order_id)->first();
             }
 
-            $this->validate($request,[
+            $this->validate($request, [
                 'title' => 'required|string|max:191',
                 'subject' => 'required|string|max:191',
                 'priority' => 'required|string|max:191',
                 'description' => 'required|string',
                 'order_id' => 'required|string'
-            ],[
+            ], [
                 'title.required' => __('title required'),
                 'subject.required' =>  __('subject required'),
                 'priority.required' =>  __('priority required'),
@@ -2028,20 +2050,20 @@ class SellerController extends Controller
             ]);
             toastr_success(__('Ticket successfully created.'));
             $last_ticket_id = DB::getPdo()->lastInsertId();
-            $last_ticket = SupportTicket::where('id',$last_ticket_id)->first();
+            $last_ticket = SupportTicket::where('id', $last_ticket_id)->first();
 
             // send order ticket notification to buyer
-            $buyer = User::where('id',$last_ticket->buyer_id)->first();
-            if($buyer){
+            $buyer = User::where('id', $last_ticket->buyer_id)->first();
+            if ($buyer) {
                 $order_ticcket_message = __('You have a new order ticket');
-                $buyer ->notify(new TicketNotification($last_ticket_id , $seller_id, $last_ticket->buyer_id,$order_ticcket_message ));
+                $buyer->notify(new TicketNotification($last_ticket_id, $seller_id, $last_ticket->buyer_id, $order_ticcket_message));
             }
 
 
             //Send ticket mail to buyer and admin
             try {
                 $message = get_static_option('seller_order_ticket_message');
-                $message = str_replace(["@order_ticket_id"],[$last_ticket_id],$message);
+                $message = str_replace(["@order_ticket_id"], [$last_ticket_id], $message);
                 Mail::to(get_static_option('site_global_email'))->send(new BasicMail([
                     'subject' => get_static_option('order_ticket_subject') ?? __('New Order Ticket'),
                     'message' => $message
@@ -2057,14 +2079,14 @@ class SellerController extends Controller
             return redirect()->back();
         }
 
-        $order = Order::select('id','service_id','buyer_id')
-            ->where('id',$id)
-            ->where('seller_id',Auth::guard('web')->user()->id)
+        $order = Order::select('id', 'service_id', 'buyer_id')
+            ->where('id', $id)
+            ->where('seller_id', Auth::guard('web')->user()->id)
             ->first();
         return view('frontend.user.seller.support-ticket.add-new-ticket', compact('order'));
     }
 
-    public function ticketDelete($id=null)
+    public function ticketDelete($id = null)
     {
         SupportTicket::find($id)->delete();
         toastr_error(__('Ticket Delete Success---'));
@@ -2072,41 +2094,42 @@ class SellerController extends Controller
     }
 
     //view ticket 
-    public function view_ticket(Request $request,$id){
+    public function view_ticket(Request $request, $id)
+    {
         $ticket_details = SupportTicket::findOrFail($id);
-        $all_messages = SupportTicketMessage::where(['support_ticket_id'=>$id])->get();
+        $all_messages = SupportTicketMessage::where(['support_ticket_id' => $id])->get();
         $q = $request->q ?? '';
 
-        foreach(Auth::guard('web')->user()->notifications as $notification){
-            if($ticket_details->id == array_key_exists("seller_last_ticket_id",$notification->data)){
+        foreach (Auth::guard('web')->user()->notifications as $notification) {
+            if ($ticket_details->id == array_key_exists("seller_last_ticket_id", $notification->data)) {
                 $Notification = Auth::guard('web')->user()->Notifications->find($notification->id);
-                if($Notification){
+                if ($Notification) {
                     $Notification->markAsRead();
                 }
-                return view('frontend.user.seller.support-ticket.view-ticket', compact('ticket_details','all_messages','q'));
+                return view('frontend.user.seller.support-ticket.view-ticket', compact('ticket_details', 'all_messages', 'q'));
             }
         }
-        return view('frontend.user.seller.support-ticket.view-ticket', compact('ticket_details','all_messages','q'));
+        return view('frontend.user.seller.support-ticket.view-ticket', compact('ticket_details', 'all_messages', 'q'));
     }
 
     //priority status 
     public function priorityChange(Request $request)
     {
-        SupportTicket::where('id',$request->ticket_id)->update(['priority'=>$request->priority]);
+        SupportTicket::where('id', $request->ticket_id)->update(['priority' => $request->priority]);
         toastr_success(__('Priority Change Success---'));
         return redirect()->back();
     }
 
     //change status 
-    public function statusChange($id=null)
+    public function statusChange($id = null)
     {
         $status = SupportTicket::find($id);
-        if($status->status=='open'){
+        if ($status->status == 'open') {
             $status = 'close';
-        }else{
+        } else {
             $status = 'open';
         }
-        SupportTicket::where('id',$id)->update(['status'=>$status]);
+        SupportTicket::where('id', $id)->update(['status' => $status]);
         toastr_success(__('Status Change Success---'));
         return redirect()->back();
     }
@@ -2114,7 +2137,7 @@ class SellerController extends Controller
     //send message 
     public function support_ticket_message(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'ticket_id' => 'required',
             'user_type' => 'required|string|max:191',
             'message' => 'required',
@@ -2129,11 +2152,11 @@ class SellerController extends Controller
             'notify' => $request->send_notify_mail ? 'on' : 'off',
         ]);
 
-        if ($request->hasFile('file')){
+        if ($request->hasFile('file')) {
             $uploaded_file = $request->file;
             $file_extension = $uploaded_file->getClientOriginalExtension();
-            $file_name =  pathinfo($uploaded_file->getClientOriginalName(),PATHINFO_FILENAME).time().'.'.$file_extension;
-            $uploaded_file->move('assets/uploads/ticket',$file_name);
+            $file_name =  pathinfo($uploaded_file->getClientOriginalName(), PATHINFO_FILENAME) . time() . '.' . $file_extension;
+            $uploaded_file->move('assets/uploads/ticket', $file_name);
             $ticket_info->attachment = $file_name;
             $ticket_info->save();
         }
@@ -2146,8 +2169,8 @@ class SellerController extends Controller
     //to do list 
     public function toDoList()
     {
-        $to_do_list = ToDoList::where('user_id',Auth::guard('web')->user()->id)->paginate(10);
-        return view('frontend.user.seller.to-do-list.todolist',compact('to_do_list'));
+        $to_do_list = ToDoList::where('user_id', Auth::guard('web')->user()->id)->paginate(10);
+        return view('frontend.user.seller.to-do-list.todolist', compact('to_do_list'));
     }
 
     public function addTodolist(Request $request)
@@ -2173,7 +2196,7 @@ class SellerController extends Controller
             'up_description' => 'required',
         ]);
 
-        ToDoList::where('id',$request->up_id)->update([
+        ToDoList::where('id', $request->up_id)->update([
             'title' => $request->up_title,
             'description' => $request->up_description,
         ]);
@@ -2189,7 +2212,7 @@ class SellerController extends Controller
         return redirect()->back();
     }
 
-    public function changeTodoStatus($id=null)
+    public function changeTodoStatus($id = null)
     {
         $status = ToDoList::select('status')->where('id', $id)->first();
         if ($status->status == 1) {
@@ -2197,7 +2220,7 @@ class SellerController extends Controller
         } else {
             $status = 1;
         }
-        ToDoList::where('id',$id)->update([
+        ToDoList::where('id', $id)->update([
             'status' => $status,
         ]);
         toastr_success(__('ToDo List status Update Success---'));
@@ -2205,28 +2228,30 @@ class SellerController extends Controller
     }
 
     //notifications 
-    public function allNotification(){
+    public function allNotification()
+    {
         return view('frontend.user.seller.notification.all-notification');
     }
 
     //seller verify
-    public function sellerVerify(Request $request){
+    public function sellerVerify(Request $request)
+    {
         $user = Auth::guard('web')->user()->id;
 
-        if($request->isMethod('post')){
+        if ($request->isMethod('post')) {
             $request->validate([
                 'national_id' => 'required|max:191',
             ]);
 
-            $old_image = SellerVerify::select('national_id','address')->where('seller_id',$user)->first();
+            $old_image = SellerVerify::select('national_id', 'address')->where('seller_id', $user)->first();
 
-            if(is_null($old_image)){
+            if (is_null($old_image)) {
                 SellerVerify::create([
                     'seller_id' => $user,
                     'national_id' => $request->national_id ?? optional($old_image)->national_id,
                     'address' => $request->address ?? optional($old_image)->address,
                 ]);
-            }else{
+            } else {
                 SellerVerify::where('seller_id', $user)
                     ->update([
                         'seller_id' => $user,
@@ -2248,12 +2273,13 @@ class SellerController extends Controller
             toastr_success(__('Verify Info Update Success---'));
             return redirect()->back();
         }
-        $seller_verify_info = SellerVerify::where('seller_id',$user)->first();
-        return view('frontend.user.seller.profile-verify.seller-profile-verify',compact('seller_verify_info'));
+        $seller_verify_info = SellerVerify::where('seller_id', $user)->first();
+        return view('frontend.user.seller.profile-verify.seller-profile-verify', compact('seller_verify_info'));
     }
 
     /* Extra Service Request */
-    public function extraService(Request $request){
+    public function extraService(Request $request)
+    {
         $request->validate([
             'order_id' => 'required|integer',
             'title' => 'required|max:191',
@@ -2264,7 +2290,7 @@ class SellerController extends Controller
         //todo: get order details from database
         $orderDetails = Order::find($request->order_id);
         //todo: check order payment status paid or completed
-        if ($orderDetails->payment_status === 'complete'){
+        if ($orderDetails->payment_status === 'complete') {
             //todo: if order status is completed then save data in new database table , update order table total price and admin commission etc
             $commission_charge = $orderDetails->commission_charge;
             $commission_type = $orderDetails->commission_type;
@@ -2272,14 +2298,14 @@ class SellerController extends Controller
             //todo: add new additional service in database
             $additional_service_cost =  $request->price * $request->quantity;
             //todo calculate admin commission
-            $commission_amount = ServiceCalculationHelper::calculateCommission($commission_type,$commission_charge,$additional_service_cost,$orderDetails->seller_id);;
+            $commission_amount = ServiceCalculationHelper::calculateCommission($commission_type, $commission_charge, $additional_service_cost, $orderDetails->seller_id);;
             //todo get sub total
             $sub_total = $additional_service_cost;
             //todo calculate tax
-            $service_details_for_book = Service::select('id','service_city_id')->where('id',$orderDetails->service_id)->first();
+            $service_details_for_book = Service::select('id', 'service_city_id')->where('id', $orderDetails->service_id)->first();
             $service_country =  optional(optional($service_details_for_book->serviceCity)->countryy)->id;
             //todo: update tax amount
-            $tax =  ServiceCalculationHelper::calculateTax($additional_service_cost,$service_country);
+            $tax =  ServiceCalculationHelper::calculateTax($additional_service_cost, $service_country);
 
             $total = $additional_service_cost + $tax;
 
@@ -2300,30 +2326,29 @@ class SellerController extends Controller
 
             try {
                 //send mail to seller
-                $seller_details = User::select('name','email')->find($orderDetails->seller_id);
+                $seller_details = User::select('name', 'email')->find($orderDetails->seller_id);
                 $message = get_static_option('seller_extra_service_message');
-                $message = str_replace(["@seller_name","@order_id"],[$seller_details->name,$orderDetails->id],$message);
+                $message = str_replace(["@seller_name", "@order_id"], [$seller_details->name, $orderDetails->id], $message);
                 Mail::to($seller_details->email)->send(new BasicMail([
                     'subject' => get_static_option('seller_extra_service_subject') ?? __('Extra Service Added'),
                     'message' => $message
                 ]));
 
-                $buyer_details = User::select('name','email')->find($orderDetails->buyer_id);
+                $buyer_details = User::select('name', 'email')->find($orderDetails->buyer_id);
                 //send mail to buyer
                 $message = get_static_option('seller_to_buyer_extra_service_message');
-                $message = str_replace(["@buyer_name","@order_id"],[$buyer_details->name,$orderDetails->id],$message);
+                $message = str_replace(["@buyer_name", "@order_id"], [$buyer_details->name, $orderDetails->id], $message);
                 Mail::to($buyer_details->email)->send(new BasicMail([
                     'subject' => get_static_option('seller_extra_service_subject') ?? __('Extra Service Added'),
                     'message' => $message
                 ]));
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 //handle error
             }
 
             toastr_success(__('Extra Service Request Send'));
             return back();
-
-        }else{
+        } else {
             $commission_charge = $orderDetails->commission_charge;
             $commission_type = $orderDetails->commission_type;
 
@@ -2341,20 +2366,20 @@ class SellerController extends Controller
 
 
             //todo: update commission
-            $orderDetails->commission_amount += ServiceCalculationHelper::calculateCommission($commission_type,$commission_charge,$additional_service_cost,$orderDetails->seller_id); //$commission_amount;
+            $orderDetails->commission_amount += ServiceCalculationHelper::calculateCommission($commission_type, $commission_charge, $additional_service_cost, $orderDetails->seller_id); //$commission_amount;
             //todo: update sub_total []
             $orderDetails->sub_total += $additional_service_cost;
             $new_sub_total =  $orderDetails->sub_total  + $additional_service_cost;
 
             //todo: calculate tax []
             $total = 0;
-            $tax_amount =0;
+            $tax_amount = 0;
 
-            $service_details_for_book = Service::select('id','service_city_id')->where('id',$orderDetails->service_id)->first();
+            $service_details_for_book = Service::select('id', 'service_city_id')->where('id', $orderDetails->service_id)->first();
             $service_country =  optional(optional($service_details_for_book->serviceCity)->countryy)->id;
 
             //todo: update tax amount
-            $orderDetails->tax +=  ServiceCalculationHelper::calculateTax($new_sub_total,$service_country);//$tax_amount;
+            $orderDetails->tax +=  ServiceCalculationHelper::calculateTax($new_sub_total, $service_country); //$tax_amount;
 
             //todo: update total amount []
             $total = $additional_service_cost + $tax_amount;
@@ -2364,27 +2389,27 @@ class SellerController extends Controller
             //todo send mail to seller and buyer
             try {
                 //send mail to seller
-                $seller_details = User::select('name','email')->find($orderDetails->seller_id);
+                $seller_details = User::select('name', 'email')->find($orderDetails->seller_id);
                 $message = '<p>';
-                $message .= __('Hello').' '.$seller_details->name.','."<br>";
-                $message .= __('your have added extra service in your order #').$orderDetails->id;
+                $message .= __('Hello') . ' ' . $seller_details->name . ',' . "<br>";
+                $message .= __('your have added extra service in your order #') . $orderDetails->id;
                 $message .= '</p>';
                 Mail::to($seller_details->email)->send(new BasicMail([
-                    'subject' => __('Extra service added in your order #').$orderDetails->id,
+                    'subject' => __('Extra service added in your order #') . $orderDetails->id,
                     'message' => $message
                 ]));
 
-                $buyer_details = User::select('name','email')->find($orderDetails->buyer_id);
+                $buyer_details = User::select('name', 'email')->find($orderDetails->buyer_id);
                 //send mail to buyer
                 $message = '<p>';
-                $message .= __('Hello').' '.$buyer_details->name.','."<br>";
-                $message .= __('seller added extra service in your order #').$orderDetails->id;
+                $message .= __('Hello') . ' ' . $buyer_details->name . ',' . "<br>";
+                $message .= __('seller added extra service in your order #') . $orderDetails->id;
                 $message .= '</p>';
                 Mail::to($buyer_details->email)->send(new BasicMail([
-                    'subject' => __('Extra service added in your order #').$orderDetails->id,
+                    'subject' => __('Extra service added in your order #') . $orderDetails->id,
                     'message' => $message
                 ]));
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 //handle error
             }
 
@@ -2401,7 +2426,8 @@ class SellerController extends Controller
     }
 
 
-    public function extraServiceDelete(Request $request){
+    public function extraServiceDelete(Request $request)
+    {
         $request->validate([
             'id' => 'required|integer'
         ]);
@@ -2416,8 +2442,8 @@ class SellerController extends Controller
     public function orderRequestDeclineHistory($id)
     {
         $order_id = $id;
-        $decline_histories = OrderCompleteDecline::latest()->where('order_id',$id)->paginate(10);
-        return view('frontend.user.seller.order.decline-history',compact('decline_histories','order_id'));
+        $decline_histories = OrderCompleteDecline::latest()->where('order_id', $id)->paginate(10);
+        return view('frontend.user.seller.order.decline-history', compact('decline_histories', 'order_id'));
     }
 
     // seller to buyer review
@@ -2428,8 +2454,8 @@ class SellerController extends Controller
             'message' => 'required',
         ]);
 
-        $review_count = Review::where('order_id',$request->order_id)->where('type', 0)->where('seller_id',Auth::guard('web')->user()->id)->first();
-        if(!$review_count){
+        $review_count = Review::where('order_id', $request->order_id)->where('type', 0)->where('seller_id', Auth::guard('web')->user()->id)->first();
+        if (!$review_count) {
             $review = Review::create([
                 'order_id' => $request->order_id,
                 'service_id' => $request->service_id ?? 0,
@@ -2441,7 +2467,7 @@ class SellerController extends Controller
                 'message' => $request->message,
                 'type' => 0,
             ]);
-            if($review){
+            if ($review) {
                 toastr_success(__('Review Added Success---'));
                 return redirect()->back();
             }
@@ -2451,7 +2477,8 @@ class SellerController extends Controller
     }
 
 
-    function groupAdd(Request $request){
+    function groupAdd(Request $request)
+    {
         $request->validate([
             'services_ids_groupby' => 'required|string',
             'group_name' => 'required|string',
@@ -2467,5 +2494,4 @@ class SellerController extends Controller
         toastr_success(__('Group Added Success---'));
         return redirect()->back();
     }
-
 }

@@ -120,14 +120,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="single-dashboard-input">
+                                    {{-- <div class="single-dashboard-input">
                                         <div class="single-info-input margin-top-30">
                                             <label for="description" class="info-title"> {{__('Service Description*')}} </label>
                                             <textarea class="form--control textarea--form summernote" name="description" placeholder="{{__('Type Description')}}">{{$service->description}}</textarea>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="single-dashboard-input">
+                                    {{-- <div class="single-dashboard-input">
                                         <div class="single-info-input margin-top-30">
                                             <div class="form-group">
                                                 <div class="media-upload-btn-wrapper">
@@ -147,9 +147,9 @@
                                                 <small class="text-danger">{{ __('recommended size 1920x1280') }}</small>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="form-group ">
+                                    {{-- <div class="form-group ">
                                         <div class="media-upload-btn-wrapper">
                                             <div class="img-wrap">
                                                 {!! render_gallery_image_attachment_preview($service->image_gallery ?? '') !!}
@@ -166,8 +166,7 @@
                                             <small>{{ __('image format: jpg,jpeg,png')}}</small> <br>
                                             <small>{{ __('recommended size 1920x1280') }}</small>
                                         </div>
-                                    </div>
-                                    
+                                    </div>  --}}
                                     {{-- <div class="row mt-4">
                                         <div class="col-lg-12">
                                             <div class="card">

@@ -115,8 +115,8 @@
                                             <div class="dashboar-flex-services">
                                                 <input type="checkbox" style="display: none"
                                                     name="select_services"class="select_group_by select_services check-input group-by-select"id="{{ $data->id }}"value="{{ $data->id }}">
-                                                <div class="thumb bg-image" {!! render_background_image_markup_by_attachment_id($data->image, '', 'thumb') !!}>
-                                                </div>
+                                                {{-- <div class="thumb bg-image" {!! render_background_image_markup_by_attachment_id($data->image, '', 'thumb') !!}>
+                                                </div> --}}
                                                 <div class="thumb-contents">
                                                     <h4 class="title"> <a href="javascript:void(0)"> {{ $data->title }}
                                                         </a> </h4>
@@ -126,7 +126,7 @@
                                                         {{ round(optional($data->reviews)->avg('rating'), 1) }}
                                                         <b>({{ optional($data->reviews)->count() }})</b>
                                                     </span>
-                                                    <span class="service-review style-02"> <i class="las la-eye"></i>
+                                                    {{-- <span class="service-review style-02"> <i class="las la-eye"></i>
                                                         {{ $data->view }} </span>
                                                     @if ($data->is_service_online == 1)
                                                         <span class="service-review style-02"> <i
@@ -134,7 +134,7 @@
                                                     @else
                                                         <span class="service-review style-02"> <i
                                                                 class="las la-map-marker"></i> {{ __('Offline') }} </span>
-                                                    @endif
+                                                    @endif --}}
 
                                                     <div class="service-bottom-flex margin-top-30">
                                                         <a href="{{ route('seller.pending.orders') }}">

@@ -154,6 +154,7 @@
                                                         <span style="font-size:16px;" class="dash-icon color-1"> <i
                                                                 class="las la-edit"></i> </span>
                                                     </a>
+                                                    
                                                     <x-seller-delete-popup :url="route('seller.service.coupon.delete', $data->id)" />
                                                     <button id="services_add_btn" data-id="{{ $data->id }}"
                                                         data-discount="{{ $data->discount }}"
@@ -442,6 +443,7 @@
                         setServicesSelectedValues();
                     }
                 );
+                
 
                 $("#up_start_date_picker").change(function() {
                     document.getElementById("up_start_date").value = new Date($("#up_start_date_picker")
@@ -504,6 +506,7 @@
                         document.getElementById(service.id).checked = false;
                     });
                     $('#up_id_').val(coupon_id);
+
                     $('#services_ids').val(services_selected);
                     if (services_selected != null && services_selected != "") {
                         var services_ids = services_selected.toString().split(",")

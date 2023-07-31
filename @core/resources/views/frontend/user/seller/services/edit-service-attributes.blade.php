@@ -197,7 +197,8 @@
                                             <div class="serviceopt margin-top-20">
                                            <h5 style="font-size: 20px;">Select Staff who can provide this Service</h5>
                                            <p>It can be all or any Specific</p><br>
-                                           <button type="button"  data-toggle="modal" data-target="#addstaff">
+                                           <button type="button"  id="services_add_btn" data-toggle="modal" data-target="#addstaff"
+                                           data-services_selected="{{ __($data) }}">
                                             Select Staff Members
                                           </button>
                                             </div>
@@ -341,7 +342,6 @@
 
             @foreach($staff as $data)
             <li class="checkbox-item">
-             
             <input type="checkbox" id="{{$data->id}}" class="select_services" name="select_services" value="{{$data->id}}">
             <img  class="modalimage" src="{{get_attachment_image_by_id($data->profile_image_id)['img_url']}}" alt="">
             <label class="label" for="checkbox1">{{$data->name}}</label>
@@ -414,6 +414,20 @@
                 );
 
                 $(document).on('click', '.select_services', setServicesSelectedValues);
+
+
+                $(document).on('click', '#services_add_btn', function(e) {
+                    e.preventDefault();
+                    let services_selected = $(this).data('services_selected');
+                    $('#services_ids').val(services_selected);
+                    if (services_selected != null && services_selected != "") {
+                        var services_ids = services_selected.toString().split(",")
+                        services_ids.forEach(id => {
+                            document.getElementById(id).checked = true;
+                        });
+                    }
+
+                });
                 
                 //total price
                 $(document).on("change", ".include-price", function() {
