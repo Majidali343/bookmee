@@ -95,9 +95,9 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="up_day_id">{{ __('Select Day') }}</label>
-                            <select name="eday" id="eup_day_id" class="form-control nice-select" required>
+                        <div class="form-group" hidden>
+                            {{-- <label for="up_day_id">{{ __('Select Day') }}</label> --}}
+                            <select name="eday" id="eup_day_id" class="form-control nice-select" >
                                 <option value="">{{ __('Select Day') }}</option>
                                 <option value="Monday" >{{ __('Monday') }}</option>
                                 <option value="Tuesday">{{ __('Tuesday') }}</option>
@@ -149,7 +149,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="dayModal">{{ __('Edit Working Hours') }}</h5>
+                <h5 class="modal-title" id="dayModal">{{ __('Add Working Hours') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

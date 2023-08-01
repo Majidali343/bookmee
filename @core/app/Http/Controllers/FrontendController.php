@@ -182,16 +182,18 @@ class FrontendController extends Controller
 
                 $time =  Serviceinclude::where('service_id', $serviceid->id)->max('service_time');
 
-                $discountType = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->first('discount_type');
+                $discountType = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])
+                ->where('status','1')->first('discount_type');
 
                 $disctyp = $discountType->discount_type ?? null;
 
 
 
-                if ($disctyp == 'percentage') {
+                if ( $disctyp!= null && $disctyp == 'percentage') {
 
                     $discount = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->max('discount');
-                } else {
+                }
+                 elseif($disctyp!= null){
 
 
                     $discount = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->max('discount');

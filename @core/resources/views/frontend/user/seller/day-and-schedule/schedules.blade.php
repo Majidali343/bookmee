@@ -74,6 +74,7 @@
 
                                                <a href="#0" class="edit_schedule_modal"
                                                data-toggle="modal" 
+                                               data-toggle="modal" Da
                                                data-target="#editScheduleModal"
                                                data-id="{{ $data->id }}"
                                                data-dayid="{{ $data->day_id }}"
