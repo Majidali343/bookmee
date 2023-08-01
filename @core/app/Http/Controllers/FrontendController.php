@@ -59,7 +59,7 @@ class FrontendController extends Controller
 
         Session::put('cityid', $chosedcity);
         Session::put('cityname', $value->service_city);
-        
+
         return response()->json(['message' => Session::get('cityid')]);
     }
 
@@ -76,7 +76,7 @@ class FrontendController extends Controller
 
         Session::put('cityid', $chosedcity);
         Session::put('cityname', $value->service_city);
-        
+
         return response()->json(['message' => Session::get('cityid')]);
     }
 
@@ -162,7 +162,7 @@ class FrontendController extends Controller
 
         $services = collect([]);
         $discounts = collect([]);
-       $Time = collect([]);
+        $Time = collect([]);
 
         $groups = Service::select('groupby')->where(['seller_id' => $user_details->id, 'status' => 1, 'is_service_on' => 1])->get()->unique('groupby')->sortbydesc("groupby");
         foreach ($groups as $group) {
@@ -173,67 +173,60 @@ class FrontendController extends Controller
             ]);
         }
 
-       
+
         foreach ($services as  $service) {
-    
+
             $discount = 0;
-            
-            foreach ($service['services'] as  $serviceid) {              
-               
-             $time =  Serviceinclude::where('service_id', $serviceid->id)->max('service_time');
-				
-             $discountType = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->first('discount_type');
 
-             $disctyp = $discountType->discount_type ?? null;
+            foreach ($service['services'] as  $serviceid) {
 
-             
+                $time =  Serviceinclude::where('service_id', $serviceid->id)->max('service_time');
 
-             if(  $disctyp == 'percentage'){
-                
-                $discount = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->max('discount');
-               
-             }
-             else{
+                $discountType = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->first('discount_type');
 
-               
-                $discount = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->max('discount');
+                $disctyp = $discountType->discount_type ?? null;
 
-                $price = Service::where('id', $serviceid->id)->get('price')->first();
-                
-                
-                     if($price->price){
-                        $percentage =(  $discount *100) /$price->price ;
 
-                        
+
+                if ($disctyp == 'percentage') {
+
+                    $discount = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->max('discount');
+                } else {
+
+
+                    $discount = ServiceCoupon::whereRaw("FIND_IN_SET(?,services_ids)", [$serviceid->id])->max('discount');
+
+                    $price = Service::where('id', $serviceid->id)->get('price')->first();
+
+
+                    if ($price->price) {
+                        $percentage = ($discount * 100) / $price->price;
+
+
                         $discount = $percentage;
                     }
-             }
-
-       
-           
+                }
 
 
-              $discounts->push([
+
+
+
+                $discounts->push([
                     'discount' => $discount,
                     'discountid' => $serviceid->id
-              ]);
+                ]);
 
-		     $Time->push($time);
-           
-             
+                $Time->push($time);
             }
-
-   
-          
         }
         // dump($discounts);
         $service_rating = Review::where('seller_id', $user_details->id)->avg('rating');
         $service_reviews = Review::where('seller_id', $user_details->id)->paginate(5);
         $page_type = 'profile';
 
-        $discountcount= count($discounts);
-        
-        
+        $discountcount = count($discounts);
+
+
 
         $phoneNumber = $seller->phone;
         $countryCode = '+44';
@@ -253,9 +246,9 @@ class FrontendController extends Controller
             'page_type',
             'businesstimings',
             'formattedPhoneNumber',
-			'Time',
+            'Time',
             'discountcount'
-            
+
         ));
     }
 
@@ -511,8 +504,10 @@ class FrontendController extends Controller
             toastr_error(__('Enter anything to search'));
             return redirect()->back();
         }
+
+
         $request->validate([
-            'home_search' => 'required|string',
+            'home_search' => 'required|string|min:2',
         ]);
 
         $selectedValue = Session::get('cityid');
@@ -596,12 +591,11 @@ class FrontendController extends Controller
 
 
                         $price = Service::where('id', $multiid)->get('price')->first();
-                       if($price){
+                        if ($price) {
 
-                           $percentage = ($discount / $price->price) * 100;
-                           $discount = $percentage;
-                       }
-
+                            $percentage = ($discount / $price->price) * 100;
+                            $discount = $percentage;
+                        }
                     } else {
                         $discount = $discount;
 

@@ -111,13 +111,21 @@
 
                         <div class="form-group mt-3">
                             <label for="schedule">{{ __('Opening Time') }}</label>
-                            <input type="text" name="eopening_time" id="eschedule" class="form-control" placeholder="{{__('Opening Time')}}" required>
+                            <div class="input-group bootstrap-timepicker timepicker">
+                                <input id="eschedule" name="eopening_time" type="text" class="form-control input-small" required>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                            </div>
+                            {{-- <input type="time" name="eopening_time" id="eschedule" class="form-control" placeholder="{{__('Opening Time')}}" required> --}}
                             <span class="info">{{__('eg: 8:00Am ,11:00Am, The opening time will let the Customers know when You start Busniess on particular day')}}</span>
                         </div>
                         
                         <div class="form-group mt-3">
                             <label for="schedule">{{ __('Closing Time ') }}</label>
-                            <input type="text" name="eclosing_time" id="ecschedule" class="form-control" placeholder="{{__('Closing Time')}}" required>
+                            <div class="input-group bootstrap-timepicker timepicker">
+                                <input id="ecschedule" name="eclosing_time" type="text" class="form-control input-small" required>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                            </div>
+                            {{-- <input type="time" name="eclosing_time" id="ecschedule" class="form-control" placeholder="{{__('Closing Time')}}" required> --}}
                             <span class="info">{{__('eg: 6:00PM , 12:00PM, The Closing time will let the Customers know when You Close Business on particular day')}}</span>
                         </div>
 
@@ -162,15 +170,24 @@
                         </select>
                     </div>
 
+                    
                     <div class="form-group mt-3">
                         <label for="schedule">{{ __('Opening Time') }}</label>
-                        <input type="text" name="opening_time" id="schedule" class="form-control" placeholder="{{__('Opening Time')}}" required>
+                        <div class="input-group bootstrap-timepicker timepicker">
+                            <input id="timepicker1" name="opening_time" type="text" class="form-control input-small" required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        </div>
+                        {{-- <input type="time" name="opening_time" id="schedule" class="form-control" placeholder="{{__('Opening Time')}}" required> --}}
                         <span class="info">{{__('eg: 8:00Am ,11:00Am, The opening time will let the Customers know when You start Busniess on particular day')}}</span>
                     </div>
                     
                     <div class="form-group mt-3">
                         <label for="schedule">{{ __('Closing Time ') }}</label>
-                        <input type="text" name="closing_time" id="schedule" class="form-control" placeholder="{{__('Closing Time')}}" required>
+                        <div class="input-group bootstrap-timepicker timepicker">
+                            <input id="timepicker2" name="closing_time" type="text" class="form-control input-small" required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        </div>
+                        {{-- <input type="time" name="closing_time" id="schedule" class="form-control" placeholder="{{__('Closing Time')}}" required> --}}
                         <span class="info">{{__('eg: 6:00PM , 12:00PM, The Closing time will let the Customers know when You Close Business on particular day')}}</span>
                     </div>
                     
@@ -189,14 +206,21 @@
   @endsection  
 
 
+
 @section('scripts')
 
 <script src="{{asset('assets/backend/js/sweetalert2.js')}}"></script>
+<script src="{{asset('assets/backend/js/bootstrap-timepicker.min.js')}}"></script>
     <script>
         (function($){
             "use strict";
             $(document).ready(function(){
 
+                $('#timepicker1').timepicker();
+                $('#timepicker2').timepicker();
+                $('#eschedule').timepicker();
+                $('#ecschedule').timepicker();
+                
                 $(document).on('click','.edit_schedule_modal',function(e){
                     e.preventDefault();
                     let edit_id = $(this).data('id');

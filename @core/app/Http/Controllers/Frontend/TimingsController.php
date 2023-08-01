@@ -48,7 +48,8 @@ class TimingsController extends Controller
             'closing_time' => 'required',
         ]);
 
-    //    @dd($request->all());
+       
+
         $data = BusinessDay::create([
             'day' => $request->day,
             'to_time' => $request->opening_time,

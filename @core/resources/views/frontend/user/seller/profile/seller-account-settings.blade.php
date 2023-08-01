@@ -36,8 +36,8 @@
 
                     <div class="mt-4"> <x-msg.error/> </div>
                     
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 margin-top-30">
+                    {{-- <div class="row align-items-center"> --}}
+                        {{-- <div class="col-lg-6 margin-top-30">
 
                             <form action="{{route('seller.account.settings')}}" method="post">
                                 @csrf
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
 
                         @if(empty($user))
                             <div class="col-lg-6 margin-top-30">
@@ -126,7 +126,7 @@
                         @endif
                         @endif
 
-                    </div>
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
