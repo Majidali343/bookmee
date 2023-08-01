@@ -132,9 +132,9 @@ class RegisterController extends Controller
                 $auth_token = getenv("TWILIO_TOKEN");
                 $twilio_number = getenv("TWILIO_MESSAGING_ID");
                 $client = new Client($account_sid, $auth_token);
-                $client->messages->create('whatsapp:'.$request->contact_number, [
-                    'from' => 'whatsapp:'. $twilio_number,
-                    'body' => "Your BookMi otp is " . $otp]);
+                $client->messages->create($request->contact_number, [
+                    'from' => $twilio_number,
+                    'body' => "Your BookMee otp is " . $otp]);
                     
             } catch (\Exception $e) {
                 dd($e);
