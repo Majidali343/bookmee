@@ -241,9 +241,7 @@
         }
 
         .discount {
-            position: relative;
-            left: 21px;
-            top: 125px;
+
             z-index: 100;
             padding-left: 10px;
             padding-top: 7px;
@@ -260,24 +258,23 @@
 
 
         .discountedprice {
-            position: relative;
-            left: -6px;
-            top: -1px;
+
             z-index: 100;
             color: #C3D0CF;
             Font-family: "Inter";
             font-Weight: 600;
             font-size: 14px;
+            text-decoration-line: line-through;
+            text-decoration-thickness:2px;
 
         }
 
         .time {
-            position: relative;
-            left: 447px;
-            top: 84px;
+
             z-index: 100;
             Font-family: "Inter";
             font-Weight: 500;
+            padding-left: 16px;
             font-size: 14px;
         }
 
@@ -297,7 +294,7 @@
         }
 
         .single-prices {
-            min-width: 86px;
+            width: 86px;
 
             border-radius: 38px;
             color: white;
@@ -344,6 +341,11 @@
                 margin-right: 50px;
                 text-align: justify;
             }
+            .discount {
+                Width: 108px;
+                Height: 31px;
+                font-size: 11px;
+            }
 
             .service-details-slider {
                 width: 405px !important;
@@ -355,12 +357,17 @@
             }
 
             .single-prices {
-                min-width: 58px;
+                width: 58px;
                 padding: 10px;
                 border-radius: 34px;
                 background: var(--main-color-two);
             }
 
+            .slug{
+            color: black;
+            font-weight:700;
+            font-size: 15px;
+            }
             .single-service .services-contents .service-price .prices {
                 font-size: 16px;
                 font-weight: 700;
@@ -369,43 +376,9 @@
                 color: #233857;
             }
 
-            .discount {
-                position: relative;
-                left: 14px;
-                top: 127px;
-                z-index: 100;
-                padding-left: 10px;
-                padding-top: 7px;
-                Width: 118px;
-                Height: 36px;
-                border-Radius: 60px;
-                Gap: 10px;
-                background-color: #03989E4D;
-                Font-family: "Inter";
-                font-Weight: 600;
-                font-size: 14px;
-                color: #03989E;
-            }
-
-            .discountedprice {
-                position: relative;
-                left: 94px;
-                top: -29px;
-                z-index: 100;
-
-                Width: 84px;
-
-                Font-family: "Inter";
-                font-Weight: 600;
-                font-size: 14px;
-
-            }
-
-            .time {
-                left: 176px;
-                top: 85px;
-                width: 75px;
-            }
+        .time{
+            padding-left: 2px;
+        }
 
 
         }
@@ -423,20 +396,7 @@
 
         }
 
-        @media (min-width: 481px) and (max-width: 1024px) {
-            .time {
-                left: 308px;
-                top: 86px;
-            }
-        }
-
-        @media only screen and (min-width: 1400px) {
-
-            .time {
-                left: 485px;
-                top: 86px;
-            }
-        }
+      
 
         @media only screen and (min-width: 1200px) {
             .center-mobile {
@@ -554,6 +514,38 @@
             text-align: left;
 
         }
+
+
+        /* new style */
+        .slug{
+            color: black;
+            font-weight:700;
+        }
+
+        .service-body-flex {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0px;
+            padding: 12px 0px;
+            border-radius: 20px;
+            background: #FAFAFA;
+        }
+
+        .discount-title {
+            padding-top: 15px;
+            padding-left: 17px;
+        }
+
+        .right-container {
+            padding-right: 19px;
+            padding-top: 20px;
+        }
+        .service-price{
+          display: flex;
+          padding: 10px 14px 26px 11px;
+        }
+
+
     </style>
 @endsection
 
@@ -650,7 +642,7 @@
                                         $Timearray = $Time->toArray();
                                         $counter = 0;
                                     @endphp
-            
+
                                     <div class="">
 
                                         @foreach ($services as $idx => $group)
@@ -671,80 +663,74 @@
                                                     $services = $group['services'];
                                                     $group = count($services);
                                                 @endphp
-                          
+
                                                 @for ($i = 0; $i < $group; $i++)
                                                     @for ($di = 0; $di < $discountcount; $di++)
-                                                   
-                                                    
-                                                        @if($discountsArray[$di]['discountid'] == $services[$i]->id)
-                                                        
-                                                            
-                                                            <div class="single-services-item ">
-                                                                @if (!empty($discountsArray[$di]['discount']))
-                                                                    <div class="discount">Save upto
-                                                                        {{\Illuminate\Support\Str::limit($discountsArray[$di]['discount'], 4, "") }} % </div>
-                                                                @endif
-                                                                <div style="margin:15px 0px" class="single-service">
-                                                                    <div class="services-contents service-cotent-changes">
-                                                                        <h5 class="common-title">
-                                                                           
-                                                                            <a class="service-title"
-                                                                                style="color: black;font-weight:700;line-height:113px;"
-                                                                                href="{{ route('service.list.details', $services[$i]->slug) }}">{{ $services[$i]->title }}
+                                                        @if ($discountsArray[$di]['discountid'] == $services[$i]->id)
+                                                            <div class="service-body-flex">
 
-                                                                            </a>
-
-                                                                        </h5>
-                                                                                    
-                                                                        @if (!empty($Timearray[$di]))
-                                                                            <div class="time"> {{ $Timearray[$di] }} mins
-                                                                            </div>
-                                                                        @endif
-
-                                                                        @php
-                                                                            
-                                                                            $discount_percent = $services[$i]->price * $discountsArray[$di]['discount'];
-                                                                            
-                                                                            $Percentage_amt = $discount_percent / 100;
-                                                                            
-                                                                            $percentage_Amount = $services[$i]->price - $Percentage_amt;
-                                                                            
-                                                                        @endphp
+                                                                <div class="discount-title">
 
 
-                                                                        <div class="service-price ">
+                                                                    <h5 class="">
+                                                                        <a class="slug"  
+                                                                            href="{{ route('service.list.details', $services[$i]->slug) }}">{{ $services[$i]->title }}
+
+                                                                        </a>
+                                                                    </h5>
+                                                                    @if (!empty($discountsArray[$di]['discount']))
+                                                                        <div class="discount">Save upto
+                                                                            {{ \Illuminate\Support\Str::limit($discountsArray[$di]['discount'], 4, '') }}
+                                                                            % </div>
+                                                                    @endif
+
+                                                                </div>
+                                                                @php
+                                                                    
+                                                                    $discount_percent = $services[$i]->price * $discountsArray[$di]['discount'];
+                                                                    
+                                                                    $Percentage_amt = $discount_percent / 100;
+                                                                    
+                                                                    $percentage_Amount = $services[$i]->price - $Percentage_amt;
+                                                                    
+                                                                @endphp
+                                                                <div class="right-container">
+
+                                                                    <div class="min-right" style=" display: flex;">
+                                                                        <div class="service-price " >
                                                                             @if (!empty($discountsArray[$di]['discount']))
                                                                                 <div class="discountedprice">
                                                                                     {{ amount_with_currency_symbol($services[$i]->price) }}
                                                                                 </div>
                                                                             @endif
-                                                                            <div class="price-container">
+                                                                            <span  class="prices" style="margin-left: 8px" >{{ amount_with_currency_symbol($percentage_Amount) }}
+                                                                            </span>
 
-                                                                                <span
-                                                                                    class="prices">{{ amount_with_currency_symbol($percentage_Amount) }}
-                                                                                </span>
+                                                                        </div>
 
-                                                                            </div>
-                                                                           
+                                                                        <div>
+
                                                                             <div class="btn-wrapper single-prices">
                                                                                 <a href="{{ route('service.list.book', $services[$i]->slug) }}"
                                                                                     class=" ">{{ __('Book') }}
                                                                                 </a>
                                                                             </div>
 
+                                                                            @if (!empty($Timearray[$di]))
+                                                                                <div class="time"> {{ $Timearray[$di] }}
+                                                                                    mins
+                                                                                </div>
+                                                                            @endif
+
                                                                         </div>
 
-                                                                        
 
                                                                     </div>
                                                                 </div>
+
                                                             </div>
-
                                                         @endif
-
-                                                        
                                                     @endfor
-
                                                 @endfor
                                             </div>
                                         @endforeach
