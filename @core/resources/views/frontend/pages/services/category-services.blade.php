@@ -183,7 +183,7 @@ use App\Review;
 
 
         <div class="row margin-top-50">
-                
+            
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap justify-content-center">
                     @if ($Vendors->count() > 0)

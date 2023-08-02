@@ -572,7 +572,7 @@ class FrontendController extends Controller
             $discount = ServiceCoupon::where('seller_id', $service->id)
                 ->max('discount');
 
-            if ($discount_type != null && $discount_type == "percentage") {
+            if ($discount_type != null && $discount_type->discount_type == "percentage") {
 
                 $discount = $discount;
             } else {

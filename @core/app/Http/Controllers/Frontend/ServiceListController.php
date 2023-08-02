@@ -1688,6 +1688,7 @@ class ServiceListController extends Controller
             }
         }
         $Vendors = $Vendors->unique();
+
         foreach ($Vendors as $vendor) {
             $seller_rating = Review::where('seller_id', $vendor->id)->avg('rating');
             $seller_rating_percentage_value = $seller_rating;
@@ -1702,23 +1703,30 @@ class ServiceListController extends Controller
                 ->get('discount_type')
                 ->first();
 
+                
+
             $discount = ServiceCoupon::where('seller_id', $service->id)
                 ->max('discount');
 
-            if ($discount_type != null && $discount_type == "percentage") {
-                dd('if');
+
+            if ($discount_type != null && $discount_type->discount_type == 'percentage') {
+               
                 $discount = $discount;
-            } else {
+                
+                
+            }else {
 
                 $discount_id = ServiceCoupon::where('seller_id', $service->id)
                     ->orderBy('discount', 'desc')
                     ->get('services_ids')
                     ->first();
 
+                    
                 if ($discount_id != null) {
 
                     $discount = $discount;
-
+                    
+                   
                     $multiid = $discount_id->services_ids;
                     $arryornot = is_array($multiid);
 
@@ -1743,6 +1751,7 @@ class ServiceListController extends Controller
                     }
                 }
             }
+
             $discount = explode('.',$discount);
 
             $discounts->push($discount[0]);
@@ -1750,7 +1759,7 @@ class ServiceListController extends Controller
 
 
         }
-
+   
         return view('frontend.pages.services.category-services', compact(
             'discounts',
             'Vendors',
