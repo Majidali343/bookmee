@@ -59,26 +59,27 @@
                                                             <span class="list-span"> {{__('Phone:')}} </span>
                                                             <span class="list-strong"> {{ Auth::guard('web')->user()->phone }} </span>
                                                         </li>
-                                                        <li class="lists">
+                                                        {{-- <li class="lists">
                                                             <span class="list-span"> {{__('City:')}} </span>
                                                             <span class="list-strong"> {{ optional(optional(Auth::guard('web')->user())->city)->service_city }} </span>
-                                                        </li>
-                                                        <li class="lists">
+                                                        </li> --}}
+                                                        {{-- <li class="lists">
                                                             <span class="list-span"> {{__('Area:')}} </span>
                                                             <span class="list-strong"> {{ optional(optional(Auth::guard('web')->user())->area)->service_area }} </span>
-                                                        </li>
+                                                        </li> --}}
                                                         <li class="lists">
                                                             <span class="list-span"> {{__('Country:')}} </span>
-                                                            <span class="list-strong"> {{ optional(optional(Auth::guard('web')->user())->country)->country }} </span>
+                                                            <span class="list-strong"> England</span>
+                                                            {{-- <span class="list-strong"> {{ optional(optional(Auth::guard('web')->user())->country)->country }} </span> --}}
                                                         </li>
-                                                        <li class="lists">
+                                                        {{-- <li class="lists">
                                                             <span class="list-span"> {{__('Post Code:')}} </span>
                                                             <span class="list-strong"> {{ Auth::guard('web')->user()->post_code }} </span>
-                                                        </li>
-                                                        <li class="lists">
+                                                        </li> --}}
+                                                        {{-- <li class="lists">
                                                             <span class="list-span"> {{__('Address:')}} </span>
                                                             <span class="list-strong"> {{ Auth::guard('web')->user()->address }} </span>
-                                                        </li>
+                                                        </li> --}}
                                                     </ul>
                                                     @if(Auth::guard('web')->user()->about != NULL)
                                                     <ul class="details-list column-count-one">

@@ -228,7 +228,7 @@ use App\Review;
                                                                 </span>
 
                                                                 {{ $Reviews[$i] }}
-                                                                <i class="las la-star"></i>
+                                                                <i style="color:#FFB700;" class="las la-star"></i>
                                                             </span>
 
                                                         </div>

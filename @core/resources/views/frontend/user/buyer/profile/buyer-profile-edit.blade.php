@@ -65,7 +65,7 @@
                                                         </div>
                                                         
                                                     </div>
-                                                    <div class="single-dashboard-input">
+                                                    {{-- <div class="single-dashboard-input">
                                                         <div class="single-info-input margin-top-30">
                                                             <label class="info-title"> {{__('Service City*')}} </label>
                                                             <select name="service_city" id="service_city">
@@ -87,25 +87,25 @@
                                                             </select>
                                                         </div>
                                                         
-                                                    </div>
-                                                    <div class="single-dashboard-input">
+                                                    </div> --}}
+                                                    {{-- <div class="single-dashboard-input">
                                                         <div class="single-info-input margin-top-30">
                                                             <label class="info-title"> {{__('Post Code*')}} </label>
                                                             <input class="form--control" type="text" name="post_code" value="{{Auth::guard('web')->user()->post_code}}" placeholder="{{__('Type Post Code')}}">
                                                         </div>
-                                                    </div>    
+                                                    </div>     --}}
                                                     <div class="single-dashboard-input">
                                                         <div class="single-info-input margin-top-30">
                                                             <label class="info-title"> {{__('Your Address*')}} </label>
                                                             <input class="form--control" type="text" name="address" value="{{Auth::guard('web')->user()->address}}" placeholder="{{__('Type Your Address')}}">
                                                         </div>
                                                     </div>
-                                                    <div class="single-dashboard-input">
+                                                    {{-- <div class="single-dashboard-input">
                                                         <div class="single-info-input margin-top-30">
                                                             <label class="info-title"> {{__('About*')}} </label>
                                                             <textarea class="form--control textarea--form" name="about" placeholder="{{__('Type Note')}}">{{Auth::guard('web')->user()->about}}</textarea>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="single-dashboard-input">
                                                         <div class="single-info-input margin-top-30">
                                                             <div class="form-group">
