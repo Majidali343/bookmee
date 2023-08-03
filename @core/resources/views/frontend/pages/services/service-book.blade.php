@@ -725,13 +725,13 @@
                                             <label class="info-title"> {{ __('Your Name*') }} </label>
                                             <input class="form--control" type="text" name="name" id="name"
                                                 placeholder="{{ __('Type Your Name') }}"
-                                                @if (Auth::guard('web')->check()) value="{{ Auth::user()->name }}" @else value="" @endif>
+                                                @if (Auth::guard('web')->check()) value="{{ Auth::user()->name }}" @else value="{{ Session::get('name') }}" @endif>
                                         </div>
                                         <div class="single-info-input">
                                             <label class="info-title"> {{ __('Your Email*') }} </label>
                                             <input class="form--control" type="email" name="email" id="email"
                                                 placeholder="{{ __('Type Your Email') }}"
-                                                @if (Auth::guard('web')->check()) value="{{ Auth::user()->email }}" @else value="" @endif>
+                                                @if (Auth::guard('web')->check()) value="{{ Auth::user()->email }}" @else value="{{ Session::get('email') }}" @endif>
                                         </div>
                                     </div>
                                     <div class="single-info-overview margin-top-30">
@@ -739,7 +739,7 @@
                                             <label class="info-title"> {{ __('Phone Number*') }} </label>
                                             <input class="form--control" type="text" name="phone" id="phone"
                                                 placeholder="{{ __('Type Your Number') }}"
-                                                @if (Auth::guard('web')->check()) value="{{ Auth::user()->phone }}" @else value="" @endif>
+                                                @if (Auth::guard('web')->check()) value="{{ Auth::user()->phone }}" @else value="{{ Session::get('phone') }}" @endif>
                                         </div>
                                         {{-- <div class="single-info-input">
                                             <label class="info-title"> {{ __('Post Code*') }} </label>
@@ -1144,6 +1144,12 @@
         </div>
     </div>
 
+
+
+
 @endsection
 
 @include('frontend.pages.services.service-book-js')
+
+
+

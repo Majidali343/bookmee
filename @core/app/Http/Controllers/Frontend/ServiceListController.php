@@ -326,6 +326,14 @@ class ServiceListController extends Controller
     {
         if (!Auth::user()) {
             session()->put('ref', url()->previous());
+            session()->put('service_available_dates', $request->service_available_dates);
+            session()->put('name', $request->name);
+            session()->put('email', $request->email);
+            session()->put('phone', $request->phone);
+            session()->put('coupon_code', $request->coupon_code);
+            session()->put('selected_payment_gateway', $request->selected_payment_gateway);
+            session()->put('date', $request->date);
+            session()->put('schedule', $request->schedule);            
             return redirect()->route('user.login');
         }
 
