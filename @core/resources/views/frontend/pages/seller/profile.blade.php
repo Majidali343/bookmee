@@ -326,6 +326,7 @@
 
             .ifmobilework {
                 display: block;
+                /* margin-left: -10px; */
             }
 
             .margin {
@@ -348,7 +349,7 @@
             }
 
             .service-details-slider {
-                width: 405px !important;
+            width: calc(100% - 24px) ;
                 height: 310px !important;
             }
 
@@ -379,7 +380,6 @@
         .time{
             padding-left: 2px;
         }
-
 
         }
 
@@ -545,6 +545,10 @@
           padding: 10px 14px 26px 11px;
         }
 
+        .margincont{
+            margin:0px 12px;
+        }
+
 
     </style>
 @endsection
@@ -563,7 +567,7 @@
                 {{-- @dd($seller_rating_percentage_value); --}}
                 @if (!empty($seller))
 
-                    <div class="service-details-slider container mobilework">
+                    <div class="service-details-slider margincont mobilework">
                         @if ($seller->profile_gallery != null)
                             @forelse(explode("|", $seller->profile_gallery) as $id)
                                 <div class="single-slider">
@@ -581,7 +585,7 @@
 
                     <div class="ifmobilework">
                         @if ($seller->profile_gallery != null)
-                            <div class=" service-details-slider container">
+                            <div class=" service-details-slider margincont">
                                 @forelse(explode("|", $seller->profile_gallery) as $id)
                                     <div class="single-slider">
                                         <div class="gallery-images single-featured service-details-background-image"

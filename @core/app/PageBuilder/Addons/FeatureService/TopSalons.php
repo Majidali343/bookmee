@@ -59,13 +59,13 @@ class TopSalons extends \App\PageBuilder\PageBuilderBase
         //static text helpers
         $static_text = static_text();
 
-      
-        $usersUnfiltered = User::where(['user_status' => 1])->where('service_city' , Session('cityid'))->whereNotNull("profile_background")->inRandomOrder()->get();
+
+        $usersUnfiltered = User::where(['user_status' => 1])->where('service_city', Session('cityid'))->whereNotNull("profile_background")->inRandomOrder()->get();
 
 
 
         $usersFiltered = collect([]);
-        
+
         foreach ($usersUnfiltered as $user) {
             foreach ($user->services as $service) {
                 if ($service->category_id == 8) {
@@ -88,7 +88,7 @@ class TopSalons extends \App\PageBuilder\PageBuilderBase
 
             $seller_rating = Review::where('seller_id', $service->id)->avg('rating');
 
-///disount work is here
+            ///disount work is here
 
 
             $discount_type = ServiceCoupon::where('seller_id', $service->id)
@@ -96,54 +96,48 @@ class TopSalons extends \App\PageBuilder\PageBuilderBase
                 ->get('discount_type')
                 ->first();
 
-                $discount = ServiceCoupon::where('seller_id', $service->id)
+            $discount = ServiceCoupon::where('seller_id', $service->id)
                 ->max('discount');
 
             if ($discount_type != null && $discount_type->discount_type == "percentage") {
 
-                $discount =$discount;
-            }
-             else {
+                $discount = $discount;
+            } else {
 
                 $discount_id = ServiceCoupon::where('seller_id', $service->id)
                     ->orderBy('discount', 'desc')
                     ->get('services_ids')
                     ->first();
 
-                if($discount_id != null) {
- 
-                    $discount =$discount;
+                if ($discount_id != null) {
+
+                    $discount = $discount;
 
                     $multiid = $discount_id->services_ids;
                     $arryornot = is_array($multiid);
 
                     if ($arryornot == false) {
-                       
-    
+
+
                         $price = Service::where('id', $multiid)->get('price')->first();
-                       
-                        if($price){
+
+                        if ($price) {
                             $percentage = ($discount / $price->price) * 100;
-                            
+
                             $discount = $percentage;
-
                         }
-                        
-
                     } else {
-                        $discount =$discount;
+                        $discount = $discount;
 
-                         $multiid = json_decode($multiid);
+                        $multiid = json_decode($multiid);
                         $id = $multiid[0];
                         $price = Service::where('id', $id)->get('price')->first();
-                        
-    
+
+
                         $percentage = ($discount / $price->price) * 100;
                         $discount = $percentage;
                     }
                 }
-             
-               
             }
 
 
@@ -165,17 +159,16 @@ class TopSalons extends \App\PageBuilder\PageBuilderBase
 
             $Title = Str::limit($title, 12, '...');
             $Address = Str::limit($service->address, 26, '...');
-            $discount = explode('.',$discount);
-            
-            
-            $discountdom= '';
-            if(!empty($discount[0])){
-                $discountdom = '<div class="discount" >save upto '.$discount[0].'%</div>';
+            $discount = explode('.', $discount);
+
+
+            $discountdom = '';
+            if (!empty($discount[0])) {
+                $discountdom = '<div class="discount" >save upto ' . $discount[0] . '%</div>';
+            } else {
+                $discountdom = '<div style=" margin-top: 53px" ></div>';
             }
-            else{   
-                $discountdom= '<div style=" margin-top: 53px" ></div>';
-            }          
-   
+
 
             $service_markup .= <<<SERVICE
             <div class="single-services-item wow fadeInUp" data-wow-delay=".2s"> 
@@ -269,6 +262,10 @@ SERVICE;
         min-height: 215px;
         max-height: 350px;
     }
+   
+
+      
+
     .discount{
         position: relative;
         left: 238px;
@@ -286,6 +283,15 @@ SERVICE;
         Size : 14px;
         color: #03989E;
     }
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px)  {
+            .discount{
+
+          left: 210px;
+            top: 63px;
+        }
+        }
+   
+
     </style>
     <!-- Featured Service area end -->
 
