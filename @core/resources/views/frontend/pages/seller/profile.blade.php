@@ -915,7 +915,7 @@
                                     @foreach ($businesstimings as $businessTimings)
                                         <div class="hour d-flex justify-content-between mt-2 mb-2">
                                             <div style="display: flex;flex-direction:row;">
-                                                <p class='heading-small' style="color: #233857;width: 137px;">
+                                                <p class='heading-small' style="color: #233857;width: 95px;">
                                                     {{ $businessTimings->day }}
                                                     &nbsp;
                                                 </p>

@@ -433,45 +433,49 @@ class FrontendController extends Controller
         return response()->json(['status' => 'done']);
     }
 
-    public function home_search(Request $request)
-    {
-        $selectedValue = Session::get('cityid');
-        $services = Service::query()->where('status', 1);
-        $vendors = collect([]);
-        $services->where('status', 1)
-            ->where('is_service_on', 1)
-            ->where('service_city_id', $selectedValue)
-            ->when(subscriptionModuleExistsAndEnable('Subscription'), function ($q) {
-                $q->whereHas('seller_subscription');
-            });
+    public function home_search(Request $request){
+    $selectedValue = Session::get('cityid');
+    $services = Service::query()->where('status', 1);
+    $vendors = collect([]);
+    $services->where('status', 1)
+        ->where('is_service_on', 1)
+        ->where('service_city_id', $selectedValue)
+        ->when(subscriptionModuleExistsAndEnable('Subscription'), function ($q) {
+            $q->whereHas('seller_subscription');
+        });
 
-        if (!isset($selectedValue)) {
-            $services->where('status', 1)->Where('title', 'LIKE', '%' . $request->search_text . '%');
+    if (!isset($selectedValue)) {
+        $services->where('status', 1)->where('title', 'LIKE', '%' . $request->search_text . '%');
+    } else {
+        $services->where('status', 1)->where('title', 'LIKE', '%' . $request->search_text . '%')
+            ->orWhere('description', 'LIKE', '%' . $request->search_text . '%')
+            ->orWhere('price', 'LIKE', '%' . $request->search_text . '%');
+    }
+
+    $services = $services->orderBy('id', 'desc')->get();
+
+    foreach ($services as $service) {
+        if ($selectedValue != null) {
+            if ($service->seller != null && $service->service_city_id == $selectedValue) {
+                $vendors->push($service->seller);
+            }
         } else {
-            $services->where('status', 1)->Where('title', 'LIKE', '%' . $request->search_text . '%')->orWhere('description', 'LIKE', '%' . $request->search_text . '%')
-                ->orWhere('price', 'LIKE', '%' . $request->search_text . '%');
-        }
-
-
-        $services = $services->orderBy('id', 'desc')->get();
-
-        foreach ($services as $service) {
-            if ($selectedValue != null) {
-                if ($service->seller != null && $service->service_city_id ==  $selectedValue) {
-                    $vendors->push($service->seller);
-                }
-            } else {
-                if ($service->seller != null) {
-                    $vendors->push($service->seller);
-                }
+            if ($service->seller != null) {
+                $vendors->push($service->seller);
             }
         }
-        return response()->json([
-            'status' => 'success',
-            'vendors' => $vendors,
-            'result' => view('frontend.partials.search-result', compact('vendors'))->render(),
-        ]);
     }
+
+    // Make the vendors collection unique based on vendor ID
+    $vendors = $vendors->unique('id');
+
+    return response()->json([
+        'status' => 'success',
+        'vendors' => $vendors,
+        'result' => view('frontend.partials.search-result', compact('vendors'))->render(),
+    ]);
+}
+
 
     //    This is above the main search controller we both shams and majid worked on
 

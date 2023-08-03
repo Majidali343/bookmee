@@ -419,7 +419,8 @@
                                                                             <span style="color: rgba(3, 152, 158, 1)"
                                                                                 class="values"
                                                                                 id="include_service_unit_price_{{ $include->id }}">
-                                                                                ₹ {{ $include->include_service_price }}
+                                                                                
+                                                                                {{ amount_with_currency_symbol($include->include_service_price)  }}
                                                                             </span>
                                                                             <span class="value-input">
                                                                                 <input type="number" min="1"
@@ -579,10 +580,10 @@
                                                                             id="include_service_quantity_2_{{ $include->id }}"
                                                                             style="color: rgba(3, 152, 158, 1);">{{ $include->include_service_quantity }}
                                                                         </span>
-                                                                        <span class="room-count">₹
+                                                                        <span class="room-count">
 																			 <span>
 
-                                                                                {{ $include->include_service_price }}
+                                                                                {{amount_with_currency_symbol($include->include_service_price)  }}
                                                                             </span>
                                                                            
                                                                         </span>
@@ -610,6 +611,7 @@
                                                         <input type="hidden"
                                                             name="package_fee_input_hiddend_field_for_js_calculation"
                                                             value="{{ $service_details_for_book->price }}">
+                           
                                                         {{-- <ul class="summery-result-list result-border padding-bottom-20">
                                                             <li class="result-list">
                                                                 <span
@@ -832,7 +834,7 @@
                                                             </span>
                                                            <span style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;" class=" available_schedule " hidden>
                                                             </span>
-                                                        </div>
+                                                        </div> 
                                                     </div>
                                                 </div>
                                             @endif

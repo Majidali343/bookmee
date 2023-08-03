@@ -79,7 +79,7 @@
                                                         <li class="lists">
                                                             <span class="list-span"> {{ __('Country:') }} </span>
                                                             <span class="list-strong">
-                                                                {{ optional(optional(Auth::guard('web')->user())->country)->country }}
+                                                               England
                                                             </span>
                                                         </li>
                                                         <li class="lists">

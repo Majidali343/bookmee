@@ -187,7 +187,7 @@
                     let include_service_id = $(this).data('id');
                     var quantity = Number($(this).val());
 
-                    console.log('#include_service_quantity_2_' + include_service_id);
+                    
                     $('#include_service_quantity_2_' + include_service_id).text(quantity);
                     $('#include_service_quantity_3_' + include_service_id).text(quantity);
 
@@ -201,6 +201,7 @@
                             let service_count = Number(service_data.val());
                             let service_total_price = Number(service_data.data('price'));
                             include_total_price += (service_count * service_total_price);
+                          
                         }
                         let cal_spans  = document.getElementsByClassName("value-count");
                         for (let i = 0; i < cal_spans.length; i++) {
@@ -210,6 +211,7 @@
                         $('input[name="package_fee_input_hiddend_field_for_js_calculation"]').val(parseFloat(include_total_price));
                         subtotal_calculate();
                         total_amount();
+                        
                     }
                 })
 
@@ -385,7 +387,7 @@
                     $('.confirm-overview-left .toshow').text(startingTime);
                     $('.confirm-overview-left .available_schedule').text(available_schedule);
                 })
-
+ 
                 //confirm-date-time
                 $('.confirm-date-time .next').on('click',function(){
                     if(date_string_format=='' || available_schedule==''){
