@@ -333,9 +333,13 @@ class ServiceListController extends Controller
             session()->put('coupon_code', $request->coupon_code);
             session()->put('selected_payment_gateway', $request->selected_payment_gateway);
             session()->put('date', $request->date);
-            session()->put('schedule', $request->schedule);            
+            session()->put('schedule', $request->schedule);
+            session()->put('services', $request->services);    
+            session()->put('service_subtotal_input_hidden_field_for_js_calculation', $request->service_subtotal_input_hidden_field_for_js_calculation);    
+
             return redirect()->route('user.login');
         }
+        $request->session()->flush();
 
         if ($request->is_service_online_ != 1) {
             $request->validate([
