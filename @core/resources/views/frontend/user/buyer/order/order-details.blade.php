@@ -46,14 +46,15 @@
                                                     <div class="checkbox-inlines">
                                                         <label><strong>{{ __('City:') }} </strong>{{ optional(optional($order_details->seller)->city)->service_city }}</label>
                                                     </div>
-                                                    <div class="checkbox-inlines">
+                                                    {{-- <div class="checkbox-inlines">
                                                         <label><strong>{{ __('Area:') }} </strong>{{ optional(optional($order_details->seller)->area)->service_area }}</label>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="checkbox-inlines">
                                                         <label><strong>{{ __('Post Code:') }} </strong>{{ optional($order_details->seller)->post_code }}</label>
                                                     </div>
                                                     <div class="checkbox-inlines">
-                                                        <label><strong>{{ __('Country:') }} </strong>{{ optional(optional($order_details->seller)->country)->country }}</label>
+                                                        {{-- <label><strong>{{ __('Country:') }} </strong>{{ optional(optional($order_details->seller)->country)->country }}</label> --}}
+                                                        <label><strong>{{ __('Country:') }} </strong>England</label>
                                                     </div>
                                                 @endif
                                             </div>
