@@ -263,8 +263,12 @@ class ServiceListController extends Controller
         $current_date = date('Y-m-d');
         $lastMinute = "Last Minute";
         $happyHour = "Happy Hour";
-        $startDate = explode(" ", $coupon_code->start_date)[0];
-        $expireDate = explode(" ", $coupon_code->expire_date)[0];
+        
+        if((!empty($coupon_code))){
+            $startDate = explode(" ", $coupon_code->start_date)[0];
+            $expireDate = explode(" ", $coupon_code->expire_date)[0];
+        }
+       
 
         if (!empty($coupon_code)) {
 
