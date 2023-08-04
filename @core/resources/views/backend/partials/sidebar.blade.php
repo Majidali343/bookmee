@@ -22,7 +22,7 @@
                         </a>
                     </li>
 
-                    @can('public-chat')
+                    {{-- @can('public-chat')
                         @if(moduleExists("LiveChat"))
                             <li class="{{ active_menu('admin-home/chat-users/seller') }}
                             @if (request()->is('admin-home/chat-users/*')) active @endif">
@@ -39,8 +39,8 @@
                                 </ul>
                             </li>
                         @endif
-                    @endcan
-
+                    @endcan --}}
+{{-- 
                     @if(Route::has('admin.subscription.all'))
                         @canany(['subscription-list','seller-subscription-list','subscription-coupon-list','subscription-reminder'])
                             @if(moduleExists("Subscription"))
@@ -69,9 +69,9 @@
                                 </li>
                             @endif
                         @endcan
-                    @endif
+                    @endif --}}
 
-                    @if(Route::has('admin.jobs.all'))
+                    {{-- @if(Route::has('admin.jobs.all'))
                         @canany(['job-list'])
                             @if(moduleExists("JobPost"))
                                 <li class="{{ active_menu('admin-home/jobs/all') }}
@@ -87,9 +87,9 @@
                                 </li>
                             @endif
                         @endcan
-                    @endif
+                    @endif --}}
 
-                    @if(Route::has('admin.wallet.lists'))
+                    {{-- @if(Route::has('admin.wallet.lists'))
                         @canany(['job-list'])
                             @if(moduleExists("Wallet"))
                                 <li class="{{ active_menu('admin-home/wallet/lists') }}
@@ -112,7 +112,7 @@
                                 </li>
                             @endif
                         @endcan
-                    @endif
+                    @endif --}}
 
                     @if (auth()->guard('admin')->user()->hasRole('Super Admin'))
                         <li
@@ -153,7 +153,7 @@
                         </li>
                     @endcanany
 
-                    @canany(['blog-list', 'blog-tag-list', 'blog-create', 'blog-trashed-list',
+                    {{-- @canany(['blog-list', 'blog-tag-list', 'blog-create', 'blog-trashed-list',
                         'blog-details'])
                         <li
                             class=" {{ active_menu('admin-home/blog') }}
@@ -187,7 +187,7 @@
                                 @endcan
                             </ul>
                         </li>
-                    @endcanany
+                    @endcanany --}}
 
                     @canany(['pages-list', 'pages-create'])
                         <li
@@ -209,7 +209,7 @@
                         </li>
                     @endcanany
 
-                    @canany(['slider-list'])
+                    {{-- @canany(['slider-list'])
                         <li class="{{ active_menu('admin-home/category') }}
                         @if (request()->is('admin-home/slider/*')) active @endif">
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-mobile"></i>
@@ -221,7 +221,7 @@
                                 @endcan
                             </ul>
                         </li>
-                    @endcan
+                    @endcan --}}
 
                     @canany(['category-list', 'category-create'])
                         <li class="{{ active_menu('admin-home/category') }}
@@ -241,7 +241,7 @@
                         </li>
                     @endcan
 
-                    @canany(['subcategory-list', 'subcategory-create'])
+                    {{-- @canany(['subcategory-list', 'subcategory-create'])
                         <li
                             class="{{ active_menu('admin-home/subcategory') }}
                     @if (request()->is('admin-home/subcategory/*')) active @endif">
@@ -259,10 +259,10 @@
                                 @endcan
                             </ul>
                         </li>
-                    @endcan
+                    @endcan --}}
 
 
-                    @canany(['child-category-list', 'child-category-create'])
+                    {{-- @canany(['child-category-list', 'child-category-create'])
                         <li
                             class="{{ active_menu('admin-home/child-category') }}
                     @if (request()->is('admin-home/child-category/*')) active @endif">
@@ -280,10 +280,10 @@
                                 @endcan
                             </ul>
                         </li>
-                    @endcan
+                    @endcan --}}
 
 
-                    @canany(['brand-list', 'brand-create'])
+                    {{-- @canany(['brand-list', 'brand-create'])
                         <li class="{{ active_menu('admin-home/brand') }}
                     @if (request()->is('admin-home/brand/*')) active @endif">
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dropbox"></i>
@@ -302,7 +302,7 @@
                                 @endcan
                             </ul>
                         </li>
-                    @endcanany
+                    @endcanany --}}
 
                     @canany(['country-list', 'country-create'])
                         <li class="{{ active_menu('admin-home/country') }}
@@ -594,7 +594,7 @@
                         </li>
                     @endif
 
-                    @can('form-builder')
+                    {{-- @can('form-builder')
                         <li class="main_dropdown @if (request()->is('admin-home/form-builder/*')) active @endif">
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-write mr-2"></i>
                                 {{ __('Form Builder') }}
@@ -605,9 +605,9 @@
                                 </li>
                             </ul>
                         </li>
-                    @endcan
+                    @endcan --}}
 
-                    @canany(['appearance-media-image-manage', 'appearance-widget-builder',
+                    {{-- @canany(['appearance-media-image-manage', 'appearance-widget-builder',
                         'appearance-menu-list'])
                         <li
                             class="main_dropdown @if (request()->is(['admin-home/topbar-settings', 'admin-home/media-upload/page', 'admin-home/menu', 'admin-home/widgets', 'admin-home/menu-edit/*'])) active
@@ -639,7 +639,7 @@
 
                             </ul>
                         </li>
-                    @endcanany
+                    @endcanany --}}
 
                     @canany(['page-settings-404-page-manage', 'page-settings-maintain-page-manage'])
                         <li class="main_dropdown
@@ -796,12 +796,12 @@
                         </li>
                     @endcanany
 
-                    @can('language-list')
+                    {{-- @can('language-list')
                         <li class="@if (request()->is('admin-home/languages/*') || request()->is('admin-home/languages')) active @endif">
                             <a href="{{ route('admin.languages') }}" aria-expanded="true"><i class="ti-signal"></i>
                                 <span>{{ __('Languages') }}</span></a>
                         </li>
-                    @endcan
+                    @endcan --}}
 
                 </ul>
             </nav>
