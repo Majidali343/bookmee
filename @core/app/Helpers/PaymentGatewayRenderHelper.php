@@ -43,7 +43,8 @@ class PaymentGatewayRenderHelper
     public static function renderPaymentGatewayForForm($cash_on_delivery_show = true){
         $output = '<div class="payment-gateway-wrapper payment_getway_image">';
 
-        $output .= '<input type="hidden" name="selected_payment_gateway" id="order_from_user_wallet" value="' . get_static_option('site_default_payment_gateway') . '">';
+        // $output .= '<input type="hidden" name="selected_payment_gateway" id="order_from_user_wallet" value="' . get_static_option('site_default_payment_gateway') . '">';
+        $output .= '<input type="hidden" name="selected_payment_gateway" id="order_from_user_wallet" >';
 
         $all_gateway = self::listOfPaymentGateways();
 
