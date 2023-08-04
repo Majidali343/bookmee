@@ -216,10 +216,14 @@ class ServiceListController extends Controller
                     'status' => 'no schedule',
                 ]);
             }
+            $sec_all = collect([]);
             while ($startingTime->lt($endTime)) {
-                $sec =  $startingTime->format('g:i A')." To ".$startingTime->addMinutes($serviceTime)->format('g:i A');
+                $prev_slot = $startingTime->format('g:i A');
+                $next_slot = $startingTime->addMinutes($serviceTime)->format('g:i A');
+                $sec =  $prev_slot ." To ". $next_slot;
                 $prevOrders = Order::where('date', Carbon::parse($current_date)->format("Y-m-d i:i:i"))->where("schedule", $sec)->where("seller_id", $request->seller_id)->get();
                 $filtered_orders = collect([]);
+                $sec_all->push($sec);
                     foreach ($prevOrders as $order) {
                         $staff_ids_order = $order->service->serviceInclude?->first()?->staff_ids;
                         if($staff_ids_order){
@@ -234,8 +238,6 @@ class ServiceListController extends Controller
                     
                 if(count($totalStaff) - $filtered_orders->count() > 0){
                     $slots->push(['schedule'=>$sec]);
-                }else{
-                    $startingTime->addMinutes($serviceTime);
                 }
             }
             return response()->json([
