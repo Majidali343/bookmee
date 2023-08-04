@@ -100,23 +100,23 @@ HTML;
         switch ($type) {
             case('email'):
                 $required_markup = !empty($requried) ? $required_markup_html : '';
-                $markup = ' <div class="form-group"> <label for="' . $name . '">' . __($placeholder) . '</label> <input type="email" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . '></div>';
+                $markup = ' <div class="form-group"> <label for="' . $name . '">' . __($placeholder) . '</label> <input type="email" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . ' required></div>';
                 break;
             case('tel'):
                 $required_markup = !empty($requried) ? $required_markup_html : '';
-                $markup = ' <div class="form-group"> <label for="' . $name . '">' . __($placeholder) . '</label> <input type="tel" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . '></div>';
+                $markup = ' <div class="form-group"> <label for="' . $name . '">' . __($placeholder) . '</label> <input type="tel" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . ' required></div>';
                 break;
             case('date'):
                 $required_markup = !empty($requried) ? $required_markup_html : '';
-                $markup = ' <div class="form-group"><label for="' . $name . '">' . __($placeholder) . '</label> <input type="date" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . '></div>';
+                $markup = ' <div class="form-group"><label for="' . $name . '">' . __($placeholder) . '</label> <input type="date" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . ' required></div>';
                 break;
             case('url'):
                 $required_markup = !empty($requried) ? $required_markup_html : '';
-                $markup = ' <div class="form-group"><label for="' . $name . '">' . __($placeholder) . '</label> <input type="url" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . '></div>';
+                $markup = ' <div class="form-group"><label for="' . $name . '">' . __($placeholder) . '</label> <input type="url" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . ' required></div>';
                 break;
             case('textarea'):
                 $required_markup = !empty($requried) ? $required_markup_html : '';
-                $markup = ' <div class="form-group textarea"><label for="' . $name . '">' . __($placeholder) . '</label> <textarea name="' . $name . '" id="' . $name . '" cols="30" rows="5" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . '></textarea></div>';
+                $markup = ' <div class="form-group textarea"><label for="' . $name . '">' . __($placeholder) . '</label> <textarea name="' . $name . '" id="' . $name . '" cols="30" rows="5" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . ' required></textarea></div>';
                 break;
             case('file'):
                 $required_markup = !empty($requried) ? $required_markup_html : '';
@@ -133,11 +133,11 @@ HTML;
                 foreach ($options as $opt) {
                     $option_markup .= '<option value="' . Str::slug($opt) . '">' . $opt . '</option>';
                 }
-                $markup = ' <div class="form-group select"> <label for="' . $name . '">' . __($placeholder) . '</label> <select id="' . $name . '" name="' . $name . '" class="form-control" ' . $required_markup . '>' . $option_markup . '</select></div>';
+                $markup = ' <div class="form-group select"> <label for="' . $name . '">' . __($placeholder) . '</label> <select id="' . $name . '" name="' . $name . '" class="form-control" ' . $required_markup . ' required>' . $option_markup . '</select></div>';
                 break;
             default:
                 $required_markup = !empty($requried) ? $required_markup_html : '';
-                $markup = ' <div class="form-group"><label for="' . $name . '">' . __($placeholder) . '</label> <input type="text" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . '></div>';
+                $markup = ' <div class="form-group"><label for="' . $name . '">' . __($placeholder) . '</label> <input type="text" id="' . $name . '" name="' . $name . '" class="form-control" placeholder="' . __($placeholder) . '" ' . $required_markup . ' required></div>';
                 break;
         }
 
