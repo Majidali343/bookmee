@@ -368,7 +368,7 @@
                     altFormat: "F j, Y",
                     dateFormat: "Y-m-d",
                     locale: UserSelectedLangSlug,
-                    onReady: dateReady(),
+                    // onReady: dateReady(),
                 });
 
                 //find schedule for a day
@@ -419,7 +419,7 @@
 
                                 $(".show-schedule").html(all_lists);
                                 $(".schedule_loader").hide();
-                                setSec();
+                                // setSec();
                             }
                             if (res.status == 'no schedule') {
                                 $(".show-schedule").html(
@@ -804,41 +804,41 @@
     </script>
 
     <script>
-        var FirstTime = true;
-        const data_old = {
-            "coupon": "{{ Session::get('coupon_code') }}",
-            "payment_gateway": "{{ Session::get('selected_payment_gateway') }}",
-            "date": "{{ Session::get('date') }}",
-            "sec": "{{ Session::get('schedule') }}",
-        }
-        $(document).ready(function() {
-            if (data_old.payment_gateway !== "") {
-                document.querySelector(`[data-gateway="${data_old.payment_gateway}"]`).click()
-            }
-            if (data_old.coupon !== "") {
-                document.getElementsByClassName("coupon_code")[0].value = data_old.coupon;
-                document.getElementsByClassName("apply-coupon")[0].click()
-            }
+        // var FirstTime = true;
+        // const data_old = {
+        //     "coupon": "{{ Session::get('coupon_code') }}",
+        //     "payment_gateway": "{{ Session::get('selected_payment_gateway') }}",
+        //     "date": "{{ Session::get('date') }}",
+        //     "sec": "{{ Session::get('schedule') }}",
+        // }
+        // $(document).ready(function() {
+        //     if (data_old.payment_gateway !== "") {
+        //         document.querySelector(`[data-gateway="${data_old.payment_gateway}"]`).click()
+        //     }
+        //     if (data_old.coupon !== "") {
+        //         document.getElementsByClassName("coupon_code")[0].value = data_old.coupon;
+        //         document.getElementsByClassName("apply-coupon")[0].click()
+        //     }
 
-        });
+        // });
 
-        function dateReady() {
+        // function dateReady() {
 
-            setTimeout(() => {
-                document.querySelector(`[aria-label="August 3, 2023"]`).click();
-            }, 10);
-        }
+        //     setTimeout(() => {
+        //         document.querySelector(`[aria-label="August 3, 2023"]`).click();
+        //     }, 10);
+        // }
 
-        function setSec() {
-            if (FirstTime == false) return;
-            if (data_old.sec == "") return;
-            var sec = document.getElementsByClassName("get-schedule");
-            for (var i = 0; i < sec.length; i++) {
-                if (sec[i].innerText == data_old.sec) {
-                    sec[i].click();
-                    FirstTime = false;
-                }
-            }
-        }
+        // function setSec() {
+        //     if (FirstTime == false) return;
+        //     if (data_old.sec == "") return;
+        //     var sec = document.getElementsByClassName("get-schedule");
+        //     for (var i = 0; i < sec.length; i++) {
+        //         if (sec[i].innerText == data_old.sec) {
+        //             sec[i].click();
+        //             FirstTime = false;
+        //         }
+        //     }
+        // }
     </script>
 @endsection

@@ -19,9 +19,10 @@
 
 @section('style')
     <style>
-		  .date-overview .single-date-overview .date-time-list .list:not(:first-child) {
-            margin-left: 0px!important;
+        .date-overview .single-date-overview .date-time-list .list:not(:first-child) {
+            margin-left: 0px !important;
         }
+
         .schedule_loader {
             border: 10px solid #f3f3f3;
             /* Light grey */
@@ -154,30 +155,35 @@
             justify-content: center;
         }
 
-        .shedulescroll{
+        .shedulescroll {
             height: 336px;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        } ::-webkit-scrollbar {
-        width: 5px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
         }
 
         @media only screen and (max-width: 600px) {
-	      .d-flex{
-            flex-direction: column;
-          }
-          .mr-3{
-                margin: auto;
-          }
+            .d-flex {
+                flex-direction: column;
+            }
 
-            .shedulescroll{
+            .mr-3 {
+                margin: auto;
+            }
+
+            .shedulescroll {
                 height: 436px;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            } ::-webkit-scrollbar {
-            width: 5px;
+                overflow-x: hidden;
+                overflow-y: scroll;
             }
+
+            ::-webkit-scrollbar {
+                width: 5px;
             }
+        }
 
         .overview-list .list.active .list-click .list-number {
             background: none;
@@ -363,13 +369,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class=" margin-top-30">
                                                     <h4 class="date-time-title">
                                                         {{ get_static_option('service_available_schudule_title') ?? __('Available Time Slots') }}
                                                     </h4>
                                                     <div class="single-date-overview " id="addingremove">
-                                                        
+
                                                         <ul class="date-time-list margin-top-20 show-schedule">
 
                                                         </ul>
@@ -419,8 +425,8 @@
                                                                             <span style="color: rgba(3, 152, 158, 1)"
                                                                                 class="values"
                                                                                 id="include_service_unit_price_{{ $include->id }}">
-                                                                                
-                                                                                {{ amount_with_currency_symbol($include->include_service_price)  }}
+
+                                                                                {{ amount_with_currency_symbol($include->include_service_price) }}
                                                                             </span>
                                                                             <span class="value-input">
                                                                                 <input type="number" min="1"
@@ -545,7 +551,8 @@
                                                 {{ get_static_option('service_booking_title') ?? __('Booking Summery') }}
                                             </h4>
 
-                                            <span class="summery-title"  style="color: rgba(35, 56, 87, 1);  font-weight: bold; "    >
+                                            <span class="summery-title"
+                                                style="color: rgba(35, 56, 87, 1);  font-weight: bold; ">
                                                 {{ get_static_option('service_extra_title') ?? __(' Service') }}</span>
                                             <div class="overview-summery-contents">
                                                 <div class="single-summery">
@@ -581,11 +588,11 @@
                                                                             style="color: rgba(3, 152, 158, 1);">{{ $include->include_service_quantity }}
                                                                         </span>
                                                                         <span class="room-count">
-																			 <span>
+                                                                            <span>
 
-                                                                                {{amount_with_currency_symbol($include->include_service_price)  }}
+                                                                                {{ amount_with_currency_symbol($include->include_service_price) }}
                                                                             </span>
-                                                                           
+
                                                                         </span>
                                                                     @endif
 
@@ -603,7 +610,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="single-summery">
-                                                   
+
                                                     <div class="summery-list-all">
                                                         {{-- <ul class="summery-list extra-service-list">
 
@@ -611,7 +618,7 @@
                                                         <input type="hidden"
                                                             name="package_fee_input_hiddend_field_for_js_calculation"
                                                             value="{{ $service_details_for_book->price }}">
-                           
+
                                                         {{-- <ul class="summery-result-list result-border padding-bottom-20">
                                                             <li class="result-list">
                                                                 <span
@@ -813,28 +820,41 @@
                                                     <div class="heading"
                                                         style="color: #333333;font-size: 32px;margin-bottom:40px;">
                                                         {{ __('Date & Time') }}</div>
-                                                    <div class="time-date  d-flex flex-coloum" style=" flex-direction: column;">
-                                                        <div style="display-flex ;flex-direction :row ;margin-right:80px ; height:45px">
+                                                    <div class="time-date  d-flex flex-coloum"
+                                                        style=" flex-direction: column;">
+                                                        <div
+                                                            style="display-flex ;flex-direction :row ;margin-right:80px ; height:45px">
                                                             {{-- <img src="https://i.imgur.com/oy2qijt.png" width="46px"
                                                                 height="46px"><br /> --}}
 
-                                                               <span style="font-family: inter ; font-weight:bold ; font-size:19px ; color:black" >Date :  </span> 
-                                                            <span style="font-size: 18px;
+                                                            <span
+                                                                style="font-family: inter ; font-weight:bold ; font-size:19px ; color:black">Date
+                                                                : </span>
+                                                            <span
+                                                                style="font-size: 18px;
                                                             font-weight: bold;
                                                             color: #322f2f;
                                                             font-family: inherit;
-                                                            padding-left: 26px;" class=" available_date "></span>
+                                                            padding-left: 26px;"
+                                                                class=" available_date "></span>
                                                         </div>
-                                                        
-                                                        <div style="display-flex ;flex-direction :row ;margin-right:80px ;height:45px " >
+
+                                                        <div
+                                                            style="display-flex ;flex-direction :row ;margin-right:80px ;height:45px ">
                                                             {{-- <img src="https://i.imgur.com/mxnAdsU.png" width="46px"
                                                                 height="46px"> --}}
-                                                                <span style="font-family: inter ; font-weight:bold ; font-size:19px ; color:black">Time :  </span>
-                                                           <span style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;" class="toshow">
+                                                            <span
+                                                                style="font-family: inter ; font-weight:bold ; font-size:19px ; color:black">Time
+                                                                : </span>
+                                                            <span
+                                                                style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;"
+                                                                class="toshow">
                                                             </span>
-                                                           <span style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;" class=" available_schedule " hidden>
+                                                            <span
+                                                                style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;"
+                                                                class=" available_schedule " hidden>
                                                             </span>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             @endif
@@ -878,9 +898,11 @@
                                                 {{ get_static_option('service_booking_title') ?? __('Booking Summery') }}
                                             </h4>
 
-                                            <P style="font-weight: bold;     font-family: 'Inter';
+                                            <P
+                                                style="font-weight: bold;     font-family: 'Inter';
                                             font-size: 19px;
-                                            color: black; ">Service</P>
+                                            color: black; ">
+                                                Service</P>
                                             <div class="overview-summery-contents">
                                                 <div class="single-summery">
                                                     {{-- @if ($service_details_for_book->is_service_online != 1)
@@ -935,7 +957,8 @@
                                                         {{-- <ul class="summery-list extra-service-list-2">
 
                                                         </ul> --}}
-                                                        <ul class="summery-result-list result-border padding-bottom-20" hidden>
+                                                        <ul class="summery-result-list result-border padding-bottom-20"
+                                                            hidden>
                                                             <li class="result-list">
                                                                 <span
                                                                     class="rooms">{{ get_static_option('service_extra_title') ?? __('Extra Service') }}</span>
@@ -1054,7 +1077,51 @@
         </div>
     </section>
 
+    <script>
+        const {
+            coupon,
+            payment_gateway,
+            date,
+            service_available_dates,
+            services,
+            name,
+            email,
+            phone,
+            schedule,
+            service_subtotal_input_hidden_field_for_js_calculation
+        } = {
+            "coupon": "{{ Session::get('coupon_code') }}",
+            "payment_gateway": "{{ Session::get('selected_payment_gateway') }}",
+            "date": "{{ Session::get('date') }}",
+            "schedule": "{{ Session::get('schedule') }}",
+            "name": "{{ Session::get('name') }}",
+            "email": "{{ Session::get('email') }}",
+            "phone": "{{ Session::get('phone') }}",
+            "service_available_dates": "{{ Session::get('service_available_dates') }}",
+            "services": @json(Session::get('services')),
+            "service_subtotal_input_hidden_field_for_js_calculation": "{{ Session::get('service_subtotal_input_hidden_field_for_js_calculation') }}",
+        }
+        if (payment_gateway != '' || date != '' || schedule != "" || name != "" || email != "" || phone != "") {
+            $('[name="name"]').val(name);
+            $('[name="email"]').val(email);
+            $('[name="phone"]').val(phone);
+            for (let i = 0; i < services.length; i++) {
+                $('#msform').append('<input type="hidden" name="services[' + i +
+                    '][id]" value="' + services[i].id + '"/>');
+                $('#msform').append('<input type="hidden" name="services[' + i +
+                    '][quantity]" value="' + services[i].quantity + '"/>');
+            }
+            $('[name="date"]').val(date);
+            $('[name="selected_payment_gateway"]').val(payment_gateway);
+            $('[name="schedule"]').val(schedule);
+            $('[name="coupon"]').val(coupon);
+            $('[name="service_available_dates"]').val(service_available_dates);
+            $('[name="service_subtotal_input_hidden_field_for_js_calculation"]').val(
+                service_subtotal_input_hidden_field_for_js_calculation);
 
+            $("#msform").submit()
+        }
+    </script>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -1150,6 +1217,3 @@
 @endsection
 
 @include('frontend.pages.services.service-book-js')
-
-
-
