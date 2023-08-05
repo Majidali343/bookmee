@@ -3,6 +3,16 @@
     {{__('Add Services')}}
 @endsection
 
+@php
+
+$userid =  Auth::guard('web')->user()->id ;
+ use App\SellerVerify ;
+     $status =SellerVerify::where('id', $userid)->value('status');
+
+ 
+@endphp
+
+
 @section('style')
     <x-media.css/>
     <x-summernote.css/>
@@ -41,6 +51,9 @@
                 @include('frontend.user.seller.partials.sidebar')
                 <div class="dashboard-right">
                     <div class="row">
+    
+
+             @if($status == '0')
                         <div class="col-lg-9" >
                             <div class="dashboard-settings margin-top-40" style="width:65pc;">
                         
@@ -53,6 +66,8 @@
                                 </div>
                             </div>
                         </div>
+
+               @endif         
                         {{-- <div class="col-lg-3">
                             <div class="available-all-city-area">
                                 <span class="text-info">{{__('Is Available All Cities and Area')}}</span>

@@ -815,10 +815,19 @@
                             <div class="row d-flex align-items-center justify-content-between w-100 center-mobile">
                                 <div class="d-flex flex-wrap align-items-center w-100 justify-content-start center-mobile"
                                     style="max-width: 600px;">
+                                   
+                                    @if($seller->image && get_attachment_image_by_id($seller->image)['img_url'])
                                     <div class="image" style="min-width: 100px!important;margin-right:30px">
-                                        <img src="{{ get_attachment_image_by_id($seller->image)['img_url'] }}"
+                                       <img src="{{ get_attachment_image_by_id($seller->image)['img_url'] }}"
+                                        width="80px" height="80px" alt="">
+                                    </div>
+                                     @else
+                                     <div class="image" style="min-width: 100px!important;margin-right:30px">
+                                        <img src={{ asset('/assets/uploads/no-image.png') }}
                                             width="80px"height="80px"alt="">
                                     </div>
+                                     @endif
+
                                     <div class="details align-self-center" style="max-width: 450px;">
                                         <div class="heading flex-wrap justify-content-start  center-mobile"
                                             style="font-size:24px;">

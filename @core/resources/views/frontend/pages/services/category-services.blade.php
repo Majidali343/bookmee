@@ -198,13 +198,20 @@ use App\Review;
                                             @else
                                             <div style=" margin-top: 38px" ></div>
                                             @endif
-
-                                        
-                                   
-                                    
-                                    <a href="/{{ $Vendors[$i]->username }}"
+                                         
+                                        @if($Vendors[$i]->image && get_attachment_image_by_id($Vendors[$i]->image)['img_url'] )
+                                        <a href="/{{ $Vendors[$i]->username }}"
                                         class="service-thumb location_relative service-bg-thumb-format"
+                                        
                                         style="background-image: url({{ get_attachment_image_by_id($Vendors[$i]->image)['img_url'] }});"></a>
+
+                                        @else
+                                        <a href="/{{ $Vendors[$i]->username }}"
+                                            class="service-thumb location_relative service-bg-thumb-format"
+                                            > <img  src={{ asset('/assets/uploads/no-profile.png') }} height: 318px; width: 353px; alt=""></a>
+                                        @endif
+
+
                                     <div class="services-contents">
                                         <div>
                                             <ul class="author-tag">
