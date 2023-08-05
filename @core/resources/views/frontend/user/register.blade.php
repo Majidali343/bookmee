@@ -1186,13 +1186,34 @@
                     }
                 })
 
+               
+
              function validateForm() {
             var locationValue = $("#location").val();
             if (locationValue === "") {
-                alert("Please enter the location.");
-                return false; // Prevent form submission
+                Command: toastr["warning"]("{{ __('Please Choose Business Location!') }}",
+                            "{{ __('Warning') }}")
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        return false; // Prevent form submission
             }
             return true; // Allow form submission
+
             }
 
                 $(document).on('submit', '.user-register-form', function(e) {
