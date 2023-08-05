@@ -4211,7 +4211,7 @@ ul {
 }
 
 .title {
-    font-size: 24px;
+    font-size: 19px;
     font-weight: 600;
     line-height: 26px;
     color: #233857;
@@ -4240,7 +4240,7 @@ ul {
     flex-direction: row;
 
     height: 220px;
-    gap: 40px;
+    gap: 52px;
     /* Adjust the gap value as per your preference */
     /* justify-content: space-between; */
     overflow-x: scroll;

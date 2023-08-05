@@ -817,7 +817,7 @@
                                     style="max-width: 600px;">
                                    
                                     {{-- @dd($seller->image) --}}
-                                    @if($seller->image != "NULL" && get_attachment_image_by_id($seller->image)['img_url'] != null)
+                                    @if($seller->image != null && $seller->image != "NULL")
                                     <div class="image" style="min-width: 100px!important ;margin-right:10px">
                                        <img src="{{ get_attachment_image_by_id($seller->image)['img_url'] }}"
                                         width="80px" height="80px" alt="">

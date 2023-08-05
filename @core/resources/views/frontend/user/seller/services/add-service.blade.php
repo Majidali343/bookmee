@@ -7,7 +7,7 @@
 
 $userid =  Auth::guard('web')->user()->id ;
  use App\SellerVerify ;
-     $status =SellerVerify::where('id', $userid)->value('status');
+     $status =SellerVerify::where('seller_id', $userid)->value('status');
 
  
 @endphp
@@ -52,7 +52,7 @@ $userid =  Auth::guard('web')->user()->id ;
                 <div class="dashboard-right">
                     <div class="row">
     
-
+        
              @if($status == '0')
                         <div class="col-lg-9" >
                             <div class="dashboard-settings margin-top-40" style="width:65pc;">

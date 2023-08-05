@@ -201,7 +201,7 @@ use App\Review;
                                          
                                         
                                          
-                                        @if($Vendors[$i]->image != "NULL" && get_attachment_image_by_id($Vendors[$i]->image)['img_url'] != "NULL"  )
+                                     @if($seller->image != null && $seller->image != "NULL")
                                         <a href="/{{ $Vendors[$i]->username }}"
                                         class="service-thumb location_relative service-bg-thumb-format"
                                         
