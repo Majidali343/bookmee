@@ -291,6 +291,7 @@
             .single-services-item {
                 width: 100%;
             }
+
         }
 
         .single-prices {
@@ -392,8 +393,10 @@
             .single-services {
                 width: 70%;
             }
-
-
+           .container{
+            padding-left:0px ;
+            padding-right:0px;
+           } 
         }
 
       
@@ -579,6 +582,13 @@
                             @empty
                                 <div></div>
                             @endforelse
+                        @else
+                        <div class="single-slider">
+                            <div class="gallery-images single-featured service-details-background-image">
+                                <img  style="margin: auto auto;"   src={{ asset('/assets/uploads/no-profile.png') }}  alt="">
+                            </div>
+                        </div>
+
                         @endif
 
                     </div>
@@ -597,6 +607,12 @@
                                     <div></div>
                                 @endforelse
                             </div>
+                         @else
+                         <div class="single-slider">
+                            <div class="gallery-images single-featured service-details-background-image">
+                                <img  src={{ asset('/assets/uploads/no-profile.png') }}  alt="">
+                            </div>
+                        </div>
                         @endif
                     </div>
 
@@ -608,8 +624,8 @@
 
                 <!-- Featured Service area starts -->
                 @if (!empty($services))
-                    <section class="services-area " style="padding-top: 50px;padding-bottom:50px;">
-                        <div class="container">
+                    <section class="services-area " style="padding-top: 50px;">
+                        <div class="container" >
                             <div class="row">
                                 <div class="col-lg-12">
 
