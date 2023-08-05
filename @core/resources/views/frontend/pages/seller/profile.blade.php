@@ -816,13 +816,14 @@
                                 <div class="d-flex flex-wrap align-items-center w-100 justify-content-start center-mobile"
                                     style="max-width: 600px;">
                                    
-                                    @if($seller->image && get_attachment_image_by_id($seller->image)['img_url'])
-                                    <div class="image" style="min-width: 100px!important;margin-right:30px">
+                                    {{-- @dd($seller->image) --}}
+                                    @if($seller->image != "NULL" && get_attachment_image_by_id($seller->image)['img_url'] != null)
+                                    <div class="image" style="min-width: 100px!important ;margin-right:10px">
                                        <img src="{{ get_attachment_image_by_id($seller->image)['img_url'] }}"
                                         width="80px" height="80px" alt="">
                                     </div>
                                      @else
-                                     <div class="image" style="min-width: 100px!important;margin-right:30px">
+                                     <div class="image" style="min-width: 100px!important;margin-right:10px">
                                         <img src={{ asset('/assets/uploads/no-image.png') }}
                                             width="80px"height="80px"alt="">
                                     </div>
