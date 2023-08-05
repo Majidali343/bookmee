@@ -1186,7 +1186,20 @@
                     }
                 })
 
+             function validateForm() {
+            var locationValue = $("#location").val();
+            if (locationValue === "") {
+                alert("Please enter the location.");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+            }
+
                 $(document).on('submit', '.user-register-form', function(e) {
+
+                    return validateForm();
+
+
                     // if (!$('.terms-conditions .check-input').is(":checked")) {
                     //     //error msg 
                     //     Command: toastr["warning"]("{{ __('Please agree with terms and conditions.!') }}","{{ __('Warning') }}")
