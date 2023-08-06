@@ -101,7 +101,7 @@ use App\Review;
                     <div class="services-slider dot-style-one">
                         @if ($Vendors->count() > 0)
                         @for (  $i=0 ; $i< $Vendors->count();  $i++)
-                                <div class="single-services-item wow fadeInUp" data-wow-delay=".2s">
+                                <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" >
 
                                     <div class="single-service">
 
@@ -189,19 +189,20 @@ use App\Review;
                     @if ($Vendors->count() > 0)
                         @for (  $i=0 ; $i< $Vendors->count();  $i++)
 
-                            <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" style="width: 390px;">
+                            <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" style="width: 390px; border: 3px solid;
+                            border-color: f6f5f5; border-radius:10px ;">
                                 <div class="single-service">
                                         
                                             @if (!@empty($discounts[$i]))
                                         
                                             <div class="discount" >save upto {{$discounts[$i]}}%</div>
                                             @else
-                                            <div style=" margin-top: 38px" ></div>
+                                            <div ></div>
                                             @endif
                                          
                                         
-                                         
-                                     @if($Vendors[$i]->image != null && $Vendors[$i]->image != "NULL")
+                                            
+                                        @if($Vendors[$i]->image !== null &&  $Vendors[$i]->image !== "NULL" && $Vendors[$i]->image !== "")
                                         <a href="/{{ $Vendors[$i]->username }}"
                                         class="service-thumb location_relative service-bg-thumb-format"
                                         
@@ -210,7 +211,7 @@ use App\Review;
                                         @else
                                         <a href="/{{ $Vendors[$i]->username }}"
                                             class="service-thumb location_relative service-bg-thumb-format"
-                                            > <img  src={{ asset('/assets/uploads/no-profile.png') }} height: 318px; width: 353px; alt=""></a>
+                                            > <img   style="height: 233px; object-fit: contain " src={{ asset('/assets/uploads/no-profile.png') }}  alt=""></a>
                                         @endif
 
 

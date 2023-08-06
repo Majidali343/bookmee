@@ -70,7 +70,7 @@
                             @if ($vendors->count() > 0)
                                 @for (  $i=0 ; $i< $vendors->count();  $i++)
  
-                                    <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" style="width: 390px;">
+                                    <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" style="width: 390px; ">
                                         <div class="single-service">
                                                                                            
                                                     @if (!@empty($discounts[$i]))
@@ -80,12 +80,19 @@
                                                     <div style=" margin-top: 38px" ></div>
                                                     @endif
 
-                                                
-                                           
-                                            
+                                                    
+
+                                     @if($vendors[$i]->image !== null &&  $vendors[$i]->image !== "NULL" && $vendors[$i]->image !== "")
                                             <a href="/{{ $vendors[$i]->username }}"
                                                 class="service-thumb location_relative service-bg-thumb-format"
                                                 style="background-image: url({{ get_attachment_image_by_id($vendors[$i]->image)['img_url'] }});"></a>
+                                     @else
+                                     <a href="/{{ $vendors[$i]->username }}"
+                                        class="service-thumb location_relative service-bg-thumb-format" >
+                                        <img   style="height: 233px; object-fit: contain " src={{ asset('/assets/uploads/no-profile.png') }}  alt="">
+                                       </a>
+                                        @endif
+
                                             <div class="services-contents">
                                                 <div>
                                                     <ul class="author-tag">

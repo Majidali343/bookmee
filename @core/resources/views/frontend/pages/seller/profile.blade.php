@@ -552,7 +552,9 @@
             margin:0px 12px;
         }
 
-
+        .bookButton:hover {
+        background-color: #093309; /* Darker green background on hover */
+    }
     </style>
 @endsection
 
@@ -585,7 +587,7 @@
                         @else
                         <div class="single-slider">
                             <div class="gallery-images single-featured service-details-background-image">
-                                <img  style="margin: auto auto;"   src={{ asset('/assets/uploads/no-profile.png') }}  alt="">
+                                <img  style="margin: auto auto; height:500px"   src={{ asset('/assets/uploads/no-profile.png') }}  alt="">
                             </div>
                         </div>
 
@@ -693,10 +695,9 @@
 
 
                                                                     <h5 class="">
-                                                                        <a class="slug"  
-                                                                            href="{{ route('service.list.details', $services[$i]->slug) }}">{{ $services[$i]->title }}
+                                                                        <p class="slug" style="font-size: 20px;" >{{ $services[$i]->title }}    </p>
 
-                                                                        </a>
+                                                                 
                                                                     </h5>
                                                                     @if (!empty($discountsArray[$di]['discount']))
                                                                         <div class="discount">Save upto
@@ -730,11 +731,11 @@
 
                                                                         <div>
 
-                                                                            <div class="btn-wrapper single-prices">
+                                                                            <Button class="btn-wrapper single-prices bookButton">
                                                                                 <a href="{{ route('service.list.book', $services[$i]->slug) }}"
                                                                                     class=" ">{{ __('Book') }}
                                                                                 </a>
-                                                                            </div>
+                                                                            </Button>
 
                                                                             @if (!empty($Timearray[$di]))
                                                                                 <div class="time"> {{ $Timearray[$di] }}
@@ -999,7 +1000,15 @@
     </div>
 
     <script>
+
         $(document).ready(function() {
+
+            $('.bookButton').on('click', function(event) {
+            event.preventDefault(); // Prevent the default behavior of the link
+            const url = $(this).find('a').attr('href');
+            window.location.href = url; // Redirect to the URL
+        });
+
             $("#search-button").on("click", function() {
                 var value = document.getElementById('search-input').value.toLowerCase().trim();
                 $(".single-services-item").show().filter(function() {
