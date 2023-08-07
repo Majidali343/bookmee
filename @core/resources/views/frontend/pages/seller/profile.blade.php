@@ -265,7 +265,7 @@
             font-Weight: 600;
             font-size: 14px;
             text-decoration-line: line-through;
-            text-decoration-thickness:2px;
+            text-decoration-thickness: 2px;
 
         }
 
@@ -343,6 +343,7 @@
                 margin-right: 50px;
                 text-align: justify;
             }
+
             .discount {
                 Width: 108px;
                 Height: 31px;
@@ -350,7 +351,7 @@
             }
 
             .service-details-slider {
-            width: calc(100% - 24px) ;
+                width: calc(100% - 24px);
                 height: 310px !important;
             }
 
@@ -365,11 +366,12 @@
                 background: var(--main-color-two);
             }
 
-            .slug{
-            color: black;
-            font-weight:700;
-            font-size: 15px;
+            .slug {
+                color: black;
+                font-weight: 700;
+                font-size: 15px;
             }
+
             .single-service .services-contents .service-price .prices {
                 font-size: 16px;
                 font-weight: 700;
@@ -378,9 +380,9 @@
                 color: #233857;
             }
 
-        .time{
-            padding-left: 2px;
-        }
+            .time {
+                padding-left: 2px;
+            }
 
         }
 
@@ -393,13 +395,14 @@
             .single-services {
                 width: 70%;
             }
-           .container{
-            padding-left:0px ;
-            padding-right:0px;
-           } 
+
+            .container {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
         }
 
-      
+
 
         @media only screen and (min-width: 1200px) {
             .center-mobile {
@@ -520,9 +523,9 @@
 
 
         /* new style */
-        .slug{
+        .slug {
             color: black;
-            font-weight:700;
+            font-weight: 700;
         }
 
         .service-body-flex {
@@ -543,18 +546,20 @@
             padding-right: 19px;
             padding-top: 20px;
         }
-        .service-price{
-          display: flex;
-          padding: 10px 14px 26px 11px;
+
+        .service-price {
+            display: flex;
+            padding: 10px 14px 26px 11px;
         }
 
-        .margincont{
-            margin:0px 12px;
+        .margincont {
+            margin: 0px 12px;
         }
 
         .bookButton:hover {
-        background-color: #093309; /* Darker green background on hover */
-    }
+            background-color: #093309;
+            /* Darker green background on hover */
+        }
     </style>
 @endsection
 
@@ -585,12 +590,12 @@
                                 <div></div>
                             @endforelse
                         @else
-                        <div class="single-slider">
-                            <div class="gallery-images single-featured service-details-background-image">
-                                <img  style="margin: auto auto; height:500px"   src={{ asset('/assets/uploads/no-profile.png') }}  alt="">
+                            <div class="single-slider">
+                                <div class="gallery-images single-featured service-details-background-image">
+                                    <img style="margin: auto auto; height:500px"
+                                        src={{ asset('/assets/uploads/no-profile.png') }} alt="">
+                                </div>
                             </div>
-                        </div>
-
                         @endif
 
                     </div>
@@ -609,12 +614,12 @@
                                     <div></div>
                                 @endforelse
                             </div>
-                         @else
-                         <div class="single-slider">
-                            <div class="gallery-images single-featured service-details-background-image">
-                                <img  src={{ asset('/assets/uploads/no-profile.png') }}  alt="">
+                        @else
+                            <div class="single-slider">
+                                <div class="gallery-images single-featured service-details-background-image">
+                                    <img src={{ asset('/assets/uploads/no-profile.png') }} alt="">
+                                </div>
                             </div>
-                        </div>
                         @endif
                     </div>
 
@@ -627,7 +632,7 @@
                 <!-- Featured Service area starts -->
                 @if (!empty($services))
                     <section class="services-area " style="padding-top: 50px;">
-                        <div class="container" >
+                        <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
 
@@ -640,7 +645,7 @@
                                                 <div class="icon"><img src="https://i.imgur.com/fgPbs95.png"
                                                         width="20px" height="20px"></div>
                                                 <div class="input"><input type="text" class="search-input"
-                                                        id="search-input"placeholder="Search Services"
+                                                        id="search-input" placeholder="Search Services"
                                                         style="margin-left:14px;border: none;height: 100%;"></div>
                                             </div>
                                             <div id="search-button"
@@ -689,17 +694,19 @@
                                                 @for ($i = 0; $i < $group; $i++)
                                                     @for ($di = 0; $di < $discountcount; $di++)
                                                         @if ($discountsArray[$di]['discountid'] == $services[$i]->id)
-                                                            <div class="service-body-flex">
+                                                            <div class="service-body-flex single-services-item">
 
                                                                 <div class="discount-title">
 
 
                                                                     <h5 class="">
-                                                                        <p class="slug" style="font-size: 20px;" >{{ $services[$i]->title }}    </p>
+                                                                        <p class="slug service-title"
+                                                                            style="font-size: 20px;">
+                                                                            {{ $services[$i]->title }} </p>
 
-                                                                 
+
                                                                     </h5>
-                                                                    
+
                                                                     @if (!empty($discountsArray[$di]['discount']))
                                                                         <div class="discount">Save upto
                                                                             {{ \Illuminate\Support\Str::limit($discountsArray[$di]['discount'], 4, '') }}
@@ -719,20 +726,22 @@
                                                                 <div class="right-container">
 
                                                                     <div class="min-right" style=" display: flex;">
-                                                                        <div class="service-price " >
+                                                                        <div class="service-price ">
                                                                             @if (!empty($discountsArray[$di]['discount']))
                                                                                 <div class="discountedprice">
                                                                                     {{ amount_with_currency_symbol($services[$i]->price) }}
                                                                                 </div>
                                                                             @endif
-                                                                            <span  class="prices" style="margin-left: 8px" >{{ amount_with_currency_symbol($percentage_Amount) }}
+                                                                            <span class="prices"
+                                                                                style="margin-left: 8px">{{ amount_with_currency_symbol($percentage_Amount) }}
                                                                             </span>
 
                                                                         </div>
 
                                                                         <div>
 
-                                                                            <Button class="btn-wrapper single-prices bookButton">
+                                                                            <Button
+                                                                                class="btn-wrapper single-prices bookButton">
                                                                                 <a href="{{ route('service.list.book', $services[$i]->slug) }}"
                                                                                     class=" ">{{ __('Book') }}
                                                                                 </a>
@@ -833,19 +842,19 @@
                             <div class="row d-flex align-items-center justify-content-between w-100 center-mobile">
                                 <div class="d-flex flex-wrap align-items-center w-100 justify-content-start center-mobile"
                                     style="max-width: 600px;">
-                                   
+
                                     {{-- @dd($seller->image) --}}
-                                    @if($seller->image != null && $seller->image != "NULL")
-                                    <div class="image" style="min-width: 100px!important ;margin-right:10px">
-                                       <img src="{{ get_attachment_image_by_id($seller->image)['img_url'] }}"
-                                        width="80px" height="80px" alt="">
-                                    </div>
-                                     @else
-                                     <div class="image" style="min-width: 100px!important;margin-right:10px">
-                                        <img src={{ asset('/assets/uploads/no-image.png') }}
-                                            width="80px"height="80px"alt="">
-                                    </div>
-                                     @endif
+                                    @if ($seller->image != null && $seller->image != 'NULL' && $seller->image != "" && get_attachment_image_by_id($seller->image)['img_url'] !== "")
+                                        <div class="image" style="min-width: 100px!important ;margin-right:10px">
+                                            <img src="{{ get_attachment_image_by_id($seller->image)['img_url'] }}"
+                                                width="80px" height="80px" alt="">
+                                        </div>
+                                    @else
+                                        <div class="image" style="min-width: 100px!important;margin-right:10px">
+                                            <img src={{ asset('/assets/uploads/no-image.png') }}
+                                                width="80px"height="80px"alt="">
+                                        </div>
+                                    @endif
 
                                     <div class="details align-self-center" style="max-width: 450px;">
                                         <div class="heading flex-wrap justify-content-start  center-mobile"
@@ -1001,22 +1010,37 @@
     </div>
 
     <script>
-
         $(document).ready(function() {
 
             $('.bookButton').on('click', function(event) {
-            event.preventDefault(); // Prevent the default behavior of the link
-            const url = $(this).find('a').attr('href');
-            window.location.href = url; // Redirect to the URL
-        });
+                event.preventDefault(); // Prevent the default behavior of the link
+                const url = $(this).find('a').attr('href');
+                window.location.href = url; // Redirect to the URL
+            });
 
-            $("#search-button").on("click", function() {
+            function filterItems() {
                 var value = document.getElementById('search-input').value.toLowerCase().trim();
+
                 $(".single-services-item").show().filter(function() {
                     return $(this).find('.service-title').text().toLowerCase().trim().indexOf(
                         value) == -1;
                 }).hide();
+
+            }
+
+            $("#search-button").on("click", function() {
+                filterItems();
             });
+
+            $("#search-input").on("keyup", function() {
+                filterItems();
+
+                // If the search input is empty, show all elements
+                if ($(this).val().trim() === "") {
+                    $(".single-services-item").show();
+                }
+            });
+
         });
     </script>
 @endsection

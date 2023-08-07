@@ -569,6 +569,7 @@ class FrontendController extends Controller
             $service->id =  $vendor->id;
 
             $discount_type = ServiceCoupon::where('seller_id', $service->id)
+                ->where('status','1')
                 ->orderBy('discount', 'desc')
                 ->get('discount_type')
                 ->first();
@@ -579,7 +580,7 @@ class FrontendController extends Controller
             if ($discount_type != null && $discount_type->discount_type == "percentage") {
 
                 $discount = $discount;
-            } else {
+            } else  if ($discount_type != null) {
 
                 $discount_id = ServiceCoupon::where('seller_id', $service->id)
                     ->orderBy('discount', 'desc')

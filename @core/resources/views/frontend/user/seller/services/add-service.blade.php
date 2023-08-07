@@ -53,21 +53,25 @@ $userid =  Auth::guard('web')->user()->id ;
                     <div class="row">
     
         
-             @if($status == '0')
+           
                         <div class="col-lg-9" >
                             <div class="dashboard-settings margin-top-40" style="width:65pc;">
                         
                                 <h2 class="dashboards-title"> {{__('Add Service')}} </h2>
+                                  @if($status == '0')
                                 <div class="notice-board">
+                                    
                                     @if(get_static_option('service_create_settings') == 'verified_seller')
                                         <p class="text-dark">{{__('You can not add services if you are not verified.')}}</p>
                                     @endif
-                                    <p class="text-dark">{{__('This part is common for both of/on line services. After create service you will redirect a page where you will create service attributes for offline or online.')}}</p>
+                                    <p class="text-dark">{{__('Please Verify your Profile first By going into Profile Verify Section. After create service you will redirect to a page where you will create service attributes.')}}</p>
+                                   
                                 </div>
+                                  @endif 
                             </div>
                         </div>
 
-               @endif         
+                      
                         {{-- <div class="col-lg-3">
                             <div class="available-all-city-area">
                                 <span class="text-info">{{__('Is Available All Cities and Area')}}</span>

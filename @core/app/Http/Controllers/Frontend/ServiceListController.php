@@ -1717,6 +1717,7 @@ class ServiceListController extends Controller
             $service->id =  $vendor->id;
 
             $discount_type = ServiceCoupon::where('seller_id', $service->id)
+                ->where('status','1')
                 ->orderBy('discount', 'desc')
                 ->get('discount_type')
                 ->first();
@@ -1732,7 +1733,7 @@ class ServiceListController extends Controller
                 $discount = $discount;
                 
                 
-            }else {
+            }else if ($discount_type != null ) {
 
                 $discount_id = ServiceCoupon::where('seller_id', $service->id)
                     ->orderBy('discount', 'desc')

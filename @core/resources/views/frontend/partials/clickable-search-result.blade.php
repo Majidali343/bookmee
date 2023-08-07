@@ -82,7 +82,7 @@
 
                                                     
 
-                                     @if($vendors[$i]->image !== null &&  $vendors[$i]->image !== "NULL" && $vendors[$i]->image !== "")
+                                     @if($vendors[$i]->image !== null &&  $vendors[$i]->image !== "NULL" && $vendors[$i]->image !== "" &&  get_attachment_image_by_id($vendors[$i]->image)['img_url'] !== "" )
                                             <a href="/{{ $vendors[$i]->username }}"
                                                 class="service-thumb location_relative service-bg-thumb-format"
                                                 style="background-image: url({{ get_attachment_image_by_id($vendors[$i]->image)['img_url'] }});"></a>

@@ -189,8 +189,8 @@ use App\Review;
                     @if ($Vendors->count() > 0)
                         @for (  $i=0 ; $i< $Vendors->count();  $i++)
 
-                            <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" style="width: 390px; border: 3px solid;
-                            border-color: f6f5f5; border-radius:10px ;">
+                            <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" style="width: 390px;   ">
+                          
                                 <div class="single-service">
                                         
                                             @if (!@empty($discounts[$i]))
@@ -201,12 +201,10 @@ use App\Review;
                                             @endif
                                          
                                         
-                                            
-                                        @if($Vendors[$i]->image !== null &&  $Vendors[$i]->image !== "NULL" && $Vendors[$i]->image !== "")
+                                        @if($Vendors[$i]->image !== null &&  $Vendors[$i]->image !== "NULL" && $Vendors[$i]->image !== "" && get_attachment_image_by_id($Vendors[$i]->image)['img_url']  !== "" )
                                         <a href="/{{ $Vendors[$i]->username }}"
                                         class="service-thumb location_relative service-bg-thumb-format"
-                                        
-                                        style="background-image: url({{ get_attachment_image_by_id($Vendors[$i]->image)['img_url'] }});"></a>
+                                       style="background-image: url({{ get_attachment_image_by_id($Vendors[$i]->image)['img_url'] }});"></a>
 
                                         @else
                                         <a href="/{{ $Vendors[$i]->username }}"
