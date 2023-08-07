@@ -699,6 +699,7 @@
 
                                                                  
                                                                     </h5>
+                                                                    
                                                                     @if (!empty($discountsArray[$di]['discount']))
                                                                         <div class="discount">Save upto
                                                                             {{ \Illuminate\Support\Str::limit($discountsArray[$di]['discount'], 4, '') }}

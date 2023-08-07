@@ -38,20 +38,20 @@
                                                 <label><strong>{{ __('Phone:') }} </strong>{{ $order_details->phone }}</label>
                                             </div>
                                             @if($order_details->is_order_online !=1)
-                                            <div class="checkbox-inlines">
+                                            {{-- <div class="checkbox-inlines">
                                                 <label><strong>{{ __('Address:') }} </strong>{{ $order_details->address }}</label>
-                                            </div>
-                                            <div class="checkbox-inlines">
+                                            </div> --}}
+                                            {{-- <div class="checkbox-inlines">
                                                 <label><strong>{{ __('City:') }} </strong>{{ optional($order_details->service_city)->service_city }}</label>
-                                            </div>
-                                            <div class="checkbox-inlines">
+                                            </div> --}}
+                                            {{-- <div class="checkbox-inlines">
                                                 <label><strong>{{ __('Area:') }} </strong>{{ optional($order_details->service_area)->service_area  }}</label>
-                                            </div>
-                                            <div class="checkbox-inlines">
+                                            </div> --}}
+                                            {{-- <div class="checkbox-inlines">
                                                 <label><strong>{{ __('Post Code:') }} </strong>{{ $order_details->post_code }}</label>
-                                            </div>
+                                            </div> --}}
                                             <div class="checkbox-inlines">
-                                                <label><strong>{{ __('Country:') }} </strong>{{ optional($order_details->service_country)->country }}</label>
+                                                <label><strong>{{ __('Country:') }} </strong>England</label>
                                             </div>
                                             @endif
                                         </div>

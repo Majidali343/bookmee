@@ -31,11 +31,11 @@
                             @foreach($pending_orders as $order)
                             <div class="dashboard-order-single margin-top-40">
                                 <div class="dashboard-thumb-flex">
-                                    <div class="thumb">
+                                    {{-- <div class="thumb">
                                         <a href="{{ route('seller.order.details', $order->id) }}">
                                         {!! render_image_markup_by_attachment_id(optional($order->service)->image) !!}
                                         </a>
-                                    </div>
+                                    </div> --}}
                                     <div class="contents">
                                         <h4 class="title"> <a href="{{ route('seller.order.details', $order->id) }}">{{ optional($order->service)->title }} </a> </h4>
                                         <span class="orders"> {{ __('Booking').' #'.$order->id }} </span>

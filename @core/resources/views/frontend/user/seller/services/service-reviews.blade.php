@@ -32,8 +32,8 @@
                             <div class="dash-left-service">
                                 <div class="dashboard-services">
                                     <div class="dashboar-flex-services">
-                                        <div class="thumb bg-image" {!! render_background_image_markup_by_attachment_id($data->image,'','thumb') !!}>
-                                        </div>
+                                        {{-- <div class="thumb bg-image" {!! render_background_image_markup_by_attachment_id($data->image,'','thumb') !!}>
+                                        </div> --}}
                                         <div class="thumb-contents">
                                             <h4 class="title"> <a href="javascript:void(0)"> {{ $data->title }} </a> </h4>
                                             <span class="service-review"> <i class="las la-star"></i>

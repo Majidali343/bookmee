@@ -1755,6 +1755,7 @@ class SellerController extends Controller
                 }
 
                 Order::where('id', $request->order_id)->update(['status' => $request->status]);
+                return redirect()->back();
             } else {
                 toastr_error(__('You can not change order status due to payment status pending'));
                 return redirect()->back();
