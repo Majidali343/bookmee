@@ -17,12 +17,14 @@ class StaffController extends Controller
     }
 
     public function addStaff(Request $request){
-
+       
         $request->validate([
             'staffName' => 'required',
             'staffEmail' => 'required|max:191',
-            'image' => 'required|max:150',
+            'image' => 'max:150',
         ]);
+
+        
 
         $staff = new Staff();
         $staff->name = $request->staffName;

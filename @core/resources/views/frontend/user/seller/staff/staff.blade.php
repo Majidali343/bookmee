@@ -123,6 +123,7 @@
                                             <td>{{ $data->name }}</td>
                                             <td>{{ $data->email }}</td>
                                             <td>
+                                                @if($data->profile_image_id)
                                                 <div class="dashboard-switch-single">
                                                     <a href="#0" class="edit_Staff_modal" data-toggle="modal"
                                                         data-target="#editStaffModal"
@@ -136,6 +137,24 @@
                                                     </a>
                                                     <x-seller-delete-popup :url="route('seller.staff.delete', $data->id)" />
                                                 </div>
+                                                @else 
+
+                                                <div class="dashboard-switch-single">
+                                                    <a href="#0" class="edit_Staff_modal" data-toggle="modal"
+                                                        data-target="#editStaffModal"
+                                                        data-id ="{{ $data->id }}"
+                                                        data-name ="{{ $data->name }}"
+                                                        data-image ="{{$data->profile_image_id }}"
+                                                        data-email="{{$data->email }}"
+                                                        data-image_url= {{null}}
+                                                        <span style="font-size:16px;" class="dash-icon color-1"> <i
+                                                                class="las la-edit"></i> </span>
+                                                    </a>
+                                                    <x-seller-delete-popup :url="route('seller.staff.delete', $data->id)" />
+                                                </div>
+
+                                                @endif
+
                                             </td>
                                         </tr>
                                     @endforeach

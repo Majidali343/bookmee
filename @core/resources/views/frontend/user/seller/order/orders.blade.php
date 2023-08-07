@@ -68,7 +68,7 @@
                                                 <th> {{ __('Order Pricing') }} </th>
                                                 <th> {{ __('Payment Status') }} </th>
                                                 <th> {{ __('Booking Status') }} </th>
-                                                <th> {{ __('Booking Type') }} </th>
+                                                {{-- <th> {{ __('Booking Type') }} </th> --}}
                                                 <th> {{ __('Complete Request') }} </th>
                                                 <th> {{ __('Actions') }} </th>
                                             </tr>
@@ -119,13 +119,13 @@
                                                     @if ($order->status == 3) <td data-label="Order Status" class="order-deliver"><span>{{ __('Delivered') }}</span></td>@endif
                                                     @if ($order->status == 4) <td data-label="Order Status" class="canceled"><span>{{ __('Cancelled') }}</span></td>@endif
 
-                                                    <td data-label="Order Pricing">
+                                                    {{-- <td data-label="Order Pricing">
                                                         @if($order->is_order_online==1)
                                                         <span class="btn btn-success">{{ __('Online') }}</span>
                                                         @else
                                                         <span class="btn btn-info">{{ __('Offline') }}</span>
                                                         @endif
-                                                    </td>
+                                                    </td> --}}
                                                     <td data-label="Order Status" style="color: beige" >
                                                         <span class="{{ in_array($order->order_complete_request,[0,1]) ? 'pending' : 'completed' }} d-block" style="background-color: rgb(29 54 90);">
                                                             @if ( in_array($order->order_complete_request,[0,1]))
