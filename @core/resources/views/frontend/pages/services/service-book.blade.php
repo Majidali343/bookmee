@@ -430,6 +430,7 @@
                                                                             </span>
                                                                             <span class="value-input">
                                                                                 <input type="number" min="1"
+                                                                                    id = "service_order_quantity"
                                                                                     class="inc_dec_include_service"
                                                                                     data-id="{{ $include->id }}"
                                                                                     data-price="{{ $include->include_service_price }}"

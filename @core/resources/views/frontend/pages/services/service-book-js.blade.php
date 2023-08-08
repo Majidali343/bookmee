@@ -407,9 +407,7 @@
                                 let all_lists = '';
                                 let all_schedules = res.schedules;
                                 $.each(all_schedules, function(index, value) {
-                                    all_lists +=
-                                        '<li class="list"><a href="javascript:void(0)" class="get-schedule">' +
-                                        value.schedule + '</a></li>';
+                                    all_lists += `<li class="list"><a href="javascript:void(0)" class="get-schedule" data-staff="${value.staff}">${value.schedule}</a></li>`;
                                 });
                                 if (all_lists) {
                                     $("#addingremove").addClass('shedulescroll');
@@ -421,9 +419,9 @@
                                 $(".schedule_loader").hide();
                                 // setSec();
                             }
-                            if (res.status == 'no schedule') {
+                            if (res.error == true) {
                                 $(".show-schedule").html(
-                                    '<div class="alert alert-warning mt-3"><li class="list">{{ __('Schedule not available') }}</li></div>'
+                                    '<div class="alert alert-warning mt-3"><li class="list">'+res.status+'</li></div>'
                                 );
                                 $(".schedule_loader").hide();
                             }
@@ -436,6 +434,9 @@
                 $(document).on('click', '.get-schedule', function() {
                     available_schedule = $(this).text();
 
+                    let order_quantity_element = document.getElementById("service_order_quantity");
+
+                    let max_staff = $(this).attr("data-staff");
 
                     let firstSpaceIndex = available_schedule.indexOf(' ');
 
@@ -443,11 +444,32 @@
 
                     let startingTime = available_schedule.slice(0, secondSpaceIndex);
 
+                    order_quantity_element.max = max_staff;
 
+                    if(order_quantity_element.val > max_staff){
+                        order_quantity_element.value = max_staff;
+                    }
 
                     $('.confirm-overview-left .toshow').text(startingTime);
                     $('.confirm-overview-left .available_schedule').text(available_schedule);
                 })
+
+
+
+                function order_quantity_changed(){
+
+                    let order_quantity_element = document.getElementById("service_order_quantity");
+
+                    let max_staff = $("#service_order_quantity").attr("max");
+                    console.log(max_staff);
+
+                    if(order_quantity_element.value > max_staff){
+                        alert("Staff Is Not Avail For That Quantity");
+                        order_quantity_element.value = max_staff;
+                    }
+
+                }
+                document.getElementById("service_order_quantity").addEventListener("keyup", order_quantity_changed);
 
                 //confirm-date-time
                 // $('.confirm-e .next').on('click', function() {

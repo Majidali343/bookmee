@@ -194,8 +194,18 @@ class ServiceListController extends Controller
             $current_date = Carbon::parse($request->date_string)->format("D F d Y"); 
             $totalStaff = explode(',' , $staffIds);
 
+            if($staffIds == null){
+                return response()->json([
+                    'staff' => 0,
+                    'error' => true,
+                    'status' => 'No Staff Are Assigned',
+                ]);
+            }
+
             if(count($totalStaff) < 1 ||!$staffIds ||!BusinessDay::where('user_id',$userId)->first()?->from_time || !BusinessDay::where('user_id',$userId)->first()?->to_time || !$serviceTime){
                 return response()->json([
+                    'staff' => 0,
+                    'error' => true,
                     'status' => 'no schedule',
                 ]);
             }
@@ -213,7 +223,9 @@ class ServiceListController extends Controller
             
             if(!$startingTime || !$endTime){
                 return response()->json([
-                    'status' => 'no schedule',
+                    'staff' => 0,
+                    'error' => true,
+                    'status' => 'No Bussiness Day Found',
                 ]);
             }
             $sec_all = collect([]);
@@ -237,7 +249,7 @@ class ServiceListController extends Controller
                     }
                     
                 if(count($totalStaff) - $filtered_orders->count() > 0){
-                    $slots->push(['schedule'=>$sec]);
+                    $slots->push(['schedule'=>$sec, 'staff' => count($totalStaff) - $filtered_orders->count()]);
                 }
             }
             return response()->json([
@@ -454,6 +466,26 @@ class ServiceListController extends Controller
         }
 
         $last_order_id = DB::getPdo()->lastInsertId();
+
+        $total_staffs =  explode(',',Service::find($request->service_id)->serviceInclude?->first()->staff_ids);
+        $avaiStaff = collect([]);
+        foreach ($total_staffs as $id) {
+            $isUsed = StaffAvailability::where(['staff_id'=> $id,'date'=>\Carbon\Carbon::parse($request->date)->format('D F d Y'),'schedule'=> $request->schedule])?->first();
+            if(empty($isUsed)){
+                $avaiStaff->push($id);
+            }
+        }
+        if($avaiStaff->count() <= 0){
+            dd("No Staff Avail");
+        }
+        
+        $staff = Staff::find($avaiStaff[0]);
+        StaffAvailability::create([
+            "staff_name" => $staff->name,
+            "staff_id" => $staff->id,
+            "date" => \Carbon\Carbon::parse($request->date)->format('D F d Y'),
+            "schedule" => $request->schedule
+        ]);
 
         if ($order_create != '') {
             SupportTicket::create([
