@@ -982,13 +982,17 @@ class SellerController extends Controller
         // update
         
         $servicedata = Serviceinclude::where('service_id', $id)->get()->first();
-       
+        $title = Service::where('id', $id)->first();
+        $title  = $title->title; 
+
+
         if (is_null($servicedata) ){
             // dd('if');
+      
             $includin_data = Serviceinclude::create([
                 'service_id' => $id,
                 'seller_id' => Auth::guard('web')->user()->id,
-                'include_service_title' => 'Enter Title',
+                'include_service_title' => $title ,
                 'include_service_price' => '0',
                 'include_service_quantity' => '1',
                 // 'service_time' => '0 Mins',

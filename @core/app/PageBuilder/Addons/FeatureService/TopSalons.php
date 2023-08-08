@@ -278,11 +278,11 @@ SERVICE;
         Height : 36px;
         border-Radius :60px;
         Gap :10px;
-        background-color: #03989E4D;
+        background-color: #ffffff50;
         Font-family :"Inter";
         font-Weight : 600;
         Size : 14px;
-        color: #03989E;
+        color: black;
     }
     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px)  {
             .discount{

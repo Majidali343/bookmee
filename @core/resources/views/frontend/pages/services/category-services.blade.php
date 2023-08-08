@@ -56,29 +56,30 @@ use App\Review;
         /* min-height: 370px;
         max-height: 380px; */
     }
-    .sectionfontsize{
-        font-size: 30px;
-    line-height: 40px;
-    font-weight: 600;
-    }
-    .discount{
-    position: relative;
-    left: 200px;
-    top: 63px;
-    z-index: 100;
-    padding-left: 10px;
-    padding-top: 7px;
-    Width : 119px;
-    Height : 36px;
-    border-Radius :60px;
-    Gap :10px;
-    background-color: #03989E4D;
-    Font-family :"Inter";
-    font-Weight : 600;
-    Size : 14px;
-    color: #03989E;
-}
 
+    .sectionfontsize {
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: 600;
+    }
+
+    .discount {
+        position: relative;
+        left: 200px;
+        top: 63px;
+        z-index: 100;
+        padding-left: 10px;
+        padding-top: 7px;
+        Width: 119px;
+        Height: 36px;
+        border-Radius: 60px;
+        Gap: 10px;
+        background-color:#ffffff50 ;
+        Font-family: "Inter";
+        font-Weight: 600;
+        Size: 14px;
+        color: black;
+    }
 </style>
 
 
@@ -95,12 +96,12 @@ use App\Review;
                 </div>
             </div>
 
-            
-             {{-- <div class="row margin-top-50 " >
+
+            {{-- <div class="row margin-top-50 " >
                 <div class="col-lg-12">
                     <div class="services-slider dot-style-one">
                         @if ($Vendors->count() > 0)
-                        @for (  $i=0 ; $i< $Vendors->count();  $i++)
+                        @for ($i = 0; $i < $Vendors->count(); $i++)
                                 <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" >
 
                                     <div class="single-service">
@@ -128,8 +129,7 @@ use App\Review;
                                                                     class="icon review-star"style="font-size: 24px; color:var(--main-color-two)">
                                                                    
                                                                     <span style="font-size: 18px;">  
-                                                                        @if(Review:: where('seller_id', $Vendors[$i]->id)
-                                                                        ->count('service_id') > 0)
+                                                                        @if (Review::where('seller_id', $Vendors[$i]->id)->count('service_id') > 0)
 
                                                                         ({{ Review:: where('seller_id', $Vendors[$i]->id)
                                                                         ->count('service_id')  ;}} )
@@ -177,40 +177,42 @@ use App\Review;
             </div>  
             </div>  --}}
 
-        
-            
+
+
         </div>
 
 
         <div class="row margin-top-50">
-            
+
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap justify-content-center">
                     @if ($Vendors->count() > 0)
-                        @for (  $i=0 ; $i< $Vendors->count();  $i++)
-
+                        @for ($i = 0; $i < $Vendors->count(); $i++)
                             <div class="single-services-item wow fadeInUp" data-wow-delay=".2s" style="width: 390px;   ">
-                          
-                                <div class="single-service">
-                                        
-                                            @if (!@empty($discounts[$i]))
-                                        
-                                            <div class="discount" >save upto {{$discounts[$i]}}%</div>
-                                            @else
-                                            <div ></div>
-                                            @endif
-                                         
-                                        
-                                        @if($Vendors[$i]->image !== null &&  $Vendors[$i]->image !== "NULL" && $Vendors[$i]->image !== "" && get_attachment_image_by_id($Vendors[$i]->image)['img_url']  !== "" )
-                                        <a href="/{{ $Vendors[$i]->username }}"
-                                        class="service-thumb location_relative service-bg-thumb-format"
-                                       style="background-image: url({{ get_attachment_image_by_id($Vendors[$i]->image)['img_url'] }});"></a>
 
-                                        @else
+                                <div class="single-service">
+
+                                    @if (!@empty($discounts[$i]))
+                                        <div class="discount">save upto {{ $discounts[$i] }}%</div>
+                                    @else
+                                        <div></div>
+                                    @endif
+      
+
+                                    @if (
+                                        $Vendors[$i]->image !== null &&
+                                            $Vendors[$i]->image !== "NULL" &&
+                                            $Vendors[$i]->image !== "" &&
+                                            get_attachment_image_by_id($Vendors[$i]->image)['img_url'] !== "")
                                         <a href="/{{ $Vendors[$i]->username }}"
                                             class="service-thumb location_relative service-bg-thumb-format"
-                                            > <img   style="height: 233px; object-fit: contain " src={{ asset('/assets/uploads/no-profile.png') }}  alt=""></a>
-                                        @endif
+                                            style="background-image: url({{ get_attachment_image_by_id($Vendors[$i]->image)['img_url'] }});"></a>
+                                    @else
+                                        <a href="/{{ $Vendors[$i]->username }}"
+                                            class="service-thumb location_relative service-bg-thumb-format"> <img
+                                                style="height: 233px; object-fit: contain "
+                                                src={{ asset('/assets/uploads/no-profile.png') }} alt=""></a>
+                                    @endif
 
 
                                     <div class="services-contents">
@@ -218,20 +220,16 @@ use App\Review;
                                             <ul class="author-tag">
                                                 <li class="tag-list w-100">
                                                     <a href="/{{ $Vendors[$i]->username }}" class="w-100">
-                                                        <div
-                                                            class="authors d-flex flex-wrap justify-content-between w-100">
+                                                        <div class="authors d-flex flex-wrap justify-content-between w-100">
                                                             <span class="author-title" style="font-size: 24px;">
                                                                 {{ Str::limit($Vendors[$i]->name, 13, '...') }} </span>
                                                             <span
                                                                 class="icon review-star"style="font-size: 24px; color:var(--main-color-two)">
-                                                                
-                                                                <span style="font-size: 18px;">  
-                                                                    @if(Review:: where('seller_id', $Vendors[$i]->id)
-                                                                    ->count('service_id') > 0)
 
-                                                                    ({{ Review:: where('seller_id', $Vendors[$i]->id)
-                                                                    ->count('service_id')  ;}} )
-
+                                                                <span style="font-size: 18px;">
+                                                                    @if (Review::where('seller_id', $Vendors[$i]->id)->count('service_id') > 0)
+                                                                        ({{ Review::where('seller_id', $Vendors[$i]->id)->count('service_id') }}
+                                                                        )
                                                                     @endif
                                                                 </span>
 
@@ -249,8 +247,8 @@ use App\Review;
                                                 <div>
                                                     <span
                                                         class="icon review-star"style="font-size: 16px; color:var(--main-color-two)">
-                                                        {{  Str::limit($Vendors[$i]->address, 20, '...')   }}
-                                                       
+                                                        {{ Str::limit($Vendors[$i]->address, 20, '...') }}
+
                                                         <i class="las la-map-marker"></i>
                                                     </span>
                                                 </div>
@@ -264,11 +262,10 @@ use App\Review;
                                             {{-- <a href="/{{$Vendors[$i]->username }}" --}}
 
                                             <a href="/{{ $Vendors[$i]->username }}"
-
                                                 class="cmn-btn btn-appoinment btn-bg-1">View</a>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         @endfor
 

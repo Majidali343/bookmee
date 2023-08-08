@@ -163,7 +163,7 @@
                                             <div class="single-info-input margin-top-20">
                                                 <label>{{ __('Title') }}</label>
                                                 <input class="form--control" type="text" name="include_service_title[]"
-                                                    placeholder="{{ __('Service title') }}">
+                                                  value="{{ $latest_service->title  }}"  >
                                             </div>
                                             <div class="single-info-input margin-top-20 is_service_online_hide">
                                                 <label>{{ __('Unit Price') }}</label>
@@ -341,7 +341,15 @@
             <li class="checkbox-item">
              
             <input type="checkbox" id="{{$data->id}}" class="select_services" name="select_services" value="{{$data->id}}">
+
+            @if($data->profile_image_id !== null &&  $data->profile_image_id !== "NULL" && $data->profile_image_id !== "" && get_attachment_image_by_id($data->profile_image_id)['img_url']  !== "" )
             <img  class="modalimage" src="{{get_attachment_image_by_id($data->profile_image_id)['img_url']}}" alt="">
+            @else
+                <img  class="modalimage" src={{ asset('/assets/uploads/no-profile.png') }} alt="">
+            @endif
+
+            
+            
             <label class="label" for="checkbox1">{{$data->name}}</label>
             </li>
 

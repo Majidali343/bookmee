@@ -55,11 +55,11 @@
                     Height : 36px;
                     border-Radius :60px;
                     Gap :10px;
-                    background-color: #03989E4D;
+                    background-color: #ffffff5d;
                     Font-family :"Inter";
                     font-Weight : 600;
                     Size : 14px;
-                    color: #03989E;
+                    color: black;
                 }
                 </style>
                
