@@ -14,6 +14,9 @@ use App\Mail\OrderMail;
 use App\Notifications\OrderNotification;
 use App\OnlineServiceFaq;
 use App\Order;
+use App\StaffAvailability;
+use App\Staff;
+
 use App\OrderAdditional;
 use App\OrderInclude;
 use App\Review;
@@ -191,7 +194,8 @@ class ServiceListController extends Controller
             $slots = collect([]);
             $slots_temp = collect([]);
 
-            $current_date = Carbon::parse($request->date_string)->format("D F d Y"); 
+
+            $current_date = Carbon::parse($request->date_string);
             $totalStaff = explode(',' , $staffIds);
 
             if($staffIds == null){
@@ -230,26 +234,50 @@ class ServiceListController extends Controller
             }
             $sec_all = collect([]);
             while ($startingTime->lt($endTime)) {
-                $prev_slot = $startingTime->format('g:i A');
-                $next_slot = $startingTime->addMinutes($serviceTime)->format('g:i A');
-                $sec =  $prev_slot ." To ". $next_slot;
-                $prevOrders = Order::where('date', Carbon::parse($current_date)->format("Y-m-d i:i:i"))->where("schedule", $sec)->where("seller_id", $request->seller_id)->get();
+                $avail_staff = collect([]);
+                $sec =  $startingTime->format('g:i A')." To ".$startingTime->addMinutes($serviceTime)->format('g:i A');
+                $user_local_time = Carbon::now()->tz($request->timezone)->addMinutes($serviceTime)->format('g:i A');
+                if($current_date->format('Y-m-d') == Carbon::now()->format('Y-m-d') && Carbon::Parse($user_local_time)->timestamp >= $startingTime->timestamp){
+                    continue;
+                }
+                
                 $filtered_orders = collect([]);
-                $sec_all->push($sec);
-                    foreach ($prevOrders as $order) {
-                        $staff_ids_order = $order->service->serviceInclude?->first()?->staff_ids;
-                        if($staff_ids_order){
-                            foreach (explode(',' ,$staff_ids_order) as $id) {
-                                if(in_array($id, $totalStaff)){
-                                    $filtered_orders->push($order);
-                                    break;
-                                }
+                $used_staff_all =  collect([]);
+                // foreach ($totalStaff as $id) {
+                //     $used_staff = StaffAvailability::where(['staff_id' => $id, 'date'=>$current_date->format("D F d Y"),'schedule'=>$sec])?->get();
+                 
+                //     if(empty($used_staff_ids)){
+                //         $avail_staff->push($id);
+                //     }
+                // }
+                $avail_staff = collect($totalStaff);
+
+                foreach ($avail_staff as $id) {
+                    $used_staff_ids = StaffAvailability::where(['staff_id' => $id, 'date'=>$current_date->format("D F d Y"),'schedule'=>$sec])?->get();
+                    foreach ($used_staff_ids as $s) {
+                        $used_staff_all->push($s);
+                    }
+                }
+               
+                if($avail_staff->count() > 0){
+                    $slot_avail = false;
+                    if($avail_staff->count() - $used_staff_all->count() > 0){
+                        $slot_avail = true;
+                        foreach ($used_staff_all as $staff) {
+                            $bookedStarted = Carbon::parse(explode(" To ", $staff->schedule)[0]);
+                            $bookedEnded = Carbon::parse(explode(" To ", $staff->schedule)[1]);
+                            $currentStarted = Carbon::parse(explode(" To ", $sec)[0]);
+                            $currentEnded = Carbon::parse(explode(" To ", $sec)[1]);
+                            if($currentStarted->gte($bookedStarted) && $currentEnded->lt($bookedEnded)){
+                                $slot_avail = false;
                             }
                         }
                     }
                     
-                if(count($totalStaff) - $filtered_orders->count() > 0){
-                    $slots->push(['schedule'=>$sec, 'staff' => count($totalStaff) - $filtered_orders->count()]);
+                    if($slot_avail == true){
+                        $slots->push(['schedule'=>$sec, 'staff' => $avail_staff->count() - $used_staff_all->count()]);
+
+                    }
                 }
             }
             return response()->json([
@@ -353,6 +381,7 @@ class ServiceListController extends Controller
 
             return redirect()->route('user.login');
         }
+
         $request->session()->flush();
 
         if ($request->is_service_online_ != 1) {
@@ -469,23 +498,25 @@ class ServiceListController extends Controller
 
         $total_staffs =  explode(',',Service::find($request->service_id)->serviceInclude?->first()->staff_ids);
         $avaiStaff = collect([]);
-        foreach ($total_staffs as $id) {
-            $isUsed = StaffAvailability::where(['staff_id'=> $id,'date'=>\Carbon\Carbon::parse($request->date)->format('D F d Y'),'schedule'=> $request->schedule])?->first();
-            if(empty($isUsed)){
-                $avaiStaff->push($id);
+        for ($i=1; $i <= $request->services[0]['quantity']; $i++) { 
+            foreach ($total_staffs as $id) {
+                $isUsed = StaffAvailability::where(['staff_id'=> $id,'date'=>\Carbon\Carbon::parse($request->date)->format('D F d Y'),'schedule'=> $request->schedule])?->first();
+                if(empty($isUsed)){
+                    $avaiStaff->push($id);
+                }
             }
+            if($avaiStaff->count() <= 0){
+                dd("No Staff Avail");
+            }
+            
+            $staff = Staff::find($avaiStaff[0]);
+            StaffAvailability::create([
+                "staff_name" => $staff->name,
+                "staff_id" => $staff->id,
+                "date" => \Carbon\Carbon::parse($request->date)->format('D F d Y'),
+                "schedule" => $request->schedule
+            ]);
         }
-        if($avaiStaff->count() <= 0){
-            dd("No Staff Avail");
-        }
-        
-        $staff = Staff::find($avaiStaff[0]);
-        StaffAvailability::create([
-            "staff_name" => $staff->name,
-            "staff_id" => $staff->id,
-            "date" => \Carbon\Carbon::parse($request->date)->format('D F d Y'),
-            "schedule" => $request->schedule
-        ]);
 
         if ($order_create != '') {
             SupportTicket::create([
