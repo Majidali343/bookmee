@@ -916,7 +916,7 @@
                                 <div class="staff row center" style="min-height: 130px;">
                                     @foreach ($seller->staff as $staff)
                                         <div class="staff-item mr-2 ml-2">
-                                            <div class="profile-pic">
+                                            {{-- <div class="profile-pic">
                              @if($staff->profile_image_id !== null && $staff->profile_image_id !== "" && get_attachment_image_by_id($staff->profile_image_id)['img_url'] !== "") 
                                                 <img src="{{ get_attachment_image_by_id($staff->profile_image_id)['img_url'] }}"
                                                     width="60px" height="60px">
@@ -925,7 +925,7 @@
 
                              @endif
 
-                                            </div>
+                                            </div> --}}
                                             <div class="name bold-text">
                                                 {{ $staff->name }}
                                             </div>

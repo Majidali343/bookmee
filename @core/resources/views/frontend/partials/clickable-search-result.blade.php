@@ -61,6 +61,12 @@
                     Size : 14px;
                     color: black;
                 }
+                @media (max-width: 480px) {
+        .discount { 
+            left: 175px;
+        top: 53px;
+        Width: 130px
+    }
                 </style>
                
                 <div class="row margin-top-50">

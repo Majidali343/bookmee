@@ -20,7 +20,7 @@ class StaffController extends Controller
        
         $request->validate([
             'staffName' => 'required',
-            'staffEmail' => 'required|max:191',
+            'staffEmail' => 'max:191',
             'image' => 'max:150',
         ]);
 
@@ -43,7 +43,7 @@ class StaffController extends Controller
             'staffId' => 'required',
             'staffName_up' => 'required',
             'image_up' => 'max:191',
-            'staffEmail_up' => 'required|max:150',
+            'staffEmail_up' => 'max:150',
         ]);
 
         $staff = Staff::find($request->staffId);

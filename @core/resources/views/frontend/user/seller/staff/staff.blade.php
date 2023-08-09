@@ -109,9 +109,9 @@
                                 <thead>
                                     <tr>
                                         <th>{{ __('Staff ID') }}</th>
-                                        <th>{{ __('Staff Image') }}</th>
+                                        {{-- <th>{{ __('Staff Image') }}</th> --}}
                                         <th>{{ __('Staff Name') }}</th>
-                                        <th>{{ __('Staff Email') }}</th>
+                                        {{-- <th>{{ __('Staff Email') }}</th> --}}
                                         <th>{{ __('Actions') }}</th>
                                     </tr>
                                 </thead>
@@ -119,9 +119,9 @@
                                     @foreach ($staff as $key => $data)
                                         <tr>
                                             <td>{{ $data->id }}</td>
-                                            <td>  <div class="search_thumb bg-image" {!! render_background_image_markup_by_attachment_id($data->profile_image_id, '', 'thumb') !!}></div></td>
+                                            {{-- <td>  <div class="search_thumb bg-image" {!! render_background_image_markup_by_attachment_id($data->profile_image_id, '', 'thumb') !!}></div></td> --}}
                                             <td>{{ $data->name }}</td>
-                                            <td>{{ $data->email }}</td>
+                                            {{-- <td>{{ $data->email }}</td> --}}
                                             <td>
                                                 @if($data->profile_image_id)
                                                 <div class="dashboard-switch-single">
@@ -129,9 +129,9 @@
                                                         data-target="#editStaffModal"
                                                         data-id ="{{ $data->id }}"
                                                         data-name ="{{ $data->name }}"
-                                                        data-image ="{{$data->profile_image_id }}"
-                                                        data-email="{{$data->email }}"
-                                                        data-image_url="{{get_attachment_image_by_id($data->profile_image_id)['img_url']}}"
+                                                        {{-- data-image ="{{$data->profile_image_id }}" --}}
+                                                        {{-- data-email="{{$data->email }}" --}}
+                                                        {{-- data-image_url="{{get_attachment_image_by_id($data->profile_image_id)['img_url']}}" --}}
                                                         <span style="font-size:16px;" class="dash-icon color-1"> <i
                                                                 class="las la-edit"></i> </span>
                                                     </a>
@@ -144,9 +144,9 @@
                                                         data-target="#editStaffModal"
                                                         data-id ="{{ $data->id }}"
                                                         data-name ="{{ $data->name }}"
-                                                        data-image ="{{$data->profile_image_id }}"
-                                                        data-email="{{$data->email }}"
-                                                        data-image_url= {{null}}
+                                                        {{-- data-image ="{{$data->profile_image_id }}" --}}
+                                                        {{-- data-email="{{$data->email }}" --}}
+                                                        {{-- data-image_url= {{null}} --}}
                                                         <span style="font-size:16px;" class="dash-icon color-1"> <i
                                                                 class="las la-edit"></i> </span>
                                                     </a>
@@ -189,12 +189,12 @@
                             <input type="text" name="staffName" id="staffName" class="form-control"
                                 placeholder="{{ __('Name') }}">
                         </div>
-                        <div class="form-group mt-3">
+                        {{-- <div class="form-group mt-3">
                             <label for="staffEmail">{{ __('Email') }}</label>
                             <input type="email" name="staffEmail" id="staffEmail" class="form-control"
                                 placeholder="{{ __('Email') }}">
-                        </div>
-                        <div class="single-dashboard-input">
+                        </div> --}}
+                        {{-- <div class="single-dashboard-input">
                             <div class="single-info-input margin-top-30">
                                 <div class="form-group ">
                                     <div class="media-upload-btn-wrapper">
@@ -211,7 +211,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="modal-footer">
@@ -247,12 +247,12 @@
                             <input type="text" name="staffName_up" id="staffName_up" class="form-control"
                                 placeholder="{{ __('Name') }}">
                         </div>
-                        <div class="form-group mt-3">
+                        {{-- <div class="form-group mt-3">
                             <label for="staffEmail_up">{{ __('Email') }}</label>
                             <input type="email" name="staffEmail_up" id="staffEmail_up" class="form-control"
                                 placeholder="{{ __('Email') }}">
-                        </div>
-                        <div class="single-dashboard-input">
+                        </div> --}}
+                        {{-- <div class="single-dashboard-input">
                             <div class="single-info-input margin-top-30">
                                 <div class="form-group ">
                                     <div class="media-upload-btn-wrapper">
@@ -277,7 +277,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="modal-footer">
@@ -318,13 +318,13 @@
                     e.preventDefault();
                     let staff_id = $(this).data('id');
                     let name = $(this).data('name');
-                    let email = $(this).data('email');
-                    let image = $(this).data('image');
-                    let image_url = $(this).data('image_url');
+                    // let email = $(this).data('email');
+                    // let image = $(this).data('image');
+                    // let image_url = $(this).data('image_url');
                     $('#staffName_up').val(name);
-                    $('#staffEmail_up').val(email);
-                    $('#image_up').val(image);
-                    $('#staff_up_image').attr("src",image_url);
+                    // $('#staffEmail_up').val(email);
+                    // $('#image_up').val(image);
+                    // $('#staff_up_image').attr("src",image_url);
                     $('#staffId').val(staff_id);
                 });
 

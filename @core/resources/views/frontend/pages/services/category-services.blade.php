@@ -74,11 +74,20 @@ use App\Review;
         Height: 36px;
         border-Radius: 60px;
         Gap: 10px;
-        background-color:#ffffffe6 ;
+        background-color: #ffffffe6;
         Font-family: "Inter";
         font-Weight: 600;
         Size: 14px;
         color: black;
+    }
+
+    @media (max-width: 480px) {
+        .discount {
+            left: 175px;
+            top: 53px;
+            Width: 130px
+        }
+
     }
 </style>
 
@@ -197,13 +206,13 @@ use App\Review;
                                     @else
                                         <div></div>
                                     @endif
-      
+
 
                                     @if (
                                         $Vendors[$i]->image !== null &&
-                                            $Vendors[$i]->image !== "NULL" &&
-                                            $Vendors[$i]->image !== "" &&
-                                            get_attachment_image_by_id($Vendors[$i]->image)['img_url'] !== "")
+                                            $Vendors[$i]->image !== 'NULL' &&
+                                            $Vendors[$i]->image !== '' &&
+                                            get_attachment_image_by_id($Vendors[$i]->image)['img_url'] !== '')
                                         <a href="/{{ $Vendors[$i]->username }}"
                                             class="service-thumb location_relative service-bg-thumb-format"
                                             style="background-image: url({{ get_attachment_image_by_id($Vendors[$i]->image)['img_url'] }});"></a>

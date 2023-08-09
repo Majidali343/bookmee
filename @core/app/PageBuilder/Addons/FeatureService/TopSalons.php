@@ -92,7 +92,7 @@ class TopSalons extends \App\PageBuilder\PageBuilderBase
 
 
             $discount_type = ServiceCoupon::where('seller_id', $service->id)
-                ->where('status','1')
+                ->where('status', '1')
                 ->orderBy('discount', 'desc')
                 ->get('discount_type')
                 ->first();
@@ -103,7 +103,7 @@ class TopSalons extends \App\PageBuilder\PageBuilderBase
             if ($discount_type != null && $discount_type->discount_type == "percentage") {
 
                 $discount = $discount;
-            } else if($discount_type != null) {
+            } else if ($discount_type != null) {
 
                 $discount_id = ServiceCoupon::where('seller_id', $service->id)
                     ->orderBy('discount', 'desc')
@@ -291,6 +291,13 @@ SERVICE;
             top: 63px;
         }
         }
+
+        @media (max-width: 480px) {
+        .discount { 
+         left: 175px;
+        top: 53px;
+        Width: 130px
+    }
    
 
     </style>
