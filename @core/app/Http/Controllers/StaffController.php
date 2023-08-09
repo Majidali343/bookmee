@@ -42,7 +42,7 @@ class StaffController extends Controller
         $request->validate([
             'staffId' => 'required',
             'staffName_up' => 'required',
-            'image_up' => 'required|max:191',
+            'image_up' => 'max:191',
             'staffEmail_up' => 'required|max:150',
         ]);
 

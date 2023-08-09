@@ -669,8 +669,9 @@ class SellerController extends Controller
             }
 
             Serviceinclude::insert($all_include_service);
-            $ids = json_encode($request->staffs);
-            Serviceinclude::where('service_id', $request->service_id)->get()->first()->update(['staff_ids' => $ids]);
+            // $ids = json_encode($request->staffs);
+            // @dd($ids);
+            Serviceinclude::where('service_id', $request->service_id)->get()->first()->update(['staff_ids' => $request->staffs]);
 
             Service::where('id', $request->service_id)->update(['price' => $service_total_price]);
         }
@@ -1087,8 +1088,8 @@ class SellerController extends Controller
                         Service::where('id', $id)->update(['price' => $service_total_price]);
                         Serviceinclude::where('service_id', $id)->update(['service_time' => $data['time']]);
 
-                        $ids = json_encode($data['staffs']);
-                        Serviceinclude::where('service_id', $id)->get()->first()->update(['staff_ids' => $ids]);
+                        
+                        Serviceinclude::where('service_id', $id)->get()->first()->update(['staff_ids' => $data['staffs'] ]);
                     }
                 }
 
@@ -1173,7 +1174,8 @@ class SellerController extends Controller
 
                 $user = \Auth::user();
                 $staff  = $user->staff;
-                 $data =  json_decode($data->staff_ids);
+              
+                 $data =  $data->staff_ids;
 
                  
                 return view('frontend.user.seller.services.edit-service-attributes', compact(
