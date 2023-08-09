@@ -21,14 +21,14 @@
                         <div class="col-lg-12 margin-top-40">
                             <div class="dashboard-profile">
                                 <div class="dashboard-profile-all">
-                                    {{-- <div class="thumb-ad">
+                                    <div class="thumb-ad">
                                         @if (!empty(Auth::guard('web')->user()->profile_background))
                                             {!! render_image_markup_by_attachment_id(Auth::guard('web')->user()->profile_background) !!}
                                         @else
                                             <img src="{{ asset('assets/frontend/img/static/ads.jpg') }}" alt="ads">
                                         @endif
 
-                                    </div> --}}
+                                    </div>
                                     <div class="profile-info-dashboard margin-top-40">
                                         <div class="profile-btn-flex">
                                             <h2 class="dashboards-title"> {{ __('Profile Information') }} </h2>

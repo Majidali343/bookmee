@@ -187,7 +187,7 @@
                                                                             data-btntitle="{{__('Select Image')}}"
                                                                             data-modaltitle="{{__('Upload Image')}}" data-toggle="modal"
                                                                             data-target="#media_upload_modal">
-                                                                        {{__('Upload Background Image')}}
+                                                                        {{__('upload dashboard background image')}}
                                                                     </button>
                                                                 </div>
                                                                 <small class="form-text text-muted">{{__('allowed image format: jpg,jpeg,png')}}</small>

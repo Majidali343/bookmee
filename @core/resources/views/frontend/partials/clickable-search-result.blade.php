@@ -55,7 +55,7 @@
                     Height : 36px;
                     border-Radius :60px;
                     Gap :10px;
-                    background-color: #ffffff5d;
+                    background-color: #ffffffe6;
                     Font-family :"Inter";
                     font-Weight : 600;
                     Size : 14px;
