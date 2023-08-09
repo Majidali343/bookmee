@@ -297,7 +297,8 @@ SERVICE;
          left: 175px;
         top: 53px;
         Width: 130px
-    }
+      }
+      }
    
 
     </style>

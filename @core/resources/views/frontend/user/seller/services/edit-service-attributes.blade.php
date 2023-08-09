@@ -383,7 +383,7 @@
                                 <input type="checkbox" id="{{ $data->id }}" class="select_services"
                                     name="select_services" value="{{ $data->id }}">
 
-                                @if (
+                                {{-- @if (
                                     $data->profile_image_id !== null &&
                                         $data->profile_image_id !== 'NULL' &&
                                         $data->profile_image_id !== '' &&
@@ -394,7 +394,7 @@
                                 @else
                                     <img class="modalimage" src={{ asset('/assets/uploads/no-profile.png') }}
                                         alt="">
-                                @endif
+                                @endif --}}
 
                                 <label class="label" for="checkbox1">{{ $data->name }}</label>
                             </li>
