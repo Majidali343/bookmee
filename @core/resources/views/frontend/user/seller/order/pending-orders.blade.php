@@ -136,7 +136,7 @@
                     <div class="modal-body">
                         <ul class="mb-3 text-danger">
                             <li><strong>{{ __( 'Status Meaning:') }}</strong></li>
-                            <li>{{ __('Pending: Did not start the job yet.') }}</li>
+                            <li>{{ __('No Show: Did not start the job yet.') }}</li>
                             <li>{{ __('Active: Job already started.') }}</li>
                             <li>{{ __('Delivered: Order Deliverd For Checking.') }}</li>
                             <li>{{ __('Completed: Order is completed and closed.') }}</li>
@@ -146,7 +146,7 @@
                             <label for="up_day_id">{{ __('Select Status') }}</label>
                             <select name="status" id="status" class="form-control nice-select">
                                 <option value="">{{ __('Select Status') }}</option>
-                                <option value="0">{{ __('Pending') }}</option>
+                                <option value="0">{{ __('No Show') }}</option>
                                 <option value="1">{{ __('Active') }}</option>
                                 <option value="2">{{ __('Completed') }}</option>
                                 <option value="3">{{ __('Delivered') }}</option>
