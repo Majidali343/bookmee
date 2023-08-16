@@ -124,6 +124,19 @@
 
 }
 
+@media only screen and (min-device-width: 310px) and (max-device-width: 350px)  {
+   .selectingstyle{
+                left: 138px;
+               
+            }
+     }
+
+    @media only screen and (min-device-width: 350px) and (max-device-width: 380px)  {
+   .selectingstyle{
+             left: 165px;
+            }
+     }
+
 </style>
 
 

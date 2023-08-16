@@ -175,6 +175,7 @@ class TopSalons extends \App\PageBuilder\PageBuilderBase
             <div class="single-services-item wow fadeInUp" data-wow-delay=".2s"> 
             <div>{$discountdom}</div> 
                 <div class="single-service">
+                
                 <a href="/{$slug}" class="service-thumb location_relative service-bg-thumb-format" {$image}></a>
                 
                     <div class="services-contents">
@@ -284,21 +285,51 @@ SERVICE;
         Size : 14px;
         color: black;
     }
+
     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px)  {
             .discount{
-
+                Width : 120px;
           left: 210px;
             top: 63px;
         }
         }
 
-        @media (max-width: 480px) {
-        .discount { 
-         left: 175px;
-        top: 53px;
-        Width: 130px
-      }
-      }
+
+
+        @media (min-width: 400px) and (max-width: 480px) {
+  /* Your styles for medium mobile devices */
+      .discount{
+        left: 200px;
+    width: 140px;
+    text-align: center;
+            }
+       }
+
+       @media (min-width: 370px) and (max-width: 400px) {
+  /* Your styles for small-medium mobile devices */
+      .discount{
+        left: 200px;
+    width: 140px;
+    text-align: center;
+            }
+       }
+
+        
+        
+        @media only screen and (min-device-width: 310px) and (max-device-width: 350px)  {
+   .discount{
+                left: 160px;
+                width: 122px;
+            }
+     }
+
+    @media only screen and (min-device-width: 350px) and (max-device-width: 370px)  {
+   .discount{
+                left: 210px;
+                width: 122px;
+            }
+     }
+       
    
 
     </style>

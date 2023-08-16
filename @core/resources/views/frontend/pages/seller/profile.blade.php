@@ -494,11 +494,11 @@
         }
 
         .groupName .name {
-            color: #999;
+            color: black;
             font-family: Poppins;
             font-size: 22px;
             font-style: normal;
-            font-weight: 500;
+            font-weight: 900;
             line-height: 28px;
             min-width: fit-content;
             margin-right: 36px;
@@ -525,7 +525,7 @@
         /* new style */
         .slug {
             color: black;
-            font-weight: 700;
+            font-weight: 500;
         }
 
         .service-body-flex {

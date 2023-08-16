@@ -81,14 +81,50 @@ use App\Review;
         color: black;
     }
 
-    @media (max-width: 480px) {
-        .discount {
-            left: 175px;
-            top: 53px;
-            Width: 130px
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+            .discount{
+                Width : 120px;
+          left: 210px;
+            top: 63px;
+           }
         }
 
-    }
+   
+   
+        @media (min-width: 400px) and (max-width: 480px) {
+        /* Your styles for medium mobile devices */
+            .discount{
+                left: 250px;
+            width: 140px;
+            text-align: center;
+                    }
+            }
+
+            @media (min-width: 370px) and (max-width: 400px) {
+        /* Your styles for small-medium mobile devices */
+            .discount{
+                left: 217px;
+            width: 140px;
+            text-align: center;
+                    }
+            }
+
+
+    @media only screen and (min-device-width: 310px) and (max-device-width: 350px)  {
+   .discount{
+                left: 175px;
+                width: 122px;
+            }
+     }
+
+    @media only screen and (min-device-width: 350px) and (max-device-width: 370px)  {
+   .discount{
+                left: 210px;
+                width: 122px;
+            }
+     }
+       
+     
 </style>
 
 

@@ -835,7 +835,7 @@
                                                             font-weight: bold;
                                                             color: #322f2f;
                                                             font-family: inherit;
-                                                            padding-left: 26px;"
+                                                            padding-left: 13px;"
                                                                 class=" available_date "></span>
                                                         </div>
 
@@ -847,7 +847,7 @@
                                                                 style="font-family: inter ; font-weight:bold ; font-size:19px ; color:black">Time
                                                                 : </span>
                                                             <span
-                                                                style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 26px;"
+                                                                style="font-size: 18px;font-weight: bold; color: #322f2f; font-family: inherit; padding-left: 13px;"
                                                                 class="toshow">
                                                             </span>
                                                             <span
